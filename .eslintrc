@@ -1,0 +1,9 @@
+{
+  "extends": "vacuumlabs",
+  "plugins": [
+    "jest",
+  ],
+  "env": {
+    "jest/globals": true,
+  },
+}
