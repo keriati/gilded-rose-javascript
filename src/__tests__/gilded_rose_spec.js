@@ -143,7 +143,7 @@ describe('Gilded Rose', () => {
 
     expect(items[0].sellIn).toEqual(9)
     expect(items[0].quality).toEqual(48)
-    expect(items[1].sellIn).toEqual(0)
+    expect(items[1].sellIn).toEqual(-1)
     expect(items[1].quality).toEqual(4)
   })
 

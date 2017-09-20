@@ -1,62 +1,83 @@
 export class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
+  constructor(name, sellIn, quality) {
+    this.name = name
+    this.sellIn = sellIn
+    this.quality = quality
   }
 }
 
 export class Shop {
-  constructor(items=[]){
-    this.items = items;
+  constructor(items=[]) {
+    this.items = items
   }
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
+    const categories = {
+      aged: ['Aged Brie'],
+      passes: ['Backstage passes to a TAFKAL80ETC concert'],
+      legendary: ['Sulfuras, Hand of Ragnaros'],
+      conjured: ['Conjured Dagger', 'Conjured Familiar'],
     }
 
-    return this.items;
+    const isInCategory = (item, category) => {
+      return categories[category].indexOf(item) >= 0
+    }
+
+    const isQualityMaxed = (quality) => {
+      return quality >= 50
+    }
+
+    const decreaseQuality = (quality) => {
+      return quality > 0 ? quality - 1 : quality
+    }
+
+    const increaseQuality = (quality) => {
+      return isQualityMaxed(quality) ? quality : quality + 1
+    }
+
+    const handleSellIn = (name, sellIn) => {
+      return isInCategory(name, 'legendary') ? sellIn : sellIn - 1
+    }
+
+    for (let i = 0; i < this.items.length; i++) {
+      const {name} = this.items[i]
+      let {sellIn, quality} = this.items[i]
+
+      sellIn = handleSellIn(name, sellIn)
+
+      if (isInCategory(name, 'conjured')) {
+        quality = decreaseQuality(quality)
+        quality = decreaseQuality(quality)
+        if (sellIn < 0) {
+          quality = decreaseQuality(quality)
+          quality = decreaseQuality(quality)
+        }
+      } else if (isInCategory(name, 'aged')) {
+        quality = increaseQuality(quality)
+        if (sellIn < 0) {
+          quality = increaseQuality(quality)
+        }
+      } else if (isInCategory(name, 'passes')) {
+        if (sellIn < 0) {
+          quality = 0
+        } else {
+          quality = increaseQuality(quality)
+          if (sellIn < 11) {
+            quality = increaseQuality(quality)
+          }
+          if (sellIn < 6) {
+            quality = increaseQuality(quality)
+          }
+        }
+      } else if (!isInCategory(name, 'legendary')) {
+        quality = decreaseQuality(quality)
+        if (sellIn < 0) {
+          quality = decreaseQuality(quality)
+        }
+      }
+      this.items[i].sellIn = sellIn
+      this.items[i].quality = quality
+    }
+
+    return this.items
   }
 }
