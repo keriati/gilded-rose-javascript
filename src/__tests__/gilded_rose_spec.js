@@ -1,4 +1,4 @@
-import { Shop, Item } from '../gilded_rose';
+import { Shop, Item, AGED_BRIE, BACKSTAGE, SULFURAS, MIN_QUALITY, MAX_QUALITY } from '../gilded_rose';
 
 describe("gilded rose", function () {
     it("sellIn and quality values should exist", function() {
@@ -189,6 +189,74 @@ describe("gilded rose", function () {
                 shop.updateQuality();
                 expect(item.quality).toBe(0);
             });
+        });
+    });
+
+    describe("static helper methods", function() {
+        it("isSulfurasItem() should ensure given item is Sulfuras", function() {
+            const sulfuras = new Item(SULFURAS, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isSulfurasItem(sulfuras)).toBe(true);
+            expect(Shop.isBackstageItem(other)).toBe(false);
+        });
+
+        it("isAgedBrieItem() should ensure given item is Aged Brie", function() {
+            const agedBrie = new Item(AGED_BRIE, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isAgedBrieItem(agedBrie)).toBe(true);
+            expect(Shop.isBackstageItem(other)).toBe(false);
+        });
+
+        it("isBackstageItem() should ensure given item is Backstage passes", function() {
+            const backstage = new Item(BACKSTAGE, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isBackstageItem(backstage)).toBe(true);
+            expect(Shop.isBackstageItem(other)).toBe(false);
+        });
+
+        it("isAgedBrieOrBackstageItem() should ensure item is one of two", function() {
+            const agedBrie = new Item(AGED_BRIE, 1, 10);
+            const backstage = new Item(BACKSTAGE, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isAgedBrieOrBackstageItem(agedBrie)).toBe(true);
+            expect(Shop.isAgedBrieOrBackstageItem(backstage)).toBe(true);
+            expect(Shop.isAgedBrieOrBackstageItem(other)).toBe(false);
+        });
+
+        it("isNormalItem() should ensure given item isn't Aged Brie, neither Backstage passes, nor Sulfuras", function() {
+            const sulfuras = new Item(SULFURAS, 1, 10);
+            const agedBrie = new Item(AGED_BRIE, 1, 10);
+            const backstage = new Item(BACKSTAGE, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isNormalItem(sulfuras)).toBe(false);
+            expect(Shop.isNormalItem(agedBrie)).toBe(false);
+            expect(Shop.isNormalItem(backstage)).toBe(false);
+            expect(Shop.isNormalItem(other)).toBe(true);
+        });
+
+        it("reduceItemQuality() should reduce item.quality, preventing negative value", function() {
+            const item = new Item("Other", 0, 1);
+
+            Shop.reduceItemQuality(item);
+
+            // Tries to reduce to a netavive value.
+            Shop.reduceItemQuality(item);
+            expect(item.quality).toBe(MIN_QUALITY);
+        });
+
+        it("riseItemQuality() should rise item.quality, limiting to allowed maximum", function() {
+            const item = new Item("Other", 0, MAX_QUALITY - 1);
+
+            Shop.riseItemQuality(item);
+
+            // Tries to rise to MAX_QUALITY + 1
+            Shop.riseItemQuality(item);
+            expect(item.quality).toBe(MAX_QUALITY);
         });
     });
 });
