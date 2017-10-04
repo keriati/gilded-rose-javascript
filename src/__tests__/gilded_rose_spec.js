@@ -1,4 +1,4 @@
-import { Shop, Item, AGED_BRIE, BACKSTAGE, SULFURAS, MIN_QUALITY, MAX_QUALITY } from '../gilded_rose';
+import { Shop, Item, AGED_BRIE, BACKSTAGE, SULFURAS, CONJURED, MIN_QUALITY, MAX_QUALITY } from '../gilded_rose';
 
 describe("gilded rose", function () {
     it("sellIn and quality values should exist", function() {
@@ -190,6 +190,28 @@ describe("gilded rose", function () {
                 expect(item.quality).toBe(0);
             });
         });
+
+        it("Conjured quality should reduce by 2 at the end of the day", function() {
+            const item = new Item("Conjured Mana Cake", 1, 2);
+            const shop = new Shop([item]);
+
+            shop.updateQuality();
+            expect(item.quality).toBe(0);
+        });
+
+        it("Conjured should reduce quality twice fast after sellIn day", function() {
+            const days = 5;
+            const quality = 20;
+            const item = new Item("Conjured Mana Cake", 0, quality);
+            const shop = new Shop([item]);
+
+            for (let i = 0; i < days; i++) {
+                shop.updateQuality();
+                expect(item.quality).toBe(quality - 4 - (i * 4));
+            }
+
+            expect(item.quality).toBe(0);
+        });
     });
 
     describe("static helper methods", function() {
@@ -214,6 +236,14 @@ describe("gilded rose", function () {
             const other = new Item("Other", 0, 0);
 
             expect(Shop.isBackstageItem(backstage)).toBe(true);
+            expect(Shop.isBackstageItem(other)).toBe(false);
+        });
+
+        it("isConjuredItem() should ensure given item is Conjured Mana Cake", function() {
+            const conjured = new Item(CONJURED, 1, 10);
+            const other = new Item("Other", 0, 0);
+
+            expect(Shop.isConjuredItem(conjured)).toBe(true);
             expect(Shop.isBackstageItem(other)).toBe(false);
         });
 
