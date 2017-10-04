@@ -1,8 +1,8 @@
-const AGED_BRIE = 'Aged Brie';
-const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
-const SULFURAS = 'Sulfuras, Hand of Ragnaros';
-const MAX_QUALITY = 50;
-const MIN_QUALITY = 0;
+export const AGED_BRIE = 'Aged Brie';
+export const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+export const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+export const MAX_QUALITY = 50;
+export const MIN_QUALITY = 0;
 const FIVE_DAYS = 5;
 const TEN_DAYS = 10;
 
@@ -25,7 +25,7 @@ export class Shop {
         Shop.reduceItemQuality(item);
       }
 
-      if (Shop.isSpecialItem(item)) {
+      if (Shop.isAgedBrieOrBackstageItem(item)) {
         Shop.riseItemQuality(item);
       }
 
@@ -65,12 +65,12 @@ export class Shop {
     return item.name === BACKSTAGE;
   }
 
-  static isSpecialItem(item) {
+  static isAgedBrieOrBackstageItem(item) {
     return Shop.isAgedBrieItem(item) || Shop.isBackstageItem(item);
   }
 
   static isNormalItem(item) {
-    return !(Shop.isSpecialItem(item) || Shop.isSulfurasItem(item));
+    return !(Shop.isAgedBrieOrBackstageItem(item) || Shop.isSulfurasItem(item));
   }
 
   static reduceItemQuality(item) {
