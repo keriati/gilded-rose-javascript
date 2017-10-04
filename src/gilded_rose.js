@@ -22,6 +22,8 @@ export class Shop {
 
   updateQuality() {
     for (const item of this.items) {
+      Shop.ensureItemQualityBoundary(item);
+
       if (Shop.isNormalItem(item)) {
         Shop.reduceItemQuality(item);
       }
@@ -87,14 +89,15 @@ export class Shop {
   }
 
   static reduceItemQuality(item) {
-    if (item.quality > MIN_QUALITY) {
-      item.quality--;
-    }
+    item.quality = Math.max(MIN_QUALITY, item.quality - 1);
   }
 
   static riseItemQuality(item) {
-    if (item.quality < MAX_QUALITY) {
-      item.quality++;
-    }
+    item.quality = Math.min(MAX_QUALITY, item.quality + 1);
+  }
+
+  static ensureItemQualityBoundary(item) {
+    item.quality = Math.max(MIN_QUALITY, item.quality);
+    item.quality = Math.min(MAX_QUALITY, item.quality);
   }
 }
