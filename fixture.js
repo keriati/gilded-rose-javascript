@@ -21,7 +21,7 @@ const days = 2;
 for (let i = 0; i < days; i++) {
     showHeaderFor(i);
     showItemsFor(i);
-    gildedRose.updateQuality();
+    gildedRose.endOfDay();
 }
 
 function showHeaderFor(day) {
