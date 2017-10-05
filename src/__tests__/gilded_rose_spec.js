@@ -1,168 +1,160 @@
-import {Shop, Item, ITEM_AGED_BRIE, ITEM_SULFURAS, ITEM_BACKSTAGE_PASSES} from '../gilded_rose';
+import {
+  Shop,
+  Item,
+  NAME_AGED_BRIE,
+  NAME_SULFURAS,
+  NAME_BACKSTAGE_PASSES,
+  CONJURED_PREFIX,
+} from '../gilded_rose';
+
+const NAME_NORMAL = 'a';
+
+const SELL_IN_NORMAL = 10;
+const SELL_IN_ZERO = 0;
+const SELL_IN_INTERVAL_INFINITY_TO_10 = 45;
+const SELL_IN_INTERVAL_10_TO_5 = 7;
+const SELL_IN_INTERVAL_5_TO_0 = 2;
+
+const QUALITY_NORMAL = 10;
+const QUALITY_ZERO = 0;
+const QUALITY_MIN = 0;
+const QUALITY_MAX = 50;
+const QUALITY_LEGENDARY = 80;
+
+function createShopWithItem(itemName, sellIn, quality) {
+  const i = new Item(itemName, sellIn, quality);
+  return new Shop([i]);
+}
 
 describe('Item', () => {
-  it('should have properties defined', () => {
-    const item = new Item('name', 0, 0);
+  it('has properties correctly defined', () => {
+    const i = new Item(NAME_NORMAL, SELL_IN_NORMAL, QUALITY_NORMAL);
 
-    expect(item.name).toBeDefined();
-    expect(item.quality).toBeDefined();
-    expect(item.sellIn).toBeDefined();
+    expect(i.name).toEqual(NAME_NORMAL);
+    expect(i.quality).toEqual(QUALITY_NORMAL);
+    expect(i.sellIn).toEqual(SELL_IN_NORMAL);
   });
 });
 
-describe('Gilded Rose Rules', () => {
-  it('should lower quality and sellIn every day by 1', () => {
-    const gildedRose = new Shop([new Item('name', 20, 10)]);
+describe('Shop', () => {
+  it('has items defined', () => {
+    const shop = new Shop();
 
-    expect(gildedRose.items[0].sellIn).toEqual(20);
-    expect(gildedRose.items[0].quality).toEqual(10);
-
-    const itemsDay1 = gildedRose.endOfDay();
-
-    expect(itemsDay1[0].sellIn).toEqual(19);
-    expect(itemsDay1[0].quality).toEqual(9);
-
-    const itemsDay2 = gildedRose.endOfDay();
-
-    expect(itemsDay2[0].sellIn).toEqual(18);
-    expect(itemsDay2[0].quality).toEqual(8);
+    expect(shop.items).toBeDefined;
+    expect(shop.items.length).toBe(0);
   });
-  it('should degrade quality by 2 every day when sellIn is 0', () => {
-    const gildedRose = new Shop([new Item('name', 0, 10)]);
+  it('has non empty items when non empty array is passed', () => {
+    const shop = createShopWithItem(NAME_NORMAL, SELL_IN_NORMAL, QUALITY_NORMAL);
 
-    expect(gildedRose.items[0].quality).toEqual(10);
+    expect(shop.items.length).toBe(1);
+  });
+});
 
-    const itemsDay1 = gildedRose.endOfDay();
+describe('Gilded Rose Rules: ', () => {
+  it('lower quality and sellIn every day by 1', () => {
+    const shop = createShopWithItem(NAME_NORMAL, SELL_IN_NORMAL, QUALITY_NORMAL);
 
-    expect(itemsDay1[0].quality).toEqual(8);
+    const itemsDay1 = shop.endOfDay();
 
-    const itemsDay2 = gildedRose.endOfDay();
+    expect(itemsDay1[0].sellIn).toEqual(SELL_IN_NORMAL - 1);
+    expect(itemsDay1[0].quality).toEqual(SELL_IN_NORMAL - 1);
+  });
+  it('degrade quality by 2 every day when sellIn is 0', () => {
+    const shop = createShopWithItem(NAME_NORMAL, SELL_IN_ZERO, QUALITY_NORMAL);
 
-    expect(itemsDay2[0].quality).toEqual(6);
+    const itemsDay1 = shop.endOfDay();
+
+    expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL - 2);
   });
 
   describe('Quality', () => {
-    it('should not allow quality to be <0', () => {
-      const gildedRose = new Shop([new Item('name', 0, 0)]);
+    it('can not be <0', () => {
+      const shop = createShopWithItem(NAME_NORMAL, SELL_IN_NORMAL, QUALITY_ZERO);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(0);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_MIN);
     });
-    it('should not allow quality to be >50', () => {
+    it('can not be >50', () => {
       // Aged Brie increases quality over time
-      const gildedRose = new Shop([new Item(ITEM_AGED_BRIE, 0, 50)]);
+      const shop = createShopWithItem(NAME_AGED_BRIE, SELL_IN_NORMAL, QUALITY_MAX);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(50);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_MAX);
     });
   });
 
-  describe(`Special item: ${ITEM_AGED_BRIE}`, () => {
-    it('should increase quality by 2 every day', () => {
-      const gildedRose = new Shop([new Item(ITEM_AGED_BRIE, 0, 0)]);
+  describe(`Special item: ${NAME_AGED_BRIE}`, () => {
+    it('increases quality by 2 every day', () => {
+      const shop = createShopWithItem(NAME_AGED_BRIE, SELL_IN_NORMAL, QUALITY_NORMAL);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(2);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(4);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL + 2);
     });
   });
 
-  describe(`Special item: ${ITEM_SULFURAS}`, () => {
-    it('should not decrease quality or sellIn over time', () => {
-      const gildedRose = new Shop([new Item(ITEM_SULFURAS, 11, 80)]);
+  describe(`Special item: ${NAME_SULFURAS}`, () => {
+    it('does not decrease quality or sellIn over time', () => {
+      const shop = createShopWithItem(NAME_SULFURAS, SELL_IN_NORMAL, QUALITY_LEGENDARY);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(80);
-      expect(itemsDay1[0].sellIn).toEqual(11);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(80);
-      expect(itemsDay2[0].sellIn).toEqual(11);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_LEGENDARY);
+      expect(itemsDay1[0].sellIn).toEqual(SELL_IN_NORMAL);
     });
   });
 
-  describe(`Special item: ${ITEM_BACKSTAGE_PASSES}`, () => {
-    it('should increase quality by 1 every day when sellIn in (Infinity, 10)  ', () => {
-      const gildedRose = new Shop([new Item(ITEM_BACKSTAGE_PASSES, 45, 0)]);
+  describe(`Special item: ${NAME_BACKSTAGE_PASSES}`, () => {
+    it('increases quality by 1 every day when sellIn in (Infinity, 10)  ', () => {
+      const shop = createShopWithItem(NAME_BACKSTAGE_PASSES, SELL_IN_INTERVAL_INFINITY_TO_10, QUALITY_NORMAL);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(1);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(2);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL + 1);
     });
-    it('should increase quality by 2 every day when sellIn in <10, 5)', () => {
-      const gildedRose = new Shop([new Item(ITEM_BACKSTAGE_PASSES, 10, 0)]);
+    it('increases quality by 2 every day when sellIn in <10, 5)', () => {
+      const shop = createShopWithItem(NAME_BACKSTAGE_PASSES, SELL_IN_INTERVAL_10_TO_5, QUALITY_NORMAL);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(2);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(4);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL + 2);
     });
-    it('should increase quality by 3 every day when sellIn in <5, 0)', () => {
-      const gildedRose = new Shop([new Item(ITEM_BACKSTAGE_PASSES, 5, 0)]);
+    it('increases quality by 3 every day when sellIn in <5, 0)', () => {
+      const shop = createShopWithItem(NAME_BACKSTAGE_PASSES, SELL_IN_INTERVAL_5_TO_0, QUALITY_NORMAL);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(3);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(6);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL + 3);
     });
-    it('should drop quality to 0 when sellIn is 0', () => {
-      const gildedRose = new Shop([new Item(ITEM_BACKSTAGE_PASSES, 0, 30)]);
+    it('drops quality to 0 when sellIn is 0', () => {
+      const shop = createShopWithItem(NAME_BACKSTAGE_PASSES, SELL_IN_ZERO, QUALITY_NORMAL);
 
-      const itemsDay1 = gildedRose.endOfDay();
+      const itemsDay1 = shop.endOfDay();
 
-      expect(itemsDay1[0].quality).toEqual(0);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_ZERO);
     });
   });
 
-  describe('Special items: "Conjured ...', () => {
-    it('should lower quality by 2 and sellIn by 1 every day', () => {
-      // twice that fast as other items
-      const gildedRose = new Shop([new Item('Conjured name', 10, 10)]);
+  describe('Special item: "Conjured ...', () => {
+    it('lowers quality by 2 and sellIn by 1 every day', () => {
+      // twice that fast as other normal items
+      const shop = createShopWithItem(`${CONJURED_PREFIX} ${NAME_NORMAL}`, SELL_IN_NORMAL, QUALITY_NORMAL);
 
-      expect(gildedRose.items[0].sellIn).toEqual(10);
-      expect(gildedRose.items[0].quality).toEqual(10);
+      const itemsDay1 = shop.endOfDay();
 
-      const itemsDay1 = gildedRose.endOfDay();
-
-      expect(itemsDay1[0].sellIn).toEqual(9);
-      expect(itemsDay1[0].quality).toEqual(8);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].sellIn).toEqual(8);
-      expect(itemsDay2[0].quality).toEqual(6);
+      expect(itemsDay1[0].sellIn).toEqual(SELL_IN_NORMAL - 1);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL - 2);
     });
-    it('should degrade quality by 4 every day when sellIn is 0', () => {
-      // twice that fast as other items
-      const gildedRose = new Shop([new Item('Conjured name', 0, 10)]);
+    it('degrade quality by 4 every day when sellIn is 0', () => {
+      // twice that fast as other normal items
+      const shop = createShopWithItem(`${CONJURED_PREFIX} ${NAME_NORMAL}`, SELL_IN_ZERO, QUALITY_NORMAL);
 
-      expect(gildedRose.items[0].quality).toEqual(10);
+      const itemsDay1 = shop.endOfDay();
 
-      const itemsDay1 = gildedRose.endOfDay();
-
-      expect(itemsDay1[0].quality).toEqual(6);
-
-      const itemsDay2 = gildedRose.endOfDay();
-
-      expect(itemsDay2[0].quality).toEqual(2);
+      expect(itemsDay1[0].sellIn).toEqual(SELL_IN_ZERO);
+      expect(itemsDay1[0].quality).toEqual(QUALITY_NORMAL - 4);
     });
   })
 });

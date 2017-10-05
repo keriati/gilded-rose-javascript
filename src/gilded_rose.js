@@ -1,8 +1,8 @@
-export const ITEM_AGED_BRIE = 'Aged Brie';
-export const ITEM_SULFURAS = 'Sulfuras, Hand of Ragnaros';
-export const ITEM_BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
+export const NAME_AGED_BRIE = 'Aged Brie';
+export const NAME_SULFURAS = 'Sulfuras, Hand of Ragnaros';
+export const NAME_BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 
-const CONJURED_PREFIX = 'Conjured';
+export const CONJURED_PREFIX = 'Conjured';
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -17,19 +17,19 @@ const isConjured = function(item) {
 };
 
 const updateSellIn = function(item) {
-  if (item.name === ITEM_SULFURAS) return;
+  if (item.name === NAME_SULFURAS) return;
   item.sellIn = item.sellIn - 1;
   item.sellIn = Math.max(item.sellIn, 0);
 };
 
 const updateQuality = function (item) {
-  if (item.name === ITEM_SULFURAS) return;
+  if (item.name === NAME_SULFURAS) return;
 
   const rate = isConjured(item) ? 2 : 1;
 
-  if (item.name === ITEM_AGED_BRIE) {
+  if (item.name === NAME_AGED_BRIE) {
     item.quality = item.quality + 2;
-  } else if (item.name === ITEM_BACKSTAGE_PASSES) {
+  } else if (item.name === NAME_BACKSTAGE_PASSES) {
     if (item.sellIn === 0) {
       item.quality = 0;
     } else if (item.sellIn <= 5) {
