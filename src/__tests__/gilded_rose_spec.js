@@ -100,7 +100,7 @@ describe("gilded rose", function () {
         expect(item.quality).toBeLessThanOrEqual(MAX_QUALITY);
     });
 
-    it("reduces item quality by 2 at the end of the day", function() {
+    it("reduces item quality by 2 when sellIn <= 0", function() {
         const QUALITY = 2;
         const shop = createShopWith(QUALITY);
         const item = shop.items[0];
@@ -238,7 +238,7 @@ describe("gilded rose", function () {
         });
     });
 
-    xit("reduces Conjured item quality by 2 at the end of the day", function() {
+    it("reduces Conjured item quality by 2 at the end of the day", function() {
         const QUALITY = 2;
         const SELLIN = 0;
         const shop = createShopWith(QUALITY, SELLIN, CONJURED);
@@ -249,7 +249,7 @@ describe("gilded rose", function () {
         expect(item.quality).toBe(0);
     });
 
-    xit("reduces Conjured item quality twice fast when sellIn <= 0", function() {
+    it("reduces Conjured item quality twice fast when sellIn <= 0", function() {
         const DAYS = 5;
         const QUALITY = 20;
         const SELLIN = -1;
