@@ -16,7 +16,7 @@ items.push(new Item('Conjured Mana Cake', 3, 6));
 
 const gildedRose = new Shop(items);
 
-const days = 2;
+const days = 4;
 
 for (let i = 0; i < days; i++) {
     showHeaderFor(i);
