@@ -7,54 +7,83 @@ export class Item {
 }
 
 export class Shop {
-  constructor(items=[]){
+
+
+  constructor (items=[]) {
     this.items = items;
   }
+
+  getSpecialsConfiguration () {
+    return [
+      {
+        name:"Sulfuras, Hand of Ragnaros",
+        sellInChange: 0,
+        qualityChange: 0
+      },
+      {
+        name:"Aged Brie",
+        sellInChange: -1,
+        qualityChange: 1
+      },
+      {
+        name:"Backstage passes to a TAFKAL80ETC concert",
+        sellInChange: -1,
+        qualityChange: 1,
+        qualityChange5days: 3,
+        qualityChange10days: 2,
+        qualityAfterExpiration: 0
+      }
+    ];
+  }
+
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
+    const specialsConfiguration = this.getSpecialsConfiguration();
+
+    for (let i = 0; i < this.items.length; i++) {
+
+      let sellInChange = -1;
+      let qualityChange = -1;
+      let qualityChange5days = -1;
+      let qualityChange10days = -1;
+      let qualityAfterExpiration = undefined;
+
+      for (let config of specialsConfiguration) {
+        if (config.name === this.items[i].name) {
+          sellInChange = config.sellInChange;
+          qualityChange = config.qualityChange;
+          qualityChange5days = (config.qualityChange5days ? config.qualityChange5days : config.qualityChange);
+          qualityChange10days = (config.qualityChange10days ? config.qualityChange10days : config.qualityChange);
+          qualityAfterExpiration = (config.qualityAfterExpiration !== undefined ? config.qualityAfterExpiration : undefined);
         }
       }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
+      let current = this.items[i];
+      if (qualityChange !== 0) {
+        if (current.sellIn < 1) {
+          this.items[i].quality = this.items[i].quality + 2 * qualityChange;
+        } else if (current.sellIn < 6) {
+          this.items[i].quality = this.items[i].quality + qualityChange5days;
+        } else if (current.sellIn < 11){
+          this.items[i].quality = this.items[i].quality + qualityChange10days;
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
+          this.items[i].quality = this.items[i].quality + qualityChange;
+        }
+
+        if (this.items[i].quality < 0) {
+          this.items[i].quality = 0;
+        }
+
+        if (this.items[i].quality > 50) {
+          this.items[i].quality = 50;
         }
       }
+
+      this.items[i].sellIn = this.items[i].sellIn + sellInChange;
+
+      if (qualityAfterExpiration !== undefined &&
+          this.items[i].sellIn < 0) {
+        this.items[i].quality = qualityAfterExpiration;
+      }
+
     }
 
     return this.items;
