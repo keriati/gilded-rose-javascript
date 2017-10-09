@@ -160,4 +160,30 @@ describe("Gilded Rose", function () {
             expect(items[0].quality).toEqual(0);
         });
     });
+
+    describe("Conjured items", function() {
+      it("should lower the quality of an item by 2", function () {
+          const gildedRose = new Shop([new Item("Conjured Mana Cake", 4, 6)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(4);
+      });
+
+      it("should lower the quality of an item by 2 to zero", function () {
+          const gildedRose = new Shop([new Item("Conjured Mana Cake", 4, 1)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+      });
+
+      it("should lower the quality of an item by 2 keep 0", function () {
+          const gildedRose = new Shop([new Item("Conjured Mana Cake", 4, 0)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(0);
+      });
+
+      it("should lower the quality of an item by 4 after sellIn date", function () {
+          const gildedRose = new Shop([new Item("Conjured Mana Cake", -3, 5)]);
+          const items = gildedRose.updateQuality();
+          expect(items[0].quality).toEqual(1);
+      });
+    });
 });

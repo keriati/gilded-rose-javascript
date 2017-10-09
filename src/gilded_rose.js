@@ -32,6 +32,11 @@ export class Shop {
         qualityChange5days: 3,
         qualityChange10days: 2,
         qualityAfterExpiration: 0
+      },
+      {
+        name: "Conjured Mana Cake",
+        sellInChange: -1,
+        qualityChange: -2
       }
     ];
   }
