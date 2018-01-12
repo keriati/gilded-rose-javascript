@@ -1,5 +1,7 @@
 const MIN_QUALITY = 0;
 const MAX_QUALITY = 50;
+const BACKSTAGE_PRICE_1_DEADLINE = 10;
+const BACKSTAGE_PRICE_2_DEADLINE = 5;
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -20,35 +22,48 @@ export class Shop {
   }
 
   updateItem(item) {
-    if (!this.isAgingItem(item) && !this.isBackstagePass(item)) {
-      if (!this.isLegendaryItem(item)) {
-        this.updateItemQuality(item, -1);
-      }
-    } else {
-      this.updateItemQuality(item, 1);
-      if (this.isBackstagePass(item)) {
-        if (item.sellIn < 11) {
-          this.updateItemQuality(item, 1);
-        }
-        if (item.sellIn < 6) {
-          this.updateItemQuality(item, 1);
-        }
-      }
+    if (this.isBackstagePass(item)) {
+      this.updateBackstagePass(item);
+      return;
     }
+
+    if (this.isLegendaryItem(item)) {
+      this.updateLegendaryItem(item);
+      return;
+    }
+
+    if (this.isAgingItem(item)) {
+      this.updateAgingItem(item);
+      return;
+    }
+
+    this.updateItemQuality(item, item.sellIn > 0 ? -1 : -2);
+    this.updateSellIn(item);
+  }
+
+  updateAgingItem(item) {
+    this.updateItemQuality(item, 1);
     this.updateSellIn(item);
     if (item.sellIn < 0) {
-      if (!this.isAgingItem(item)) {
-        if (!this.isBackstagePass(item)) {
-            if (!this.isLegendaryItem(item)) {
-              this.updateItemQuality(item, -1);
-            }
-        } else {
-          item.quality = 0;
-        }
-      } else {
-        this.updateItemQuality(item, 1);
-      }
+      this.updateItemQuality(item, 1);
     }
+  }
+
+  updateLegendaryItem(item) {
+    //do nothing
+  }
+
+  updateBackstagePass(item) {
+    if (item.sellIn > BACKSTAGE_PRICE_1_DEADLINE) {
+      this.updateItemQuality(item, 1);
+    } else if (item.sellIn > BACKSTAGE_PRICE_2_DEADLINE) {
+      this.updateItemQuality(item, 2);
+    } else if (item.sellIn > 0) {
+      this.updateItemQuality(item, 3);
+    } else {
+      item.quality = 0;
+    }
+    this.updateSellIn(item);
   }
 
   isAgingItem(item) {
@@ -64,9 +79,7 @@ export class Shop {
   }
 
   updateSellIn(item) {
-    if (!this.isLegendaryItem(item)) {
-      item.sellIn = item.sellIn - 1;
-    }
+    item.sellIn = item.sellIn - 1;
   }
 
   updateItemQuality(item, qualityChange) {
