@@ -44,7 +44,7 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 5,
+    "quality": 4,
     "sellIn": 2,
   },
 ]
@@ -94,7 +94,7 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 4,
+    "quality": 2,
     "sellIn": 1,
   },
 ]

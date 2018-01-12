@@ -147,6 +147,36 @@ describe('Backstage passes', () => {
     });
 });
 
+describe('Conjured item', () => {
+    it('decreases quality by 2 before sell in date', () => {
+        const gildedRose = new Shop([new Item('Conjured', 1, 2)]);
+
+        const items = gildedRose.updateQuality();
+
+        expect(items[0].quality).toEqual(0);
+    });
+
+    it('decreases quality by 4 after sell in date', () => {
+        const gildedRose = new Shop([new Item('Conjured', 0, 4)]);
+
+        const items = gildedRose.updateQuality();
+
+        expect(items[0].quality).toEqual(0);
+    });
+
+    it('does not decrease quality below ' + MIN_VALUE, () => {
+        const gildedRose = new Shop([
+            new Item('Conjured', 1, MIN_VALUE + 1),
+            new Item('Conjured', 0, MIN_VALUE + 1)
+        ]);
+
+        const items = gildedRose.updateQuality();
+
+        expect(items[0].quality).toEqual(MIN_VALUE);
+        expect(items[1].quality).toEqual(MIN_VALUE);
+    });
+});
+
 describe('Snapshot test', () => {
     it('does not change snapshot', () => {
         const items = [];
