@@ -10,13 +10,13 @@ export class BackstagePassUpdater extends StandardItemUpdater {
 
     updateQuality(item) {
         if (item.sellIn > BACKSTAGE_PRICE_1_DEADLINE) {
-            this.changeQuality(item, 1);
+            return this.calculateQuality(item, 1);
         } else if (item.sellIn > BACKSTAGE_PRICE_2_DEADLINE) {
-            this.changeQuality(item, 2);
+            return this.calculateQuality(item, 2);
         } else if (item.sellIn > 0) {
-            this.changeQuality(item, 3);
+            return this.calculateQuality(item, 3);
         } else {
-            item.quality = 0;
+            return 0;
         }
     }
 }

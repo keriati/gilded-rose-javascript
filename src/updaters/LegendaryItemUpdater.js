@@ -3,7 +3,7 @@ export class LegendaryItemUpdater {
         return item.name === 'Sulfuras, Hand of Ragnaros';
     }
 
-    updateItem() {
-        //do nothing
+    updateItem(item) {
+        return item;
     }
 }

@@ -6,6 +6,6 @@ export class ConjuredItemUpdater extends StandardItemUpdater{
     }
 
     updateQuality(item) {
-        this.changeQuality(item, item.sellIn > 0 ? -2 : -4);
+        return this.calculateQuality(item, item.sellIn > 0 ? -2 : -4);
     }
 }

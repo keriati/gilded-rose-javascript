@@ -12,10 +12,9 @@ export class Shop {
   constructor(items = []) {
     this.items = items;
   }
-  
-  updateQuality() {
-    this.items.forEach(this.updateItem, this);
 
+  updateQuality() {
+    this.items = this.items.map(this.updateItem);
     return this.items;
   }
 
@@ -23,6 +22,6 @@ export class Shop {
     const updater = updaters.find((updater) => {
       return updater.matchesType(item);
     });
-    updater.updateItem(item);
+    return updater.updateItem(item);
   }
 }

@@ -6,6 +6,6 @@ export class AgingItemUpdater extends StandardItemUpdater{
     }
 
     updateQuality(item) {
-        this.changeQuality(item, item.sellIn > 0 ? 1 : 2);
+        return this.calculateQuality(item, item.sellIn > 0 ? 1 : 2);
     }
 }
