@@ -95,6 +95,22 @@ describe("Gilded Rose", function() {
         });
       });
 
+      describe("Conjured", () => {
+        it("degrades in quality twice as fast", () => {
+          const items = [new Item("Conjured", 10, 20)];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(18);
+        });
+
+        it("it degrades by four if the sellIn is less than 0", () => {
+          const items = [new Item("Conjured", -1, 20)];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(16);
+        });
+      });
+
       describe("Backstage passes to a TAFKAL80ETC concert", () => {
         it("increases by 1 if sellIn is equal or more than 11", () => {
           const items = [

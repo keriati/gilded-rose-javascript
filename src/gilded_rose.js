@@ -34,13 +34,13 @@ export class Shop {
 
       updatedItem.sellIn = updatedItem.sellIn - 1;
 
-      if (name == "Aged Brie") {
+      if (name === "Aged Brie") {
         increaseQuality(updatedItem);
 
         if (updatedItem.sellIn < 0) {
           increaseQuality(updatedItem);
         }
-      } else if (name == "Backstage passes to a TAFKAL80ETC concert") {
+      } else if (name === "Backstage passes to a TAFKAL80ETC concert") {
         increaseQuality(updatedItem);
 
         if (updatedItem.sellIn < 10) {
@@ -53,6 +53,14 @@ export class Shop {
 
         if (updatedItem.sellIn < 0) {
           updatedItem.quality = updatedItem.quality - updatedItem.quality;
+        }
+      } else if (name === "Conjured") {
+        decreaseQuality(updatedItem);
+        decreaseQuality(updatedItem);
+
+        if (updatedItem.sellIn < 0) {
+          decreaseQuality(updatedItem);
+          decreaseQuality(updatedItem);
         }
       } else {
         decreaseQuality(updatedItem);
