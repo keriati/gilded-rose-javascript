@@ -6,6 +6,7 @@ export class Item {
   }
 }
 
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
