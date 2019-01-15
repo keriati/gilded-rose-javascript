@@ -63,6 +63,20 @@ describe("Gilded Rose", function() {
           shop.updateQuality();
           expect(shop.items[0].quality).toEqual(50);
         });
+
+        it("increases twice as fast if sellIn is less than one", () => {
+          const items = [new Item("Aged Brie", 0, 25)];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(27);
+        });
+
+        it("does not change if quality is 50 and sellIn < 0", () => {
+          const items = [new Item("Aged Brie", -1, 50)];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(50);
+        });
       });
 
       describe("Sulfuras, Hand of Ragnaros", () => {
@@ -72,9 +86,25 @@ describe("Gilded Rose", function() {
           shop.updateQuality();
           expect(shop.items[0].quality).toEqual(80);
         });
+
+        it("does not change if sellIn is less than 0", () => {
+          const items = [new Item("Sulfuras, Hand of Ragnaros", -1, 80)];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(80);
+        });
       });
 
       describe("Backstage passes to a TAFKAL80ETC concert", () => {
+        it("increases by 1 if sellIn is equal or more than 11", () => {
+          const items = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20)
+          ];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(21);
+        });
+
         it("increases by 2 if there are 10 days or less", () => {
           const items = [
             new Item("Backstage passes to a TAFKAL80ETC concert", 10, 20)
@@ -82,6 +112,24 @@ describe("Gilded Rose", function() {
           const shop = new Shop(items);
           shop.updateQuality();
           expect(shop.items[0].quality).toEqual(22);
+        });
+
+        it("does not go over 50 when quality is 49 and sellIn is less than 11", () => {
+          const items = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+          ];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(50);
+        });
+
+        it("does not go over 50 when quality is 49 and sellIn is less than 6", () => {
+          const items = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+          ];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(50);
         });
 
         it("increases by 3 if there are 5 days or less", () => {
@@ -103,7 +151,9 @@ describe("Gilded Rose", function() {
         });
 
         it("never goes over 50 in quality", () => {
-          const items = [new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)];
+          const items = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", 10, 50)
+          ];
           const shop = new Shop(items);
           shop.updateQuality();
           expect(shop.items[0].quality).toEqual(50);
