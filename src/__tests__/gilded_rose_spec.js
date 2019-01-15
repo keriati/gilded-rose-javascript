@@ -132,6 +132,15 @@ describe("Gilded Rose", function() {
           expect(shop.items[0].quality).toEqual(50);
         });
 
+        it("quality increases by two sellIn is less than 10", () => {
+          const items = [
+            new Item("Backstage passes to a TAFKAL80ETC concert", 11, 20)
+          ];
+          const shop = new Shop(items);
+          shop.updateQuality();
+          expect(shop.items[0].quality).toEqual(21);
+        });
+
         it("increases by 3 if there are 5 days or less", () => {
           const items = [
             new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)
