@@ -1,0 +1,2501 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 1`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 19,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 1,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 6,
+    "sellIn": 4,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 21,
+    "sellIn": 14,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 4,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 5,
+    "sellIn": 2,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 2`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 18,
+    "sellIn": 8,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 2,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 5,
+    "sellIn": 3,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 22,
+    "sellIn": 13,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 8,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 3,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 4,
+    "sellIn": 1,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 3`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 17,
+    "sellIn": 7,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 4,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 4,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 23,
+    "sellIn": 12,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 7,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 3,
+    "sellIn": 0,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 4`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 16,
+    "sellIn": 6,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 6,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 3,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 24,
+    "sellIn": 11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 6,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 1,
+    "sellIn": -1,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 5`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 15,
+    "sellIn": 5,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 8,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 2,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 25,
+    "sellIn": 10,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 5,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -2,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 6`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 14,
+    "sellIn": 4,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 10,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 27,
+    "sellIn": 9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 4,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -3,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 7`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 13,
+    "sellIn": 3,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 12,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 29,
+    "sellIn": 8,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 3,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -4,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 8`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 12,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 14,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 31,
+    "sellIn": 7,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -5,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 9`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 11,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 16,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 33,
+    "sellIn": 6,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -6,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 10`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 10,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 18,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 35,
+    "sellIn": 5,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -7,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 11`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 8,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 20,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 38,
+    "sellIn": 4,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -8,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 12`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 6,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 22,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 41,
+    "sellIn": 3,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -9,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 13`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 4,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 24,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 44,
+    "sellIn": 2,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -10,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 14`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 2,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 26,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 47,
+    "sellIn": 1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -11,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 15`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 28,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 50,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -12,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 16`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 30,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -13,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 17`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 32,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -2,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -14,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 18`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 34,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -3,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -15,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 19`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 36,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -4,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -16,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 20`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 38,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -5,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -17,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 21`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 40,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -6,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -18,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 22`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 42,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -7,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -19,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 23`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 44,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -8,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -20,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 24`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 46,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -9,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -21,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 25`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 48,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -10,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -22,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 26`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -11,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -23,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 27`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -12,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -24,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 28`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -13,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -25,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 29`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -14,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -26,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 30`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -15,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -27,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 31`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -16,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -28,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 32`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -17,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -29,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 33`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -18,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -30,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 34`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -19,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -31,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 35`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -20,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -32,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 36`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -21,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -33,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 37`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -22,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -34,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 38`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -36,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -23,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -35,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 39`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -37,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -24,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -36,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 40`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -38,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -25,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -37,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 41`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -39,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -36,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -26,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -36,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -38,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 42`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -40,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -37,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -27,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -37,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -39,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 43`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -41,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -38,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -28,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -38,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -40,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 44`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -42,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -39,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -29,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -39,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -41,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 45`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -43,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -40,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -30,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -40,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -42,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 46`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -36,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -44,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -41,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -31,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -36,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -41,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -43,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 47`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -37,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -45,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -42,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -32,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -37,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -42,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -44,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 48`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -38,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -46,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -43,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -33,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -38,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -43,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -45,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 49`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -39,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -47,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -44,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -34,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -39,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -44,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -46,
+  },
+]
+`;
+
+exports[`Gilded Rose should not break the original snapshot (without conjured) 50`] = `
+Array [
+  Item {
+    "name": "+5 Dexterity Vest",
+    "quality": 0,
+    "sellIn": -40,
+  },
+  Item {
+    "name": "Aged Brie",
+    "quality": 50,
+    "sellIn": -48,
+  },
+  Item {
+    "name": "Elixir of the Mongoose",
+    "quality": 0,
+    "sellIn": -45,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": 0,
+  },
+  Item {
+    "name": "Sulfuras, Hand of Ragnaros",
+    "quality": 80,
+    "sellIn": -1,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -35,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -40,
+  },
+  Item {
+    "name": "Backstage passes to a TAFKAL80ETC concert",
+    "quality": 0,
+    "sellIn": -45,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -47,
+  },
+]
+`;
