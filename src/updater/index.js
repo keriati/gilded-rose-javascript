@@ -34,10 +34,11 @@ export const updateBackstagePasses = item => {
 };
 
 export const updateNormalItem = item => {
-  decreaseQuality(item);
   decreaseSellIn(item);
 
   if (isExpired(item)) {
+    decreaseQuality(item, 2);
+  } else {
     decreaseQuality(item);
   }
 
@@ -45,12 +46,10 @@ export const updateNormalItem = item => {
 };
 
 export const updateConjured = item => {
-  decreaseQuality(item);
-  decreaseQuality(item);
-
   if (isExpired(item)) {
-    decreaseQuality(item);
-    decreaseQuality(item);
+    decreaseQuality(item, 4);
+  } else {
+    decreaseQuality(item, 2);
   }
 
   decreaseSellIn(item);

@@ -4,9 +4,10 @@ export const decreaseSellIn = item => {
   --item.sellIn;
 };
 
-export const decreaseQuality = item => {
-  if (item.quality > MIN_QUALITY) {
-    --item.quality;
+export const decreaseQuality = (item, decrement = 1) => {
+  item.quality = item.quality - decrement;
+  if (item.quality < MIN_QUALITY) {
+    setZeroQuality(item);
   }
 };
 
