@@ -1,6 +1,68 @@
 import { Shop, Item } from "../gilded_rose";
 
 describe("Gilded Rose", function() {
+  describe("Brie aged", () => {
+    it("should increase by 1 in quality", () => {
+      const gildedRose = new Shop([new Item("Aged Brie", 2, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(1);
+    });
+
+    it("should increase by two in quality when expired", () => {
+      const gildedRose = new Shop([new Item("Aged Brie", -1, 10)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(12);
+    });
+
+    it("should not increase over 50 in quality", () => {
+      const gildedRose = new Shop([new Item("Aged Brie", -1, 50)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(50);
+    });
+  });
+
+  describe("Backstage passes", () => {
+    it("should increase by 1 in quality", () => {
+      const gildedRose = new Shop([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 11, 49)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(50);
+    });
+
+    it("should increase by two in quality when there are ten days or less left", () => {
+      const gildedRose = new Shop([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 9, 10)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(12);
+    });
+
+    it("should increase by three in quality when there are five days or less left", () => {
+      const gildedRose = new Shop([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 10)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(13);
+    });
+
+    it("should drop to zero in quality when expired", () => {
+      const gildedRose = new Shop([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
+
+    it("should not increase over 50 in quality", () => {
+      const gildedRose = new Shop([
+        new Item("Backstage passes to a TAFKAL80ETC concert", 5, 50)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(50);
+    });
+  });
+
   it("should not break the original snapshot (without conjured)", () => {
     const items = [];
 
