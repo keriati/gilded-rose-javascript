@@ -1,6 +1,65 @@
 import { Shop, Item } from "../gilded_rose";
 
 describe("Gilded Rose", function() {
+  describe("empty shop", () => {
+    it("should create an empty shop", () => {
+      const gildedRose = new Shop();
+      const items = gildedRose.updateQuality();
+
+      expect(items).toEqual([]);
+    });
+  });
+
+  describe("normal item", () => {
+    it("should decrease by one in quality", () => {
+      const gildedRose = new Shop([new Item("+5 Dexterity Vest", 10, 20)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(19);
+    });
+
+    it("should decrease by two when expired", () => {
+      const gildedRose = new Shop([new Item("+5 Dexterity Vest", -1, 20)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(18);
+    });
+
+    it("should not decrease under 0 in quality", () => {
+      const gildedRose = new Shop([new Item("+5 Dexterity Vest", 10, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
+
+    it("should decrease in sellIn by one", () => {
+      const gildedRose = new Shop([new Item("+5 Dexterity Vest", 1, 50)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(0);
+    });
+  });
+
+  describe("Sulphuras", () => {
+    it("should never increase in quality", () => {
+      const gildedRose = new Shop([
+        new Item("Sulfuras, Hand of Ragnaros", 0, 80)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(80);
+    });
+
+    it("should never be sold", () => {
+      const gildedRose = new Shop([
+        new Item("Sulfuras, Hand of Ragnaros", 0, 80)
+      ]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].sellIn).toEqual(0);
+    });
+
+    it("should not increase over 50 in quality", () => {
+      const gildedRose = new Shop([new Item("Aged Brie", -1, 50)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(50);
+    });
+  });
+
   describe("Brie aged", () => {
     it("should increase by 1 in quality", () => {
       const gildedRose = new Shop([new Item("Aged Brie", 2, 0)]);
@@ -70,7 +129,7 @@ describe("Gilded Rose", function() {
       expect(items[0].quality).toEqual(4);
     });
 
-    it("should decrease by four when expired", () => {
+    it("should decrease by four in quality when expired", () => {
       const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 30)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).toEqual(26);
