@@ -63,7 +63,27 @@ describe("Gilded Rose", function() {
     });
   });
 
-  it("should not break the original snapshot (without conjured)", () => {
+  describe("Conjured", () => {
+    it("should decrease by two in quality", () => {
+      const gildedRose = new Shop([new Item("Conjured Mana Cake", 3, 6)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(4);
+    });
+
+    it("should decrease by four when expired", () => {
+      const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 30)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(26);
+    });
+
+    it("should not decrease under 0 in quality", () => {
+      const gildedRose = new Shop([new Item("Conjured Mana Cake", 10, 1)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    });
+  });
+
+  it("should not break the snapshot", () => {
     const items = [];
 
     items.push(new Item("+5 Dexterity Vest", 10, 20));

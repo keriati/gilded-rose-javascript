@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 1`] = `
+exports[`Gilded Rose should not break the snapshot 1`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -44,13 +44,13 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 5,
+    "quality": 4,
     "sellIn": 2,
   },
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 2`] = `
+exports[`Gilded Rose should not break the snapshot 2`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -94,13 +94,13 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 4,
+    "quality": 2,
     "sellIn": 1,
   },
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 3`] = `
+exports[`Gilded Rose should not break the snapshot 3`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -144,13 +144,13 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 3,
+    "quality": 0,
     "sellIn": 0,
   },
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 4`] = `
+exports[`Gilded Rose should not break the snapshot 4`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -194,13 +194,13 @@ Array [
   },
   Item {
     "name": "Conjured Mana Cake",
-    "quality": 1,
+    "quality": 0,
     "sellIn": -1,
   },
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 5`] = `
+exports[`Gilded Rose should not break the snapshot 5`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -250,7 +250,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 6`] = `
+exports[`Gilded Rose should not break the snapshot 6`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -300,7 +300,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 7`] = `
+exports[`Gilded Rose should not break the snapshot 7`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -350,7 +350,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 8`] = `
+exports[`Gilded Rose should not break the snapshot 8`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -400,7 +400,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 9`] = `
+exports[`Gilded Rose should not break the snapshot 9`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -450,7 +450,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 10`] = `
+exports[`Gilded Rose should not break the snapshot 10`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -500,7 +500,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 11`] = `
+exports[`Gilded Rose should not break the snapshot 11`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -550,7 +550,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 12`] = `
+exports[`Gilded Rose should not break the snapshot 12`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -600,7 +600,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 13`] = `
+exports[`Gilded Rose should not break the snapshot 13`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -650,7 +650,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 14`] = `
+exports[`Gilded Rose should not break the snapshot 14`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -700,7 +700,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 15`] = `
+exports[`Gilded Rose should not break the snapshot 15`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -750,7 +750,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 16`] = `
+exports[`Gilded Rose should not break the snapshot 16`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -800,7 +800,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 17`] = `
+exports[`Gilded Rose should not break the snapshot 17`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -850,7 +850,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 18`] = `
+exports[`Gilded Rose should not break the snapshot 18`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -900,7 +900,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 19`] = `
+exports[`Gilded Rose should not break the snapshot 19`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -950,7 +950,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 20`] = `
+exports[`Gilded Rose should not break the snapshot 20`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1000,7 +1000,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 21`] = `
+exports[`Gilded Rose should not break the snapshot 21`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1050,7 +1050,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 22`] = `
+exports[`Gilded Rose should not break the snapshot 22`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1100,7 +1100,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 23`] = `
+exports[`Gilded Rose should not break the snapshot 23`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1150,7 +1150,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 24`] = `
+exports[`Gilded Rose should not break the snapshot 24`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1200,7 +1200,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 25`] = `
+exports[`Gilded Rose should not break the snapshot 25`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1250,7 +1250,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 26`] = `
+exports[`Gilded Rose should not break the snapshot 26`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1300,7 +1300,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 27`] = `
+exports[`Gilded Rose should not break the snapshot 27`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1350,7 +1350,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 28`] = `
+exports[`Gilded Rose should not break the snapshot 28`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1400,7 +1400,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 29`] = `
+exports[`Gilded Rose should not break the snapshot 29`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1450,7 +1450,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 30`] = `
+exports[`Gilded Rose should not break the snapshot 30`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1500,7 +1500,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 31`] = `
+exports[`Gilded Rose should not break the snapshot 31`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1550,7 +1550,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 32`] = `
+exports[`Gilded Rose should not break the snapshot 32`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1600,7 +1600,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 33`] = `
+exports[`Gilded Rose should not break the snapshot 33`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1650,7 +1650,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 34`] = `
+exports[`Gilded Rose should not break the snapshot 34`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1700,7 +1700,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 35`] = `
+exports[`Gilded Rose should not break the snapshot 35`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1750,7 +1750,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 36`] = `
+exports[`Gilded Rose should not break the snapshot 36`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1800,7 +1800,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 37`] = `
+exports[`Gilded Rose should not break the snapshot 37`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1850,7 +1850,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 38`] = `
+exports[`Gilded Rose should not break the snapshot 38`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1900,7 +1900,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 39`] = `
+exports[`Gilded Rose should not break the snapshot 39`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -1950,7 +1950,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 40`] = `
+exports[`Gilded Rose should not break the snapshot 40`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2000,7 +2000,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 41`] = `
+exports[`Gilded Rose should not break the snapshot 41`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2050,7 +2050,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 42`] = `
+exports[`Gilded Rose should not break the snapshot 42`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2100,7 +2100,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 43`] = `
+exports[`Gilded Rose should not break the snapshot 43`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2150,7 +2150,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 44`] = `
+exports[`Gilded Rose should not break the snapshot 44`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2200,7 +2200,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 45`] = `
+exports[`Gilded Rose should not break the snapshot 45`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2250,7 +2250,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 46`] = `
+exports[`Gilded Rose should not break the snapshot 46`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2300,7 +2300,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 47`] = `
+exports[`Gilded Rose should not break the snapshot 47`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2350,7 +2350,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 48`] = `
+exports[`Gilded Rose should not break the snapshot 48`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2400,7 +2400,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 49`] = `
+exports[`Gilded Rose should not break the snapshot 49`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",
@@ -2450,7 +2450,7 @@ Array [
 ]
 `;
 
-exports[`Gilded Rose should not break the original snapshot (without conjured) 50`] = `
+exports[`Gilded Rose should not break the snapshot 50`] = `
 Array [
   Item {
     "name": "+5 Dexterity Vest",

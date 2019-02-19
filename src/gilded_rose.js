@@ -1,5 +1,10 @@
-import { updateBrie, updateBackstagePasses, updateNormalItem } from "./updater";
-import { isSulfuras, isBackstagePasses, isBrie } from "./helpers";
+import {
+  updateBrie,
+  updateBackstagePasses,
+  updateNormalItem,
+  updateConjured
+} from "./updater";
+import { isSulfuras, isBackstagePasses, isBrie, isConjured } from "./helpers";
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -32,6 +37,10 @@ const updateItemQuality = item => {
 
   if (isBackstagePasses(name)) {
     return updateBackstagePasses(item);
+  }
+
+  if (isConjured(name)) {
+    return updateConjured(item);
   }
 
   return updateNormalItem(item);
