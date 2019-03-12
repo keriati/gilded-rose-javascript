@@ -1,7 +1,8 @@
-import RegularItem from "../strategies/RegularItem";
+import UpdateRegularItem from "../strategies/UpdateRegularItem";
 import UpdateBackstagePass from "../strategies/UpdateBackstagePass";
 import UpdateAgedBrie from "../strategies/UpdateAgedBrie";
 import UpdateConjuredManaCake from "../strategies/UpdateConjuredManaCake";
+import UpdateSulfuras from "../strategies/UpdateSulfuras";
 
 class Shop {
   constructor(items = []) {
@@ -10,23 +11,11 @@ class Shop {
 
   updateQuality() {
     this.items.forEach((item, key) => {
-      switch (item.name) {
-        case "Aged Brie":
-          UpdateAgedBrie(item);
-          break;
-        case "Backstage passes to a TAFKAL80ETC concert":
-          UpdateBackstagePass(item);
-          break;
-        case "Sulfuras, Hand of Ragnaros":
-          break;
-        case "Conjured Mana Cake":
-          UpdateConjuredManaCake(item);
-          break;
-
-        default:
-          RegularItem.updateRegularItem(item);
-          break;
-      }
+      UpdateAgedBrie(item) ||
+        UpdateBackstagePass(item) ||
+        UpdateConjuredManaCake(item) ||
+        UpdateSulfuras(item) ||
+        UpdateRegularItem(item);
     });
 
     return this.items;
