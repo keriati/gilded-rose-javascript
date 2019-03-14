@@ -6,18 +6,32 @@ export class Item {
   }
 }
 
+const mutateQuality = (op, item) => {
+  item.quality = op(item.quality);
+
+  if (item.quality < 0) {
+    item.quality = 0;
+  }
+
+  if (item.quality > 50) {
+    item.quality = 50;
+  }
+};
+
+
+const incBy = by => x => x + by;
+const decBy = by => x => x - by;
+const always = value => x => value;
+
+
 const rules = {
   'Aged Brie': {
     updateQuality(item) {
-      if (item.quality < 50) {
-        item.quality += 1;
-      }
+      mutateQuality(incBy(1), item);
     },
 
     updateQualitySpoiled(item) {
-      if (item.quality < 50) {
-        item.quality += 2;
-      }
+      mutateQuality(incBy(2), item);
     },
   },
 
@@ -32,34 +46,36 @@ const rules = {
   'Backstage passes to a TAFKAL80ETC concert': {
     updateQuality(item) {
       if (item.sellIn <= 5) {
-        item.quality += 3;
+        mutateQuality(incBy(3), item);
       } else if (item.sellIn <= 10) {
-        item.quality += 2;
+        mutateQuality(incBy(2), item);
       } else {
-        item.quality += 1;
-      }
-
-      if (item.quality > 50) {
-        item.quality = 50;
+        mutateQuality(incBy(1), item);
       }
     },
 
     updateQualitySpoiled(item) {
-      item.quality = 0;
+      mutateQuality(always(0), item);
+    },
+  },
+
+  'Conjured Mana Cake': {
+    updateQuality(item) {
+      mutateQuality(decBy(2), item);
+    },
+
+    updateQualitySpoiled(item) {
+      mutateQuality(decBy(4), item);
     },
   },
 
   default: {
     updateQuality(item) {
-      if (item.quality >= 1) {
-        item.quality -= 1;
-      }
+      mutateQuality(decBy(1), item);
     },
 
     updateQualitySpoiled(item) {
-      if (item.quality >= 2) {
-        item.quality -= 2;
-      }
+      mutateQuality(decBy(2), item);
     },
 
     updateSellIn(item) {
@@ -98,3 +114,7 @@ export class Shop {
     return this.items;
   }
 }
+
+export {
+  rules,
+};

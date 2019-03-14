@@ -1,4 +1,4 @@
-import { Shop, Item } from '../gilded_rose';
+import { Shop, Item, rules } from '../gilded_rose';
 
 describe("Gilded Rose", function () {
   let items;
@@ -15,6 +15,7 @@ describe("Gilded Rose", function () {
       new Item('Backstage passes to a TAFKAL80ETC concert', 10, 49),
       new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49),
       new Item('Backstage passes to a TAFKAL80ETC concert', 5, 40),
+      new Item('Conjured Mana Cake', 3, 6),
     ];
   });
 
@@ -26,5 +27,38 @@ describe("Gilded Rose", function () {
 
       expect(gildedRose.items).toMatchSnapshot();
     }
+  });
+
+  describe('Item rules', () => {
+    describe('Conjured items', () => {
+      const {
+        updateQuality,
+        updateQualitySpoiled,
+      } = rules['Conjured Mana Cake'];
+
+      it('degrades in quality by 2 per day when in fresh state', () => {
+        const item = {
+          quality: 10,
+        };
+
+        updateQuality(item);
+
+        expect(item).toEqual({
+          quality: 8,
+        });
+      });
+
+      it('degrades in quality by 4 per day when in spoiled state', () => {
+        const item = {
+          quality: 10,
+        };
+
+        updateQualitySpoiled(item);
+
+        expect(item).toEqual({
+          quality: 6,
+        });
+      });
+    });
   });
 });

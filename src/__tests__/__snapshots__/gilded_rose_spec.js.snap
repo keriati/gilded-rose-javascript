@@ -52,6 +52,11 @@ Array [
     "quality": 43,
     "sellIn": 4,
   },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 4,
+    "sellIn": 2,
+  },
 ]
 `;
 
@@ -106,6 +111,11 @@ Array [
     "name": "Backstage passes to a TAFKAL80ETC concert",
     "quality": 46,
     "sellIn": 3,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 2,
+    "sellIn": 1,
   },
 ]
 `;
@@ -162,6 +172,11 @@ Array [
     "quality": 49,
     "sellIn": 2,
   },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": 0,
+  },
 ]
 `;
 
@@ -216,6 +231,11 @@ Array [
     "name": "Backstage passes to a TAFKAL80ETC concert",
     "quality": 50,
     "sellIn": 1,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -1,
   },
 ]
 `;
@@ -272,6 +292,11 @@ Array [
     "quality": 50,
     "sellIn": 0,
   },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -2,
+  },
 ]
 `;
 
@@ -327,6 +352,11 @@ Array [
     "quality": 0,
     "sellIn": -1,
   },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -3,
+  },
 ]
 `;
 
@@ -381,6 +411,11 @@ Array [
     "name": "Backstage passes to a TAFKAL80ETC concert",
     "quality": 0,
     "sellIn": -2,
+  },
+  Item {
+    "name": "Conjured Mana Cake",
+    "quality": 0,
+    "sellIn": -4,
   },
 ]
 `;
