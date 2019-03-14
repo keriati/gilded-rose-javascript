@@ -1,27 +1,12 @@
-export class Item {
-  constructor(name, sellIn, quality){
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
+import {
+  mutateQuality,
+} from './item';
 
-const mutateQuality = (op, item) => {
-  item.quality = op(item.quality);
-
-  if (item.quality < 0) {
-    item.quality = 0;
-  }
-
-  if (item.quality > 50) {
-    item.quality = 50;
-  }
-};
-
-
-const incBy = by => x => x + by;
-const decBy = by => x => x - by;
-const always = value => x => value;
+import {
+  incBy,
+  decBy,
+  always,
+} from './utils';
 
 
 const rules = {
@@ -88,33 +73,4 @@ const rules = {
   },
 };
 
-export class Shop {
-  constructor(items=[]){
-    this.items = items;
-  }
-
-  updateQuality() {
-    this.items.forEach((item) => {
-      const rule = rules[item.name] || {};
-
-      const updateQuality = rule.updateQuality || rules.default.updateQuality;
-      const updateQualitySpoiled = rule.updateQualitySpoiled || rules.default.updateQualitySpoiled;
-      const updateSellIn = rule.updateSellIn || rules.default.updateSellIn;
-      const isSpoiled = rule.isSpoiled || rules.default.isSpoiled;
-
-      if (isSpoiled(item)) {
-        updateQualitySpoiled(item);
-      } else {
-        updateQuality(item);
-      }
-
-      updateSellIn(item);
-    });
-
-    return this.items;
-  }
-}
-
-export {
-  rules,
-};
+export default rules;

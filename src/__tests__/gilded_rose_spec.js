@@ -1,4 +1,7 @@
-import { Shop, Item, rules } from '../gilded_rose';
+import Shop from '../shop';
+import Item from '../item';
+import rules from '../rules';
+
 
 describe("Gilded Rose", function () {
   let items;
