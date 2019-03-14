@@ -1,6 +1,6 @@
 import Shop from '../shop';
 import Item from '../item';
-import rules from '../rules';
+import conjured from '../rules/conjured';
 
 
 describe("Gilded Rose", function () {
@@ -37,7 +37,7 @@ describe("Gilded Rose", function () {
       const {
         updateQuality,
         updateQualitySpoiled,
-      } = rules['Conjured Mana Cake'];
+      } = conjured.rule;
 
       it('degrades in quality by 2 per day when in fresh state', () => {
         const item = {
