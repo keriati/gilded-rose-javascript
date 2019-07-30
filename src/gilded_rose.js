@@ -57,15 +57,22 @@ function updateBackstagePasses(item) {
 
   if (item.sellIn >= 10) {
     if (item.quality < 50) item.quality += 1;
-  } else if (item.sellIn >= 5) {
+    return;
+  }
+
+  if (item.sellIn >= 5) {
     item.quality += 2;
     if (item.quality > 50) item.quality = 50;
-  } else if (item.sellIn > 0) {
+    return;
+  }
+
+  if (item.sellIn > 0) {
     item.quality += 3;
     if (item.quality > 50) item.quality = 50;
-  } else {
-    item.quality = 0;
+    return;
   }
+
+  item.quality = 0;
 }
 
 function updateDefault(item) {
