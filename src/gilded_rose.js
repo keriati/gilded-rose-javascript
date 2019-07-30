@@ -19,69 +19,62 @@ export class Shop {
       if (item.name === AGED_BRIE) {
         updateAgedBrie(item);
         continue;
-      } 
+      }
 
-      if (
-        this.items[i].name != AGED_BRIE &&
-        this.items[i].name != BACKSTAGE_PASSES
-      ) {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != SULFURAS) {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == BACKSTAGE_PASSES) {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
+      if (item.name === SULFURAS) {
+        updateSulfuras(item);
+        continue;
       }
-      if (this.items[i].name != SULFURAS) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+
+      if (item.name === BACKSTAGE_PASSES) {
+        updateBackstagePasses(item);
+        continue;
       }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != AGED_BRIE) {
-          if (this.items[i].name != BACKSTAGE_PASSES) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != SULFURAS) {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
+
+      updateDefault(item);
+      continue;
     }
 
     return this.items;
   }
 }
+
 function updateAgedBrie(item) {
   item.sellIn -= 1;
   if (item.quality < 50) {
     if (item.sellIn >= 0 || item.quality === 49) {
       item.quality += 1;
-    }
-    else {
+    } else {
       item.quality += 2;
     }
   }
 }
 
+function updateSulfuras(item) {}
+
+function updateBackstagePasses(item) {
+  item.sellIn -= 1;
+
+  if (item.sellIn >= 10) {
+    if (item.quality < 50) item.quality += 1;
+  } else if (item.sellIn >= 5) {
+    item.quality += 2;
+    if (item.quality > 50) item.quality = 50;
+  } else if (item.sellIn > 0) {
+    item.quality += 3;
+    if (item.quality > 50) item.quality = 50;
+  } else {
+    item.quality = 0;
+  }
+}
+
+function updateDefault(item) {
+  item.sellIn -= 1;
+
+  if (item.quality > 0) {
+    if (item.sellIn < 0) {
+      item.quality -= 2;
+      if (item.quality < 0) item.quality = 0;
+    } else item.quality -= 1;
+  }
+}

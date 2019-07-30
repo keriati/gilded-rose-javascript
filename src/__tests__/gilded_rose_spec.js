@@ -45,7 +45,7 @@ describe("Gilded Rose", () => {
       expect(gildedRose.items[0]).toHaveProperty("quality", 14);
     });
 
-    it("should not decrease quality is zero", () => {
+    it("should not decrease when quality is zero", () => {
       const gildedRose = new Shop([new Item("foo", 10, 0)]);
 
       gildedRose.updateQuality();
