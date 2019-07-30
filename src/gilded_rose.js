@@ -14,6 +14,13 @@ export class Shop {
   }
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+      const item = this.items[i];
+
+      if (item.name === AGED_BRIE) {
+        updateAgedBrie(item);
+        continue;
+      } 
+
       if (
         this.items[i].name != AGED_BRIE &&
         this.items[i].name != BACKSTAGE_PASSES
@@ -66,3 +73,15 @@ export class Shop {
     return this.items;
   }
 }
+function updateAgedBrie(item) {
+  item.sellIn -= 1;
+  if (item.quality < 50) {
+    if (item.sellIn >= 0 || item.quality === 49) {
+      item.quality += 1;
+    }
+    else {
+      item.quality += 2;
+    }
+  }
+}
+
