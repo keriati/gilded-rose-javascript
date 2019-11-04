@@ -25,53 +25,48 @@ export class Shop {
     this.items = items;
   }
 
-  
-
   updateQuality() {
 
     for (let item of this.items) {
-      if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASS) {
-        if (item.quality > MIN_QUALITY) {
+      if (!this.isAgedBrie(item) && !this.isBackstagePass(item)) {
 
-          if (item.name != SULFURAS) {
+        if (!this.isSulfuras(item)) {
+          this.decreaseQuality(item);
+
+          if (this.isConjuredCake(item)) {
             this.decreaseQuality(item);
-
-            if (item.name === CONJURED_CAKE) {
-              this.decreaseQuality(item);
-            }
-
           }
-
         }
+
       } else {
-        if (item.quality < MAX_QUALITY) {
-          this.increaseQuality(item);
-          if (item.name == BACKSTAGE_PASS) {
-            if (item.sellIn < BACKSTAGE_LEVEL1) {
-              this.increaseQuality(item);
-            }
-            if (item.sellIn < BACKSTAGE_LEVEL2) {
-              this.increaseQuality(item);
-            }
+
+        this.increaseQuality(item);
+
+        if (this.isBackstagePass(item)) {
+          if (item.sellIn < BACKSTAGE_LEVEL1) {
+            this.increaseQuality(item);
+          }
+          if (item.sellIn < BACKSTAGE_LEVEL2) {
+            this.increaseQuality(item);
           }
         }
+
       }
-      if (item.name != SULFURAS) {
-        item.sellIn -= DAY_CHANGE;
+
+      if (!this.isSulfuras(item)) {
+        this.decreseDay(item);
       }
+
       if (item.sellIn < SELL_PERIOD_BREAK) {
-        if (item.name != AGED_BRIE) {
-          if (item.name != BACKSTAGE_PASS) {
-            if (item.quality > MIN_QUALITY) {
+        if (!this.isAgedBrie(item)) {
+          if (!this.isBackstagePass(item)) {
 
-              if (item.name != SULFURAS) {
+            if (!this.isSulfuras(item)) {
+              this.decreaseQuality(item);
+
+              if (this.isConjuredCake(item)) {
                 this.decreaseQuality(item);
-
-                if (item.name === CONJURED_CAKE) {
-                  this.decreaseQuality(item);
-                }
               }
-
             }
 
           } else {
@@ -100,5 +95,25 @@ export class Shop {
 
   resetQualityToMin(item) {
       item.quality = MIN_QUALITY;
+  }
+
+  isAgedBrie(item) {
+    return item.name === AGED_BRIE;
+  }
+
+  isSulfuras(item) {
+    return item.name === SULFURAS; 
+  }
+
+  isConjuredCake(item) {
+    return item.name === CONJURED_CAKE; 
+  }
+
+  isBackstagePass(item) {
+    return item.name === BACKSTAGE_PASS;
+  }
+
+  decreseDay(item) {
+    item.sellIn -= DAY_CHANGE;
   }
 }
