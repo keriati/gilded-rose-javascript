@@ -143,6 +143,38 @@ export class ConjuredManaCakeItem extends Item {
   }
 }
 
+export class DefaultItem extends Item {
+  update() {
+    this.decreaseQuality();
+    this.decreseDay();
+
+    if (this.isExpired()) {
+      this.decreaseQuality();
+    }
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality += DEFAULT_QUALITY_CHANGE;
+    }
+  }
+  
+  decreaseQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality -= DEFAULT_QUALITY_CHANGE;
+    }
+  }
+
+  isExpired() {
+    return this.sellIn < SELL_PERIOD_BREAK;
+  }
+
+  decreseDay() {
+    this.sellIn -= DAY_CHANGE;
+  }
+
+}
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
@@ -179,7 +211,8 @@ export class Shop {
 
       }
 
-      this.updateDefault(item);
+      item.update();
+
     }
 
     return this.items;
@@ -238,12 +271,7 @@ export class Shop {
 
   updateDefault(item) {
 
-    this.decreaseQuality(item);
-    this.decreseDay(item);
-
-    if (this.isExpired(item)) {
-      this.decreaseQuality(item);
-    }
+  
 
   }
 
