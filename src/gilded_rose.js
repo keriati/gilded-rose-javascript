@@ -20,6 +20,37 @@ export class Item {
   }
 }
 
+export class AgedBrieItem extends Item {
+  update() {
+    this.increaseQuality();
+    this.decreseDay();
+
+    if (this.isExpired()) {
+      this.increaseQuality();
+    }
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality += DEFAULT_QUALITY_CHANGE;
+    }
+  }
+  
+  decreaseQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality -= DEFAULT_QUALITY_CHANGE;
+    }
+  }
+
+  isExpired() {
+    return this.sellIn < SELL_PERIOD_BREAK;
+  }
+
+  decreseDay() {
+    this.sellIn -= DAY_CHANGE;
+  }
+}
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
@@ -29,9 +60,11 @@ export class Shop {
 
     for (let item of this.items) {
 
+// item.update();
+
       if (this.isAgedBrie(item)) {
 
-        this.updateAgedBrie(item);
+        item.update();
         continue;
 
       } 
@@ -102,12 +135,7 @@ export class Shop {
 
   updateAgedBrie(item) {
 
-    this.increaseQuality(item);
-    this.decreseDay(item);
 
-    if (this.isExpired(item)) {
-      this.increaseQuality(item);
-    }
 
   }
 
