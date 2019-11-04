@@ -28,53 +28,65 @@ export class Shop {
   updateQuality() {
 
     for (let item of this.items) {
-      if (!this.isAgedBrie(item) && !this.isBackstagePass(item)) {
 
-        if (!this.isSulfuras(item)) {
-          this.decreaseQuality(item);
+      if (this.isAgedBrie(item)) {
 
-          if (this.isConjuredCake(item)) {
-            this.decreaseQuality(item);
-          }
+        this.increaseQuality(item);
+        this.decreseDay(item);
+
+        if (this.isExpired(item)) {
+          this.increaseQuality(item);
         }
 
-      } else {
+        continue;
+      } 
+
+      if (this.isBackstagePass(item)) {
 
         this.increaseQuality(item);
 
-        if (this.isBackstagePass(item)) {
-          if (item.sellIn < BACKSTAGE_LEVEL1) {
-            this.increaseQuality(item);
-          }
-          if (item.sellIn < BACKSTAGE_LEVEL2) {
-            this.increaseQuality(item);
-          }
-        }
-
-      }
-
-      if (!this.isSulfuras(item)) {
-        this.decreseDay(item);
-      }
-
-      if (item.sellIn < SELL_PERIOD_BREAK) {
-        if (!this.isAgedBrie(item)) {
-          if (!this.isBackstagePass(item)) {
-
-            if (!this.isSulfuras(item)) {
-              this.decreaseQuality(item);
-
-              if (this.isConjuredCake(item)) {
-                this.decreaseQuality(item);
-              }
-            }
-
-          } else {
-            this.resetQualityToMin(item);
-          }
-        } else {
+        if (item.sellIn < BACKSTAGE_LEVEL1) {
           this.increaseQuality(item);
         }
+        if (item.sellIn < BACKSTAGE_LEVEL2) {
+          this.increaseQuality(item);
+        }
+
+        this.decreseDay(item);
+
+        if (this.isExpired(item)) {
+          this.resetQualityToMin(item);
+        }
+
+        continue;
+      }
+
+      if (this.isSulfuras(item)) {
+        continue;
+      }
+
+      if (this.isConjuredCake(item)) {
+        this.decreaseQuality(item);
+        this.decreaseQuality(item);
+
+        this.decreseDay(item);
+
+        if (this.isExpired(item)) {
+          this.decreaseQuality(item);
+          this.decreaseQuality(item);
+        }
+
+        continue;
+      }
+
+      this.decreaseQuality(item);
+
+      // Day change
+      this.decreseDay(item);
+
+      // Expired
+      if (this.isExpired(item)) {
+        this.decreaseQuality(item);
       }
     }
 
@@ -116,4 +128,10 @@ export class Shop {
   decreseDay(item) {
     item.sellIn -= DAY_CHANGE;
   }
+
+  isExpired(item) {
+    return item.sellIn < SELL_PERIOD_BREAK;
+  }
+
+
 }
