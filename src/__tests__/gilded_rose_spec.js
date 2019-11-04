@@ -141,17 +141,34 @@ describe("Gilded Rose", function () {
 
     });
 
-    xit("should degrade Conjured items correctly", function () {
+    it("should degrade Conjured items correctly", function () {
         const gildedRose = new Shop([new Item("Conjured Mana Cake", 7, 8)]);
         const items = gildedRose.updateQuality();
         expect(items[0].quality).toEqual(6);
     });
 
-    xit("should degrade Conjured items correctly after sellIn period", function () {
-        const gildedRose = new Shop([new Item("Conjured Mana Cake", 1, 8)]);
-        gildedRose.updateQuality();
+    it("should degrade Conjured items correctly after sellIn period", function () {
+        const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 8)]);
         const items = gildedRose.updateQuality();
-        expect(items[0].quality).toEqual(2);
+        expect(items[0].quality).toEqual(4);
+    });
+    
+    it("should not degrade Conjured items quality under 0 after sellIn period (quality = 1)", function () {
+        const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 1)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(0);
+    });
+    
+    it("should not degrade Conjured items quality under 0 after sellIn period (quality = 2)", function () {
+        const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 2)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(0);
+    });
+
+    it("should not degrade Conjured items quality under 0 after sellIn period (quality = 3)", function () {
+        const gildedRose = new Shop([new Item("Conjured Mana Cake", -1, 3)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(0);
     });
 
 });
