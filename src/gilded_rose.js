@@ -51,6 +51,53 @@ export class AgedBrieItem extends Item {
   }
 }
 
+export class BackstagePassItem extends Item {
+  update() {
+
+    this.increaseQuality();
+
+    if (this.sellIn < BACKSTAGE_LEVEL1) {
+      this.increaseQuality();
+    }
+
+    if (this.sellIn < BACKSTAGE_LEVEL2) {
+      this.increaseQuality();
+    }
+
+    this.decreseDay();
+
+    if (this.isExpired()) {
+      this.resetQualityToMin();
+    }
+
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality += DEFAULT_QUALITY_CHANGE;
+    }
+  }
+  
+  decreaseQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality -= DEFAULT_QUALITY_CHANGE;
+    }
+  }
+
+  isExpired() {
+    return this.sellIn < SELL_PERIOD_BREAK;
+  }
+
+  decreseDay() {
+    this.sellIn -= DAY_CHANGE;
+  }
+
+  resetQualityToMin() {
+    this.quality = MIN_QUALITY;
+  }
+}
+
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
@@ -59,8 +106,6 @@ export class Shop {
   updateQuality() {
 
     for (let item of this.items) {
-
-// item.update();
 
       if (this.isAgedBrie(item)) {
 
@@ -71,7 +116,7 @@ export class Shop {
 
       if (this.isBackstagePass(item)) {
 
-        this.updateBackstagePass(item);
+        item.update();
         continue;
 
       }
@@ -133,29 +178,8 @@ export class Shop {
     return item.sellIn < SELL_PERIOD_BREAK;
   }
 
-  updateAgedBrie(item) {
-
-
-
-  }
-
   updateBackstagePass(item) {
 
-    this.increaseQuality(item);
-
-    if (item.sellIn < BACKSTAGE_LEVEL1) {
-      this.increaseQuality(item);
-    }
-
-    if (item.sellIn < BACKSTAGE_LEVEL2) {
-      this.increaseQuality(item);
-    }
-
-    this.decreseDay(item);
-
-    if (this.isExpired(item)) {
-      this.resetQualityToMin(item);
-    }
 
   }
 
