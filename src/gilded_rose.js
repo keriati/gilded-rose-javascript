@@ -184,33 +184,6 @@ export class Shop {
 
     for (let item of this.items) {
 
-      if (this.isAgedBrie(item)) {
-
-        item.update();
-        continue;
-
-      } 
-
-      if (this.isBackstagePass(item)) {
-
-        item.update();
-        continue;
-
-      }
-
-      if (this.isSulfuras(item)) {
-
-        item.update();
-        continue;
-      }
-
-      if (this.isConjuredCake(item)) {
-        
-        item.update();
-        continue;
-
-      }
-
       item.update();
 
     }
@@ -218,61 +191,5 @@ export class Shop {
     return this.items;
   }
 
-  increaseQuality(item) {
-    if (item.quality < MAX_QUALITY) {
-      item.quality += DEFAULT_QUALITY_CHANGE;
-    }
-  }
-  
-  decreaseQuality(item) {
-    if (item.quality > MIN_QUALITY) {
-      item.quality -= DEFAULT_QUALITY_CHANGE;
-    }
-  }
-
-  resetQualityToMin(item) {
-      item.quality = MIN_QUALITY;
-  }
-
-  isAgedBrie(item) {
-    return item.name === AGED_BRIE;
-  }
-
-  isSulfuras(item) {
-    return item.name === SULFURAS; 
-  }
-
-  isConjuredCake(item) {
-    return item.name === CONJURED_CAKE; 
-  }
-
-  isBackstagePass(item) {
-    return item.name === BACKSTAGE_PASS;
-  }
-
-  decreseDay(item) {
-    item.sellIn -= DAY_CHANGE;
-  }
-
-  isExpired(item) {
-    return item.sellIn < SELL_PERIOD_BREAK;
-  }
-
-  updateBackstagePass(item) {
-
-
-  }
-
-  updateConjuredCake(item) {
-
-    
-
-  }
-
-  updateDefault(item) {
-
-  
-
-  }
 
 }
