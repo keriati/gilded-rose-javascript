@@ -31,34 +31,16 @@ export class Shop {
 
       if (this.isAgedBrie(item)) {
 
-        this.increaseQuality(item);
-        this.decreseDay(item);
-
-        if (this.isExpired(item)) {
-          this.increaseQuality(item);
-        }
-
+        this.updateAgedBrie(item);
         continue;
+
       } 
 
       if (this.isBackstagePass(item)) {
 
-        this.increaseQuality(item);
-
-        if (item.sellIn < BACKSTAGE_LEVEL1) {
-          this.increaseQuality(item);
-        }
-        if (item.sellIn < BACKSTAGE_LEVEL2) {
-          this.increaseQuality(item);
-        }
-
-        this.decreseDay(item);
-
-        if (this.isExpired(item)) {
-          this.resetQualityToMin(item);
-        }
-
+        this.updateBackstagePass(item);
         continue;
+
       }
 
       if (this.isSulfuras(item)) {
@@ -66,28 +48,13 @@ export class Shop {
       }
 
       if (this.isConjuredCake(item)) {
-        this.decreaseQuality(item);
-        this.decreaseQuality(item);
-
-        this.decreseDay(item);
-
-        if (this.isExpired(item)) {
-          this.decreaseQuality(item);
-          this.decreaseQuality(item);
-        }
-
+        
+        this.updateConjuredCake(item);
         continue;
+
       }
 
-      this.decreaseQuality(item);
-
-      // Day change
-      this.decreseDay(item);
-
-      // Expired
-      if (this.isExpired(item)) {
-        this.decreaseQuality(item);
-      }
+      this.updateDefault(item);
     }
 
     return this.items;
@@ -133,5 +100,60 @@ export class Shop {
     return item.sellIn < SELL_PERIOD_BREAK;
   }
 
+  updateAgedBrie(item) {
+
+    this.increaseQuality(item);
+    this.decreseDay(item);
+
+    if (this.isExpired(item)) {
+      this.increaseQuality(item);
+    }
+
+  }
+
+  updateBackstagePass(item) {
+
+    this.increaseQuality(item);
+
+    if (item.sellIn < BACKSTAGE_LEVEL1) {
+      this.increaseQuality(item);
+    }
+
+    if (item.sellIn < BACKSTAGE_LEVEL2) {
+      this.increaseQuality(item);
+    }
+
+    this.decreseDay(item);
+
+    if (this.isExpired(item)) {
+      this.resetQualityToMin(item);
+    }
+
+  }
+
+  updateConjuredCake(item) {
+
+    this.decreaseQuality(item);
+    this.decreaseQuality(item);
+
+    this.decreseDay(item);
+
+    if (this.isExpired(item)) {
+      this.decreaseQuality(item);
+      this.decreaseQuality(item);
+    }
+
+  }
+
+  updateDefault(item) {
+
+    this.decreaseQuality(item);
+    this.decreseDay(item);
+
+    if (this.isExpired(item)) {
+      this.decreaseQuality(item);
+    }
+
+  }
 
 }
