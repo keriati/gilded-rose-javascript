@@ -103,6 +103,46 @@ export class SulfurasItem extends Item {
   }
 }
 
+export class ConjuredManaCakeItem extends Item {
+  update() {
+
+    this.decreaseQuality();
+    this.decreaseQuality();
+
+    this.decreseDay();
+
+    if (this.isExpired()) {
+      this.decreaseQuality();
+      this.decreaseQuality();
+    }
+
+  }
+
+  increaseQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality += DEFAULT_QUALITY_CHANGE;
+    }
+  }
+  
+  decreaseQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality -= DEFAULT_QUALITY_CHANGE;
+    }
+  }
+
+  isExpired() {
+    return this.sellIn < SELL_PERIOD_BREAK;
+  }
+
+  decreseDay() {
+    this.sellIn -= DAY_CHANGE;
+  }
+
+  resetQualityToMin() {
+    this.quality = MIN_QUALITY;
+  }
+}
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
@@ -134,7 +174,7 @@ export class Shop {
 
       if (this.isConjuredCake(item)) {
         
-        this.updateConjuredCake(item);
+        item.update();
         continue;
 
       }
@@ -192,15 +232,7 @@ export class Shop {
 
   updateConjuredCake(item) {
 
-    this.decreaseQuality(item);
-    this.decreaseQuality(item);
-
-    this.decreseDay(item);
-
-    if (this.isExpired(item)) {
-      this.decreaseQuality(item);
-      this.decreaseQuality(item);
-    }
+    
 
   }
 
