@@ -1,3 +1,17 @@
+const AGED_BRIE = 'Aged Brie';
+const BACKSTAGE_PASS = 'Backstage passes to a TAFKAL80ETC concert';
+const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+const CONJURED_CAKE = 'Conjured Mana Cake';
+
+const DEFAULT_QUALITY_CHANGE = 1;
+const MAX_QUALITY = 50;
+const MIN_QUALITY = 0;
+
+const DAY_CHANGE = 1;
+const SELL_PERIOD_BREAK = 0;
+const BACKSTAGE_LEVEL1 = 11;
+const BACKSTAGE_LEVEL2 = 6;
+
 export class Item {
   constructor(name, sellIn, quality){
     this.name = name;
@@ -10,73 +24,81 @@ export class Shop {
   constructor(items=[]){
     this.items = items;
   }
+
+  
+
   updateQuality() {
 
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
+    for (let item of this.items) {
+      if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASS) {
+        if (item.quality > MIN_QUALITY) {
 
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
+          if (item.name != SULFURAS) {
+            this.decreaseQuality(item);
 
-            if (this.items[i].name === 'Conjured Mana Cake') {
-              this.items[i].quality = this.items[i].quality - 1;
-              if (this.items[i].quality < 0) {
-                this.items[i].quality = 0;
-              }
+            if (item.name === CONJURED_CAKE) {
+              this.decreaseQuality(item);
             }
 
           }
 
         }
       } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
+        if (item.quality < MAX_QUALITY) {
+          this.increaseQuality(item);
+          if (item.name == BACKSTAGE_PASS) {
+            if (item.sellIn < BACKSTAGE_LEVEL1) {
+              this.increaseQuality(item);
             }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
+            if (item.sellIn < BACKSTAGE_LEVEL2) {
+              this.increaseQuality(item);
             }
           }
         }
       }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (item.name != SULFURAS) {
+        item.sellIn -= DAY_CHANGE;
       }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
+      if (item.sellIn < SELL_PERIOD_BREAK) {
+        if (item.name != AGED_BRIE) {
+          if (item.name != BACKSTAGE_PASS) {
+            if (item.quality > MIN_QUALITY) {
 
-                     
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
+              if (item.name != SULFURAS) {
+                this.decreaseQuality(item);
 
-                if (this.items[i].name === 'Conjured Mana Cake') {
-                  this.items[i].quality = this.items[i].quality - 1;
-                  if (this.items[i].quality < 0) {
-                    this.items[i].quality = 0;
-                  }
+                if (item.name === CONJURED_CAKE) {
+                  this.decreaseQuality(item);
                 }
               }
+
             }
+
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            this.resetQualityToMin(item);
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
+          this.increaseQuality(item);
         }
       }
     }
 
     return this.items;
+  }
+
+  increaseQuality(item) {
+    if (item.quality < MAX_QUALITY) {
+      item.quality += DEFAULT_QUALITY_CHANGE;
+    }
+  }
+  
+  decreaseQuality(item) {
+    if (item.quality > MIN_QUALITY) {
+      item.quality -= DEFAULT_QUALITY_CHANGE;
+    }
+  }
+
+  resetQualityToMin(item) {
+      item.quality = MIN_QUALITY;
   }
 }
