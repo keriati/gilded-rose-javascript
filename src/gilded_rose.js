@@ -97,6 +97,11 @@ export class BackstagePassItem extends Item {
   }
 }
 
+export class SulfurasItem extends Item {
+  update() {
+
+  }
+}
 
 export class Shop {
   constructor(items=[]){
@@ -122,6 +127,8 @@ export class Shop {
       }
 
       if (this.isSulfuras(item)) {
+
+        item.update();
         continue;
       }
 
