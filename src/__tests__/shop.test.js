@@ -1,6 +1,6 @@
 import { Shop } from '../shop';
 import { Item } from '../item';
-import { agedBrieSKU, backstagePassesToATafkalConcert, sulfurasHandofRagnaros, genericProduct } from '../products';
+import { agedBrieSKU, backstagePassesToATafkalConcert, sulfurasHandofRagnaros, genericProduct, conjuredProduct } from '../products';
 
 describe("Golden rose shop tests", function () {
     
@@ -61,9 +61,6 @@ describe("Golden rose shop tests", function () {
         expect(gildedRose.items[0].quality).toEqual(1);
     });
 
-
-
-
     it("backstagePass has reverse quality system ", function() {
         // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
         // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
@@ -107,4 +104,13 @@ describe("Golden rose shop tests", function () {
 
         expect(gildedRose.items[0].quality).toEqual(0);
     });
+
+    it("cunjered item degrades in quality twice as fast", function() {
+        // "Conjured" items degrade in Quality twice as fast as normal items
+        const item = new Item(conjuredProduct, 10, 10);
+        const glidedRose = new Shop([item]);
+        glidedRose.updateQuality();
+        
+        expect(glidedRose.items[0].quality).toEqual(8);
+    })
 });

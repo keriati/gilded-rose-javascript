@@ -1,4 +1,4 @@
-import {agedBrieSKU,backstagePassesToATafkalConcert,sulfurasHandofRagnaros } from './products';
+import {isAgedBrie, isBackstagePassesToATafkalConcert, isSulfuras, isConjured, increaseQuality, decreaseQuality} from './utils';
 
 export class Shop {
     constructor(items=[]){
@@ -6,49 +6,47 @@ export class Shop {
     }
     updateQuality() {
       for (var i = 0; i < this.items.length; i++) {
-        if (this.items[i].name != agedBrieSKU && this.items[i].name != backstagePassesToATafkalConcert) {
-          if (this.items[i].quality > 0) {
-            if (this.items[i].name != sulfurasHandofRagnaros) {
-              this.items[i].quality = this.items[i].quality - 1;
-            }
-          }
+        
+        const item = this.items[i];
+        
+        if (isSulfuras(item)) {
+          continue;
+        }
+        
+        if (isConjured(item)) {
+          decreaseQuality(item, 2);
+        } else if (isAgedBrie(item)) {
+          increaseQuality(item);
+        }
+
+        else if (!isAgedBrie(item) && !isBackstagePassesToATafkalConcert(item)) {
+          decreaseQuality(item);
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-            if (this.items[i].name == backstagePassesToATafkalConcert) {
-              if (this.items[i].sellIn < 11) {
-                if (this.items[i].quality < 50) {
-                  this.items[i].quality = this.items[i].quality + 1;
-                }
-              }
-              if (this.items[i].sellIn < 6) {
-                if (this.items[i].quality < 50) {
-                  this.items[i].quality = this.items[i].quality + 1;
-                }
-              }
+         
+          if (isBackstagePassesToATafkalConcert(item)) {
+            increaseQuality(item);
+
+            if (item.sellIn < 11) {
+              increaseQuality(item);
+            }
+            if (item.sellIn < 6) {
+              increaseQuality(item);
             }
           }
         }
-        if (this.items[i].name != sulfurasHandofRagnaros) {
-          this.items[i].sellIn = this.items[i].sellIn - 1;
-        }
-        if (this.items[i].sellIn < 0) {
-          if (this.items[i].name != agedBrieSKU) {
-            if (this.items[i].name != backstagePassesToATafkalConcert) {
-              if (this.items[i].quality > 0) {
-                if (this.items[i].name != sulfurasHandofRagnaros) {
-                  this.items[i].quality = this.items[i].quality - 1;
-                }
-              }
-            } else {
-              this.items[i].quality = this.items[i].quality - this.items[i].quality;
-            }
+
+        item.sellIn = item.sellIn - 1;
+      
+        if (item.sellIn < 0) {
+          if (isAgedBrie(item)) {
+             increaseQuality(item);
+          } else if (isBackstagePassesToATafkalConcert(item)) {
+            item.quality = 0;
           } else {
-            if (this.items[i].quality < 50) {
-              this.items[i].quality = this.items[i].quality + 1;
-            }
+            decreaseQuality(item);
           }
         }
+
       }
   
       return this.items;
