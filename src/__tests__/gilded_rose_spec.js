@@ -1,7 +1,6 @@
 import { Shop, Item } from '../gilded_rose';
 
 describe("Gilded Rose", function () {
-
   it("should return empty array when initialized", function () {
     const gildedRose = new Shop();
     const items = gildedRose.updateQuality();
@@ -125,5 +124,4 @@ describe("Gilded Rose", function () {
     });
 
   });
-
 });

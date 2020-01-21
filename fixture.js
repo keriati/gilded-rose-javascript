@@ -14,6 +14,13 @@ items.push(new Item('Backstage passes to a TAFKAL80ETC concert', 5, 49));
 items.push(new Item('Conjured Mana Cake', 3, 6));
 
 
+// Rules
+
+const rules = [
+    new Rule(true, Shop.baseUpdate),
+];
+
+
 const gildedRose = new Shop(items);
 
 const days = 2;
