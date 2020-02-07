@@ -124,6 +124,10 @@ describe("Gilded Rose", function () {
 
     });
 
+    describe('Conjured', () => {
+        
+    })
+
 
 
 

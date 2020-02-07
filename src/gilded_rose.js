@@ -9,6 +9,7 @@ export class Item {
 const AGED_BRIE = 'Aged Brie';
 const BACKSTAGE_PASSES = 'Backstage passes to a TAFKAL80ETC concert';
 const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+const CONJURED = 'Conjured';
 
 export class Shop {
   constructor(items=[]){
@@ -61,27 +62,18 @@ export class Shop {
         return item;
       }
 
-      if (item.name != BACKSTAGE_PASSES) {
-        this.descreaseQuality(item);
-      } else {
-        this.increaseQuality(item);
-
-        if (item.sellIn < 11) {
-          this.increaseQuality(item);
-        }
-        if (item.sellIn < 6) {
-          this.increaseQuality(item);
-        }
+      if (item.name === CONJURED) {
+        
       }
+
+      
+      this.descreaseQuality(item);
       item.sellIn -= 1;
       
       if (item.sellIn < 0) {
-        if (item.name != BACKSTAGE_PASSES) {
-          this.descreaseQuality(item);
-        } else {
-          item.quality = 0;
-        }
+        this.descreaseQuality(item);
       }
+
     });
 
     return this.items;
