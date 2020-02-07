@@ -24,6 +24,13 @@ function increaseQuality(item, changeValue) {
   }
 }
 
+export class Conjured extends Item {
+  updateQuality() {
+  decreaseSellIn(this, 1)
+  decreaseQuality(this, 2)
+  }
+}
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
@@ -32,8 +39,7 @@ export class Shop {
     for (var i = 0; i < this.items.length; i++) {
       // Conjured
       if (this.items[i].name === 'Conjured') {
-        decreaseSellIn(this.items[i], 1)
-        decreaseQuality(this.items[i], 2)        
+        this.items[i].updateQuality();        
         continue
       }
       // Backstage passes to a TAFKAL80ETC concert

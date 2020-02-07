@@ -1,4 +1,4 @@
-import { Shop, Item } from '../gilded_rose';
+import { Shop, Item, Conjured } from '../gilded_rose';
 
 describe("Gilded Rose", function () {
 
@@ -100,19 +100,19 @@ describe("Gilded Rose", function () {
 
     describe("Conjured", function () {
         it("Tests if  quality value decreases by 2 when sellIn decreases", function () {
-            const gildedRose = new Shop([new Item("Conjured", 20, 10)]);
+            const gildedRose = new Shop([new Conjured("Conjured", 20, 10)]);
             const items = gildedRose.updateQuality();
             expect(items[0].quality).toEqual(8);
         });
 
         it("Tests if  quality value never drops below 0 (case 1)", function () {
-            const gildedRose = new Shop([new Item("Conjured", 20, 1)]);
+            const gildedRose = new Shop([new Conjured("Conjured", 20, 1)]);
             const items = gildedRose.updateQuality();
             expect(items[0].quality).toEqual(0);
         });
 
         it("Tests if  quality value never drops below 0 (case 2)", function () {
-            const gildedRose = new Shop([new Item("Conjured", 20, 0)]);
+            const gildedRose = new Shop([new Conjured("Conjured", 20, 0)]);
             const items = gildedRose.updateQuality();
             expect(items[0].quality).toEqual(0);
         });
