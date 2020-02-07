@@ -6,6 +6,8 @@ export class Item {
   }
 }
 
+//TODO: add ItemType class?
+
 export class Shop {
   constructor(items=[]){
     this.items = items;
