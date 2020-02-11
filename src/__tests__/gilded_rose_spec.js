@@ -93,4 +93,36 @@ describe("Gilded Rose", function () {
             expect(items[0].quality).toEqual(50);
         })
     })
+
+    describe("conjured items", () => {
+        it("degrades twice as fast than regular items", () => {
+            const sellIn = 3;
+            const quality = 6;
+            const gildedRose = new Shop([new Item('Conjured Mana Cake', sellIn, quality)]);
+
+            const items = gildedRose.updateQuality();
+
+            expect(items[0].quality).toEqual(4);
+        })
+
+        it("when it's the same it decreases by 1", () => {
+            const sellIn = 3;
+            const quality = 6;
+            const gildedRose = new Shop([new Item('Conjured Mana Cake', sellIn, quality)]);
+
+            const items = gildedRose.updateQuality();
+
+            expect(items[0].sellIn).toEqual(2);
+        })
+
+        it("when sellin goes below 0 quality decreases by 4", () => {
+            const sellIn = -1;
+            const quality = 6;
+            const gildedRose = new Shop([new Item('Conjured Mana Cake', sellIn, quality)]);
+
+            const items = gildedRose.updateQuality();
+
+            expect(items[0].quality).toEqual(2);
+        })
+    })
 });
