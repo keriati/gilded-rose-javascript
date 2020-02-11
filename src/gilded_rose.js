@@ -1,7 +1,7 @@
 import { conjured, isConjured } from './conjuredItem';
 
-export const decreaseQuality = item => item.quality > 0 && --item.quality;
-export const increaseQuality = item => item.quality < 50 && ++item.quality;
+export const decreaseQuality = item => item.quality > 0 && item.quality--;
+export const increaseQuality = item => item.quality < 50 && item.quality++;
 export const decreaseSellin = item => --item.sellIn;
 export class Item {
   constructor(name, sellIn, quality){
@@ -23,27 +23,27 @@ export class Shop {
     for (let i = 0; i < this.items.length; i++) {
       const currentItem = this.items[i];
       if (currentItem.name === sulfuras) {
-        continue
+        continue;
       }
 
       if (isConjured(currentItem)) {
-        conjured(currentItem)
-        continue
+        conjured(currentItem);
+        continue;
       }
 
       decreaseSellin(currentItem);
-      if (currentItem.name !== agedBrie && currentItem.name !== backstagePass) {
-        decreaseQuality(currentItem);
-      } else {
-          increaseQuality(currentItem)
-          if (currentItem.name === backstagePass) {
-            if (currentItem.sellIn < 11) {
-              increaseQuality(currentItem);
-            }
-            if (currentItem.sellIn < 6) {
-              increaseQuality(currentItem);
-            }
+      if (currentItem.name === agedBrie || currentItem.name === backstagePass) {
+        increaseQuality(currentItem)
+        if (currentItem.name === backstagePass) {
+          if (currentItem.sellIn < 11) {
+            increaseQuality(currentItem);
           }
+          if (currentItem.sellIn < 6) {
+            increaseQuality(currentItem);
+          }
+        }
+      } else {
+        decreaseQuality(currentItem);
       }
       if (currentItem.sellIn < 0) {
         if (currentItem.name !== agedBrie) {
