@@ -34,40 +34,54 @@ function decreaseQuality(item) {
   }
 }
 
+function decreaseSellIn(item) {
+  item.sellIn -= 1;
+}
+
+function updateBrie(item) {
+  decreaseSellIn(item);
+  increaseQuality(item);
+  if (item.sellIn < 0) {
+    if (isBrie(item)) {
+      increaseQuality(item);
+    }
+  }
+}
+
+function updatePass(item) {
+  decreaseSellIn(item);
+  increaseQuality(item);
+  if (item.sellIn < 10) {
+    increaseQuality(item);
+  }
+  if (item.sellIn < 5) {
+    increaseQuality(item);
+  }
+  if (item.sellIn < 0) {
+    item.quality -= item.quality;
+  }
+}
+
+function updateRegular(item) {
+  decreaseSellIn(item);
+  decreaseQuality(item);
+  if (item.sellIn < 0) {
+    decreaseQuality(item);
+  }
+}
+
 function updateItem(item) {
   if (isSulfuras(item)) {
     return;
   }
 
-  item.sellIn -= 1;
-
-
   if (isBrie(item)) {
-    increaseQuality(item);
-    if (item.sellIn < 0) {
-      if (isBrie(item)) {
-        increaseQuality(item);
-      }
-    }
-    return;
+    return updateBrie(item);
   }
   if (isPass(item)) {
-    increaseQuality(item);
-    if (item.sellIn < 10) {
-      increaseQuality(item);
-    }
-    if (item.sellIn < 5) {
-      increaseQuality(item);
-    }
-    if (item.sellIn < 0) {
-      item.quality -= item.quality;
-    }
-    return;
+    return updatePass(item);
   }
-  decreaseQuality(item);
-  if (item.sellIn < 0) {
-    decreaseQuality(item);
-  }
+  updateRegular(item);
 }
 
 export class Shop {
