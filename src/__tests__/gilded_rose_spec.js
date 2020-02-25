@@ -1,4 +1,5 @@
-import { Shop, Item } from '../gilded_rose';
+import { Shop} from '../gilded_rose';
+import {Item} from "../item";
 
 const createStore = (name, sellIn, quality) => {
     let gildedRose;
