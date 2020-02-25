@@ -45,6 +45,10 @@ describe("Gilded Rose", function () {
             expect(items[0].quality).toEqual(50);
         })
         it("Does not increase quality over 50 when sellIn negative", () => {
+            const items = createStore('Aged Brie', -1, 2);
+            expect(items[0].quality).toEqual(4);
+        })
+        it("Does not increase quality over 50 when sellIn negative", () => {
             const items = createStore('Aged Brie', -1, 50);
             expect(items[0].quality).toEqual(50);
         })
@@ -101,6 +105,10 @@ describe("Gilded Rose", function () {
             const items = createStore('Backstage passes to a TAFKAL80ETC concert', 9, 50);
             expect(items[0].quality).toEqual(50)
         });
+        it('Does not increase quality over 50 if sellIn is 10 or lower and quality under 50', () => {
+            const items = createStore('Backstage passes to a TAFKAL80ETC concert', 9, 49);
+            expect(items[0].quality).toEqual(50)
+        });
         it('Increases quality by 2 on update if sellIn is lower than 10 and greater than 5', () => {
             const items = createStore('Backstage passes to a TAFKAL80ETC concert', 10, 20);
             expect(items[0].quality).toEqual(22)
@@ -111,6 +119,10 @@ describe("Gilded Rose", function () {
         });
         it('Does not increase quality over 50 if sellIn is 5 or lower', () => {
             const items = createStore('Backstage passes to a TAFKAL80ETC concert', 4, 50);
+            expect(items[0].quality).toEqual(50)
+        });
+        it('Does not increase quality over 50 if sellIn is 5 or lower and quality under 50', () => {
+            const items = createStore('Backstage passes to a TAFKAL80ETC concert', 4, 49);
             expect(items[0].quality).toEqual(50)
         });
         it('Increases quality by 3 on update if sellIn is lower than 5', () => {
@@ -141,6 +153,10 @@ describe("Gilded Rose", function () {
             const items = createStore('+5 Dexterity Vest', 10, 20);
             expect(items[0].quality).toEqual(19);
         })
+        it('Decreases quality on update',() => {
+            const items = createStore('+5 Dexterity Vest', -1, 0);
+            expect(items[0].quality).toEqual(0);
+        })
         it('Decreases quality by 2 on update when is expired', () => {
             const items = createStore('+5 Dexterity Vest', -1, 20);
             expect(items[0].quality).toEqual(18);
@@ -148,7 +164,6 @@ describe("Gilded Rose", function () {
         it('On update quality does not decrease to a negative number', () => {
             const items = createStore('+5 Dexterity Vest', 10, 0);
             expect(items[0].quality).toEqual(0);
-
         })
     })
 
