@@ -1,7 +1,7 @@
 import {decreaseSellIn, increaseQuality, isExpired} from "../utils/helpers";
 
-export const isPass = item => item.name === 'Backstage passes to a TAFKAL80ETC concert';
-export const updatePass = item => {
+export const check = item => item.name === 'Backstage passes to a TAFKAL80ETC concert';
+export const update = item => {
     decreaseSellIn(item);
     increaseQuality(item);
     if (item.sellIn < 10) {

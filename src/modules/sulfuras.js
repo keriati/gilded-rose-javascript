@@ -1,1 +1,2 @@
-export const isSulfuras = item => item.name === 'Sulfuras, Hand of Ragnaros';
+export const check = item => item.name === 'Sulfuras, Hand of Ragnaros';
+export const update = () => {};
