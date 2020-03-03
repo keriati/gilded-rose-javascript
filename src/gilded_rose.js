@@ -44,6 +44,17 @@ export class Shop {
     }
   }
 
+  increaseBackstagePassesQuality(item) {
+    const { name, sellIn } = item;
+    if (name === ITEM_TYPES.BACKSTAGE_PASSES) {
+      this.increaseQuality(item);
+      if (sellIn < BACKSTAGE_PASSES_SELL_IN_1ST_BOUNDARY)
+        this.increaseQuality(item);
+      if (sellIn < BACKSTAGE_PASSES_SELL_IN_2ND_BOUNDARY)
+        this.increaseQuality(item);
+    }
+  }
+
   decreaseSellIn(itemIndex) {
     this.items[itemIndex].sellIn = this.items[itemIndex].sellIn - 1;
   }
@@ -59,21 +70,8 @@ export class Shop {
       this.decreaseSellIn(i);
       this.descreaseQuality(this.items[i]);
       this.increaseBrieQuality(this.items[i]);
-
-      if (this.items[i].name === ITEM_TYPES.BACKSTAGE_PASSES) {
-        this.increaseQuality(this.items[i]);
-        if (this.items[i].name == ITEM_TYPES.BACKSTAGE_PASSES) {
-          if (this.items[i].sellIn < BACKSTAGE_PASSES_SELL_IN_1ST_BOUNDARY) {
-            this.increaseQuality(this.items[i]);
-          }
-          if (this.items[i].sellIn < BACKSTAGE_PASSES_SELL_IN_2ND_BOUNDARY) {
-            this.increaseQuality(this.items[i]);
-          }
-        }
-      }
-
+      this.increaseBackstagePassesQuality(this.items[i]);
       this.resetQualityToZero(this.items[i]);
-
       if (this.items[i].sellIn < 0) this.descreaseQuality(this.items[i]);
     }
 
