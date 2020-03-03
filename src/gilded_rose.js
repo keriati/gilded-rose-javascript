@@ -33,7 +33,10 @@ export class Shop {
   }
 
   increaseBrieQuality(item) {
-    if (item.name === ITEM_TYPES.AGED_BRIE) this.increaseQuality(item);
+    if (item.name === ITEM_TYPES.AGED_BRIE) {
+      this.increaseQuality(item);
+      if (item.sellIn < 0) this.increaseQuality(item);
+    }
   }
 
   decreaseSellIn(itemIndex) {
@@ -71,10 +74,8 @@ export class Shop {
       }
 
       if (this.items[i].sellIn < 0) {
-        if (this.items[i].name === ITEM_TYPES.AGED_BRIE) {
-          this.increaseQuality(this.items[i]);
-          continue;
-        }
+        if (this.items[i].name === ITEM_TYPES.AGED_BRIE) continue;
+
         if (this.items[i].name === ITEM_TYPES.BACKSTAGE_PASSES) {
           this.resetQualityToZero(this.items[i]);
           continue;
