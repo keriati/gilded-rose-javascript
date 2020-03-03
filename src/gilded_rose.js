@@ -20,10 +20,6 @@ export class Shop {
     this.items = items;
   }
 
-  decreaseItemQuality(itemIndex) {
-    this.items[itemIndex].quality = this.items[itemIndex].quality - 1;
-  }
-
   descreaseQuality(item) {
     if (
       item.quality > 0 &&
@@ -55,8 +51,8 @@ export class Shop {
     }
   }
 
-  decreaseSellIn(itemIndex) {
-    this.items[itemIndex].sellIn = this.items[itemIndex].sellIn - 1;
+  decreaseSellIn(item) {
+    item.sellIn -= 1;
   }
 
   resetQualityToZero(item) {
@@ -65,16 +61,14 @@ export class Shop {
   }
 
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name === ITEM_TYPES.SULFURAS) continue;
-      this.decreaseSellIn(i);
-      this.descreaseQuality(this.items[i]);
-      this.increaseBrieQuality(this.items[i]);
-      this.increaseBackstagePassesQuality(this.items[i]);
-      this.resetQualityToZero(this.items[i]);
-      if (this.items[i].sellIn < 0) this.descreaseQuality(this.items[i]);
-    }
-
-    return this.items;
+    return this.items.map(item => {
+      if (item.name === ITEM_TYPES.SULFURAS) return item;
+      this.decreaseSellIn(item);
+      this.descreaseQuality(item);
+      this.increaseBrieQuality(item);
+      this.increaseBackstagePassesQuality(item);
+      this.resetQualityToZero(item);
+      if (item.sellIn < 0) this.descreaseQuality(item);
+    });
   }
 }
