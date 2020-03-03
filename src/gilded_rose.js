@@ -73,9 +73,10 @@ export class Shop {
         }
       }
 
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name === ITEM_TYPES.AGED_BRIE) continue;
-
+      if (
+        this.items[i].sellIn < 0 &&
+        this.items[i].name !== ITEM_TYPES.AGED_BRIE
+      ) {
         if (this.items[i].name === ITEM_TYPES.BACKSTAGE_PASSES) {
           this.resetQualityToZero(this.items[i]);
           continue;
