@@ -64,19 +64,13 @@ export class Shop {
           }
         }
       } else {
-        if (isLesserThanMaximumQuality(this.items[i])) {
-          increaseQuality(this.items[i]);
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (this.items[i].sellIn < 11) {
-              increaseQuality(this.items[i]);
-            }
-            if (this.items[i].sellIn < 6) {
-              if (isLesserThanMaximumQuality(this.items[i])) {
-                increaseQuality(this.items[i]);
-              }
-            }
+        increaseQuality(this.items[i]);
+        if (this.items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
+          if (this.items[i].sellIn < 11) {
+            increaseQuality(this.items[i]);
+          }
+          if (this.items[i].sellIn < 6) {
+            increaseQuality(this.items[i]);
           }
         }
       }
@@ -99,9 +93,7 @@ export class Shop {
             setQualityToZero(this.items[i]);
           }
         } else {
-          if (isLesserThanMaximumQuality(this.items[i])) {
-            increaseQuality(this.items[i]);
-          }
+          increaseQuality(this.items[i]);
         }
       }
     }
