@@ -10,14 +10,6 @@ function isConjured(item) {
   return item.name === "Conjured" ? true : false;
 }
 
-function isLesserThanMaximumQuality(item) {
-  return item.quality < 50;
-}
-
-function setItemQuality(item, quality) {
-  item.quality = quality;
-}
-
 function decreaseQuality(item) {
   item.quality = item.quality - 1;
 }
@@ -36,8 +28,23 @@ function decreaseSellIn(item) {
   item.sellIn = item.sellIn - 1;
 }
 
-function isIncreasingItem(name) {
-  // return name === ("Aged Brie" || name === "Backstage passes to a TAFKAL80ETC concert"
+function isBackstage(name) {
+  return name === "Backstage passes to a TAFKAL80ETC concert";
+}
+
+function isSulfuras(name) {
+  return name === "Sulfuras, Hand of Ragnaros";
+}
+
+function isNotIncreasingItem(name) {
+  if (
+    name !== "Aged Brie" &&
+    name !== "Backstage passes to a TAFKAL80ETC concert"
+  ) {
+    return true;
+  }
+
+  return false;
 }
 
 export class Shop {
@@ -54,18 +61,15 @@ export class Shop {
         break;
       }
       */
-      if (
-        this.items[i].name != "Aged Brie" &&
-        this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-      ) {
+      if (isNotIncreasingItem(this.items[i].name)) {
         if (this.items[i].quality > 0) {
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+          if (!isSulfuras(this.items[i].name)) {
             decreaseQuality(this.items[i]);
           }
         }
       } else {
         increaseQuality(this.items[i]);
-        if (this.items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
+        if (isBackstage(this.items[i].name)) {
           if (this.items[i].sellIn < 11) {
             increaseQuality(this.items[i]);
           }
@@ -74,19 +78,14 @@ export class Shop {
           }
         }
       }
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+      if (!isSulfuras(this.items[i].name)) {
         decreaseSellIn(this.items[i]);
       }
       //
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != "Aged Brie") {
-          if (
-            this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            if (
-              this.items[i].quality > 0 &&
-              this.items[i].name != "Sulfuras, Hand of Ragnaros"
-            ) {
+          if (!isBackstage(this.items[i].name)) {
+            if (this.items[i].quality > 0 && !isSulfuras(this.items[i].name)) {
               decreaseQuality(this.items[i]);
             }
           } else {
