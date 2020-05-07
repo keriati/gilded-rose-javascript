@@ -18,6 +18,28 @@ function setItemQuality(item, quality) {
   item.quality = quality;
 }
 
+function decreaseQuality(item) {
+  item.quality = item.quality - 1;
+}
+
+function increaseQuality(item) {
+  if (item.quality < 50) {
+    item.quality = item.quality + 1;
+  }
+}
+
+function setQualityToZero(item) {
+  item.quality = 0;
+}
+
+function decreaseSellIn(item) {
+  item.sellIn = item.sellIn - 1;
+}
+
+function isIncreasingItem(name) {
+  // return name === ("Aged Brie" || name === "Backstage passes to a TAFKAL80ETC concert"
+}
+
 export class Shop {
   constructor(items = []) {
     this.items = items;
@@ -38,28 +60,28 @@ export class Shop {
       ) {
         if (this.items[i].quality > 0) {
           if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-            setItemQuality(this.items[i], this.items[i].quality - 1);
+            decreaseQuality(this.items[i]);
           }
         }
       } else {
         if (isLesserThanMaximumQuality(this.items[i])) {
-          this.items[i].quality = this.items[i].quality + 1;
+          increaseQuality(this.items[i]);
           if (
             this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
           ) {
             if (this.items[i].sellIn < 11) {
-              this.items[i].quality = this.items[i].quality + 1;
+              increaseQuality(this.items[i]);
             }
             if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
+              if (isLesserThanMaximumQuality(this.items[i])) {
+                increaseQuality(this.items[i]);
               }
             }
           }
         }
       }
       if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        decreaseSellIn(this.items[i]);
       }
       //
       if (this.items[i].sellIn < 0) {
@@ -67,18 +89,18 @@ export class Shop {
           if (
             this.items[i].name != "Backstage passes to a TAFKAL80ETC concert"
           ) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
+            if (
+              this.items[i].quality > 0 &&
+              this.items[i].name != "Sulfuras, Hand of Ragnaros"
+            ) {
+              decreaseQuality(this.items[i]);
             }
           } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
+            setQualityToZero(this.items[i]);
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
+          if (isLesserThanMaximumQuality(this.items[i])) {
+            increaseQuality(this.items[i]);
           }
         }
       }

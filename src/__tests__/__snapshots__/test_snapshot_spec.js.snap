@@ -1,0 +1,526 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Gilded Rose should work as before 1`] = `
+Array [
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 20,
+      "sellIn": 10,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 0,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 45,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 7,
+      "sellIn": 5,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 20,
+      "sellIn": 15,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 49,
+      "sellIn": 10,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 49,
+      "sellIn": 5,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 6,
+      "sellIn": 3,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 19,
+      "sellIn": 9,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 1,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 46,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 6,
+      "sellIn": 4,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 21,
+      "sellIn": 14,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 9,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 4,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 5,
+      "sellIn": 2,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 18,
+      "sellIn": 8,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 2,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 47,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 5,
+      "sellIn": 3,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 22,
+      "sellIn": 13,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 8,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 3,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 4,
+      "sellIn": 1,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 17,
+      "sellIn": 7,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 4,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 49,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 4,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 23,
+      "sellIn": 12,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 7,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 3,
+      "sellIn": 0,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 16,
+      "sellIn": 6,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 6,
+      "sellIn": -2,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -2,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 3,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 24,
+      "sellIn": 11,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 6,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 1,
+      "sellIn": -1,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 15,
+      "sellIn": 5,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 8,
+      "sellIn": -3,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -3,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 2,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 25,
+      "sellIn": 10,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 5,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 0,
+      "sellIn": -2,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 14,
+      "sellIn": 4,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 10,
+      "sellIn": -4,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -4,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 0,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 27,
+      "sellIn": 9,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 4,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 0,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 0,
+      "sellIn": -3,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 13,
+      "sellIn": 3,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 12,
+      "sellIn": -5,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -5,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 0,
+      "sellIn": -2,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 29,
+      "sellIn": 8,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 3,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 0,
+      "sellIn": -2,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 0,
+      "sellIn": -4,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 12,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 14,
+      "sellIn": -6,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -6,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 0,
+      "sellIn": -3,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 31,
+      "sellIn": 7,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 2,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 0,
+      "sellIn": -3,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 0,
+      "sellIn": -5,
+    },
+  ],
+  Array [
+    Object {
+      "name": "+5 Dexterity Vest",
+      "quality": 11,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 16,
+      "sellIn": -7,
+    },
+    Object {
+      "name": "Aged Brie",
+      "quality": 50,
+      "sellIn": -7,
+    },
+    Object {
+      "name": "Elixir of the Mongoose",
+      "quality": 0,
+      "sellIn": -4,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": 0,
+    },
+    Object {
+      "name": "Sulfuras, Hand of Ragnaros",
+      "quality": 80,
+      "sellIn": -1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 33,
+      "sellIn": 6,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 50,
+      "sellIn": 1,
+    },
+    Object {
+      "name": "Backstage passes to a TAFKAL80ETC concert",
+      "quality": 0,
+      "sellIn": -4,
+    },
+    Object {
+      "name": "Conjured Mana Cake",
+      "quality": 0,
+      "sellIn": -6,
+    },
+  ],
+]
+`;
