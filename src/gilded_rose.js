@@ -1,3 +1,7 @@
+const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
+const BRIE = 'Aged Brie';
+const SULFURAS = 'Sulfuras, Hand of Ragnaros';
+
 export class Item {
     constructor(name, sellIn, quality){
         this.name = name;
@@ -11,15 +15,6 @@ export class Shop {
         this.items = items;
     }
 
-
-    qualityIsLessThanValue(quality, value) {
-        return quality < value;
-    }
-
-    qualityIsBiggerThanValue(quality, value) {
-        return quality > value;
-    }
-
     sellInLessThanValue(sellIn, value) {
         return sellIn < value;
     }
@@ -28,45 +23,57 @@ export class Shop {
         return name !== value;
     }
 
+    increaseQualityByOne(item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    decreaseQualityByOne(item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+    }
+
+    decreaseSellInByOne(item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+    resetQualityToZero(item) {
+        item.quality = 0;
+    }
+
     updateQuality() {
-        for (var i = 0; i < this.items.length; i++) {
-            if (this.isNotEqualName(this.items[i].name, 'Aged Brie') && this.isNotEqualName(this.items[i].name, 'Backstage passes to a TAFKAL80ETC concert')) {
-                if (this.qualityIsBiggerThanValue(this.items[i].quality, 0)) {
-                    if (this.isNotEqualName(this.items[i].name, 'Sulfuras, Hand of Ragnaros')) {
-                        this.items[i].quality = this.items[i].quality - 1;
-                    }
+        for (let i = 0; i < this.items.length; i++) {
+            if (this.isNotEqualName(this.items[i].name, BRIE) && this.isNotEqualName(this.items[i].name, BACKSTAGE)) {
+                if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
+                    this.decreaseQualityByOne(this.items[i]);
                 }
             } else {
-                if (this.qualityIsLessThanValue(this.items[i].quality, 50)) {
-                    this.items[i].quality = this.items[i].quality + 1;
-                    if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-                        if (this.sellInLessThanValue(this.items[i].sellIn, 11)) {
-                            this.items[i].quality = this.items[i].quality + 1;
-                        }
-                        if (this.sellInLessThanValue(this.items[i].sellIn, 6)) {
-                            this.items[i].quality = this.items[i].quality + 1;
-                        }
+                this.increaseQualityByOne(this.items[i]);
+                if (this.items[i].name === BACKSTAGE) {
+                    if (this.sellInLessThanValue(this.items[i].sellIn, 11)) {
+                        this.increaseQualityByOne(this.items[i]);
+                    }
+                    if (this.sellInLessThanValue(this.items[i].sellIn, 6)) {
+                        this.increaseQualityByOne(this.items[i]);
                     }
                 }
             }
-            if (this.isNotEqualName(this.items[i].name, 'Sulfuras, Hand of Ragnaros')) {
-                this.items[i].sellIn = this.items[i].sellIn - 1;
+            if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
+                this.decreaseSellInByOne(this.items[i]);
             }
             if (this.sellInLessThanValue(this.items[i].sellIn, 0)) {
-                if (this.isNotEqualName(this.items[i].name, 'Aged Brie')) {
-                    if (this.isNotEqualName(this.items[i].name, 'Backstage passes to a TAFKAL80ETC concert')) {
-                        if (this.qualityIsBiggerThanValue(this.items[i].quality, 0)) {
-                            if (this.isNotEqualName(this.items[i].name, 'Sulfuras, Hand of Ragnaros')) {
-                                this.items[i].quality = this.items[i].quality - 1;
-                            }
+                if (this.isNotEqualName(this.items[i].name, BRIE)) {
+                    if (this.isNotEqualName(this.items[i].name, BACKSTAGE)) {
+                        if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
+                            this.decreaseQualityByOne(this.items[i]);
                         }
                     } else {
-                        this.items[i].quality = this.items[i].quality - this.items[i].quality;
+                        this.resetQualityToZero(this.items[i]);
                     }
                 } else {
-                    if (this.qualityIsLessThanValue(this.items[i].quality, 50)) {
-                        this.items[i].quality = this.items[i].quality + 1;
-                    }
+                    this.increaseQualityByOne(this.items[i]);
                 }
             }
         }
