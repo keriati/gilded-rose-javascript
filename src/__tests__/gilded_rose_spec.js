@@ -27,6 +27,12 @@ describe("Gilded Rose", function () {
         expect(items[0].quality).toEqual(4);
     });
 
+    it("when the name is Aged Brie then quality increases by one", function () {
+        const gildedRose = new Shop([new Item("Aged Brie", 1, 2)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0].quality).toEqual(3);
+    });
+
     it("quality should not be bigger than 50", function () {
         const gildedRose = new Shop([new Item("Aged Brie", 0, 50)]);
         const items = gildedRose.updateQuality();
