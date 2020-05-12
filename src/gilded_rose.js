@@ -45,10 +45,18 @@ export class Shop {
 
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
+            if (this.items[i].name === SULFURAS) {
+                continue;
+            }
+
+            // if (this.items[i].name === BACKSTAGE) {
+            //     if (this.items[i].sellIn > 10) {
+            //         this.increaseQualityByOne(this.items[i]);
+            //     }
+            // }
+
             if (this.isNotEqualName(this.items[i].name, BRIE) && this.isNotEqualName(this.items[i].name, BACKSTAGE)) {
-                if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
-                    this.decreaseQualityByOne(this.items[i]);
-                }
+                this.decreaseQualityByOne(this.items[i]);
             } else {
                 this.increaseQualityByOne(this.items[i]);
                 if (this.items[i].name === BACKSTAGE) {
@@ -60,15 +68,13 @@ export class Shop {
                     }
                 }
             }
-            if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
-                this.decreaseSellInByOne(this.items[i]);
-            }
+
+            this.decreaseSellInByOne(this.items[i]);
+
             if (this.sellInLessThanValue(this.items[i].sellIn, 0)) {
                 if (this.isNotEqualName(this.items[i].name, BRIE)) {
                     if (this.isNotEqualName(this.items[i].name, BACKSTAGE)) {
-                        if (this.isNotEqualName(this.items[i].name, SULFURAS)) {
-                            this.decreaseQualityByOne(this.items[i]);
-                        }
+                        this.decreaseQualityByOne(this.items[i]);
                     } else {
                         this.resetQualityToZero(this.items[i]);
                     }
