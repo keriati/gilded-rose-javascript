@@ -82,27 +82,20 @@ export class Shop {
                 }
                 continue;
             }
-
-            /**
-             * Does quality decrease without taking sellIn value in account
-             */
             if (item.name === 'Aged Brie') {
                 this.updateQualityValueSafely(item, 1);
-            } else {
-                this.updateBasicItemQualityValue(item);
+                item.sellIn = item.sellIn - 1;
+                if (item.sellIn < 0) {
+                    this.updateQualityValueSafely(item, 1);
+                }
+                continue;
             }
 
-            /**
-             * Day passes
-             */
-            item.sellIn = item.sellIn - 1;
 
+            this.updateBasicItemQualityValue(item);
+            item.sellIn = item.sellIn - 1;
             if (item.sellIn < 0) {
-                if (item.name === 'Aged Brie') {
-                    this.updateQualityValueSafely(item, 1);
-                } else {
-                    this.updateBasicItemQualityValue(item);
-                }
+                this.updateBasicItemQualityValue(item);
             }
         }
 
