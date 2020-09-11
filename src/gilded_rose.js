@@ -14,6 +14,17 @@ const AGED_BRIE_TYPE = 'Aged Brie'
 export class Shop {
     constructor(items = []) {
         this.items = items;
+
+        this.updateQualityHandlerMap = {
+            [SULFURAS_TYPE]: () => {
+                // nothing to do here
+            },
+            [CONJURED_TYPE]: (item) => this.handleQualityUpdate(item, -2),
+            [BACKSTAGE_TYPE]: (item) => this.updatePassQualityValue(item),
+            [AGED_BRIE_TYPE]: (item) => this.handleQualityUpdate(item, 1)
+        }
+
+        this.defaultQualityHandler = (item) => this.handleQualityUpdate(item, -1)
     }
 
     updatePassQualityValue(item) {
@@ -62,21 +73,14 @@ export class Shop {
         for (let i = 0; i < this.items.length; i++) {
             const item = this.items[i];
 
-            switch (item.name) {
-                case SULFURAS_TYPE:
-                    continue;
-                case CONJURED_TYPE:
-                    this.handleQualityUpdate(item, -2)
-                    continue;
-                case BACKSTAGE_TYPE:
-                    this.updatePassQualityValue(item)
-                    continue;
-                case AGED_BRIE_TYPE:
-                    this.handleQualityUpdate(item, 1)
-                    continue;
-                default:
-                    this.handleQualityUpdate(item, -1);
+            const handler = this.updateQualityHandlerMap[item.name]
+
+            if (handler) {
+                handler(item)
+                continue;
             }
+
+            this.defaultQualityHandler(item);
         }
 
         return this.items;
