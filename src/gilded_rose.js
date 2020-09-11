@@ -73,13 +73,20 @@ export class Shop {
                 }
                 continue;
             }
+            if (item.name === BACKSTAGE_TYPE) {
+                this.updatePassQualityValue(item)
+                item.sellIn = item.sellIn - 1;
+                if (item.sellIn < 0) {
+                    // back stage passes go to zero after concert
+                    item.quality = 0;
+                }
+                continue;
+            }
 
             /**
              * Does quality decrease without taking sellIn value in account
              */
-            if (item.name === BACKSTAGE_TYPE) {
-                this.updatePassQualityValue(item)
-            } else if (item.name === 'Aged Brie') {
+            if (item.name === 'Aged Brie') {
                 this.updateQualityValueSafely(item, 1);
             } else {
                 this.updateBasicItemQualityValue(item);
@@ -93,9 +100,6 @@ export class Shop {
             if (item.sellIn < 0) {
                 if (item.name === 'Aged Brie') {
                     this.updateQualityValueSafely(item, 1);
-                } else if (item.name === BACKSTAGE_TYPE) {
-                    // back stage passes go to zero after concert
-                    item.quality = 0;
                 } else {
                     this.updateBasicItemQualityValue(item);
                 }
