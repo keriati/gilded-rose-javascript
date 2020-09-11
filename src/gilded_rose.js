@@ -8,23 +8,22 @@ export class Item {
 
 const SULFURAS_TYPE = 'Sulfuras, Hand of Ragnaros'
 const BACKSTAGE_TYPE = 'Backstage passes to a TAFKAL80ETC concert'
+const CONJURED_TYPE = 'Conjured'
+const AGED_BRIE_TYPE = 'Aged Brie'
 
 export class Shop {
     constructor(items = []) {
         this.items = items;
     }
 
-    updateBasicItemQualityValue(item) {
-        if (item.quality > 0) {
-            if (item.name === SULFURAS_TYPE) {
-                // sulfuras does not change in value
-                return;
-            }
-            this.updateQualityValueSafely(item, -1);
-        }
-    }
-
     updatePassQualityValue(item) {
+        if (item.sellIn <= 0) {
+            item.sellIn--;
+            // back stage passes go to zero after concert
+            item.quality = 0;
+            return;
+        }
+
         this.updateQualityValueSafely(item, 1);
 
         if (item.sellIn < 11) {
@@ -34,17 +33,18 @@ export class Shop {
         if (item.sellIn < 6) {
             this.updateQualityValueSafely(item, 1);
         }
+
+        item.sellIn--;
     }
 
-    updateConjuredQualityValueSafely(item) {
-        this.updateQualityValueSafely(item, -2);
+    handleQualityUpdate(item, valueToAdd) {
+        this.updateQualityValueSafely(item, valueToAdd);
+        item.sellIn--;
+        if (item.sellIn < 0) {
+            this.updateQualityValueSafely(item, valueToAdd);
+        }
     }
 
-    /**
-     *
-     * @param item
-     * @param valueToAdd
-     */
     updateQualityValueSafely(item, valueToAdd) {
         item.quality = item.quality + valueToAdd;
 
@@ -62,40 +62,20 @@ export class Shop {
         for (let i = 0; i < this.items.length; i++) {
             const item = this.items[i];
 
-            if (item.name === SULFURAS_TYPE) {
-                continue;
-            }
-            if (item.name === "Conjured") {
-                this.updateConjuredQualityValueSafely(item);
-                item.sellIn--;
-                if (item.sellIn < 0) {
-                    this.updateConjuredQualityValueSafely(item);
-                }
-                continue;
-            }
-            if (item.name === BACKSTAGE_TYPE) {
-                this.updatePassQualityValue(item)
-                item.sellIn = item.sellIn - 1;
-                if (item.sellIn < 0) {
-                    // back stage passes go to zero after concert
-                    item.quality = 0;
-                }
-                continue;
-            }
-            if (item.name === 'Aged Brie') {
-                this.updateQualityValueSafely(item, 1);
-                item.sellIn = item.sellIn - 1;
-                if (item.sellIn < 0) {
-                    this.updateQualityValueSafely(item, 1);
-                }
-                continue;
-            }
-
-
-            this.updateBasicItemQualityValue(item);
-            item.sellIn = item.sellIn - 1;
-            if (item.sellIn < 0) {
-                this.updateBasicItemQualityValue(item);
+            switch (item.name) {
+                case SULFURAS_TYPE:
+                    continue;
+                case CONJURED_TYPE:
+                    this.handleQualityUpdate(item, -2)
+                    continue;
+                case BACKSTAGE_TYPE:
+                    this.updatePassQualityValue(item)
+                    continue;
+                case AGED_BRIE_TYPE:
+                    this.handleQualityUpdate(item, 1)
+                    continue;
+                default:
+                    this.handleQualityUpdate(item, -1);
             }
         }
 
