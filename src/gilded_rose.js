@@ -19,12 +19,12 @@ export class Shop {
             [SULFURAS_TYPE]: () => {
                 // nothing to do here
             },
-            [CONJURED_TYPE]: (item) => this.handleQualityUpdate(item, -2),
+            [CONJURED_TYPE]: (item) => this.handleItemDegradation(item, -2),
             [BACKSTAGE_TYPE]: (item) => this.updatePassQualityValue(item),
-            [AGED_BRIE_TYPE]: (item) => this.handleQualityUpdate(item, 1)
+            [AGED_BRIE_TYPE]: (item) => this.handleItemDegradation(item, 1)
         }
 
-        this.defaultQualityHandler = (item) => this.handleQualityUpdate(item, -1)
+        this.defaultUpdateQualityHandler = (item) => this.handleItemDegradation(item, -1)
     }
 
     updatePassQualityValue(item) {
@@ -48,7 +48,7 @@ export class Shop {
         item.sellIn--;
     }
 
-    handleQualityUpdate(item, valueToAdd) {
+    handleItemDegradation(item, valueToAdd) {
         this.updateQualityValueSafely(item, valueToAdd);
         item.sellIn--;
         if (item.sellIn < 0) {
@@ -80,7 +80,7 @@ export class Shop {
                 continue;
             }
 
-            this.defaultQualityHandler(item);
+            this.defaultUpdateQualityHandler(item);
         }
 
         return this.items;
