@@ -4,6 +4,7 @@ const agedBrieType = "Aged Brie";
 const sulfurasType = "Sulfuras, Hand of Ragnaros";
 const defaultType = "DefaultType";
 const backstageType = "Backstage passes to a TAFKAL80ETC concert";
+const conjuredType = "Conjured";
 
 describe("Gilded Rose", function () {
     it("should foo", function () {
@@ -98,10 +99,16 @@ describe("Gilded Rose", function () {
         const items = gildedRose.updateQuality();
         expect(items[0].quality).toEqual(intitialQuality);
     });
-    xit("AgedBrie quality should improve by time", function () {
-        const intitialQuality = 0;
-        const gildedRose = new Shop([new Item(agedBrieType, 1, intitialQuality)]);
+    xit("Conjured quality decrease by 2 if sellIn is positive", function () {
+        const intitialQuality = 4;
+        const gildedRose = new Shop([new Item(conjuredType, 1, intitialQuality)]);
         const items = gildedRose.updateQuality(); // next day as well
-        expect(items[0].quality > intitialQuality).toBeGreaterThan(intitialQuality);
+        expect(items[0].quality > intitialQuality).toBeGreaterThan(intitialQuality - 2);
+    });
+    xit("Conjured quality decrease by 2 if sellIn is negative", function () {
+        const intitialQuality = 10;
+        const gildedRose = new Shop([new Item(conjuredType, -1, intitialQuality)]);
+        const items = gildedRose.updateQuality(); // next day as well
+        expect(items[0].quality > intitialQuality).toBeGreaterThan(intitialQuality - 4);
     });
 });
