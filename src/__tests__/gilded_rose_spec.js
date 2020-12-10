@@ -104,7 +104,7 @@ describe("Gilded Rose", function () {
       expect(items[0].quality).toEqual(5);
     });
   });
-  xdescribe("Conjured", () => {
+  describe("Conjured", () => {
     it("should decrease quality 2x as fast", function () {
       const gildedRose = new Shop([new Item("Conjured Mana Cake", 3, 5)]);
       const items = gildedRose.updateQuality();

@@ -37,48 +37,55 @@ export class Shop {
       if (item.name === SULFURAS) {
         return item;
       }
-      if (item.name === AGED_BRIE){
-        
-      }
 
-      if (item.name === AGED_BRIE || item.name === BACKSTAGE_PASSES) {
+      if (item.name === AGED_BRIE) {
         if (item.quality < MAX_QUALITY) {
           increaseQualityByOne(item);
-          if (item.name == BACKSTAGE_PASSES) {
-            if (item.sellIn < 11) {
-              if (item.quality < MAX_QUALITY) {
-                increaseQualityByOne(item);
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < MAX_QUALITY) {
-                increaseQualityByOne(item);
-              }
-            }
+        }
+        ageItemByDay(item);
+        if (item.sellIn < 0 && item.quality < MAX_QUALITY) {
+          increaseQualityByOne(item);
+        }
+        return item;
+      }
+
+      if (item.name === BACKSTAGE_PASSES) {
+        if (item.quality < MAX_QUALITY) {
+          increaseQualityByOne(item);
+          if (item.sellIn < 11 && item.quality < MAX_QUALITY) {
+            increaseQualityByOne(item);
+          }
+          if (item.sellIn < 6 && item.quality < MAX_QUALITY) {
+            increaseQualityByOne(item);
           }
         }
+        ageItemByDay(item);
+        if (item.sellIn < 0) {
+          setQualityToZero(item);
+        }
+        return item;
       }
-      if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASSES) {
+
+      if (item.name === CONJURED) {
         if (item.quality > MIN_QUALITY) {
           decreaseQualityByOne(item);
+          decreaseQualityByOne(item);
         }
+        ageItemByDay(item);
+        if (item.sellIn < 0 && item.quality > 0) {
+          decreaseQualityByOne(item);
+          decreaseQualityByOne(item);
+        }
+        return item;
+      }
+
+      // Normal items
+      if (item.quality > MIN_QUALITY) {
+        decreaseQualityByOne(item);
       }
       ageItemByDay(item);
-      if (item.sellIn < 0) {
-        if (item.name === BACKSTAGE_PASSES) {
-          setQualityToZero(item);
-          return item;
-        }
-        if (item.name === AGED_BRIE) {
-          if (item.quality < MAX_QUALITY) {
-            increaseQualityByOne(item);
-            return item;
-          }
-        }
-        if (item.quality > 0) {
-          decreaseQualityByOne(item);
-          return item;
-        }
+      if (item.sellIn < 0 && item.quality > 0) {
+        decreaseQualityByOne(item);
       }
       return item;
     });
