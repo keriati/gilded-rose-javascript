@@ -20,20 +20,36 @@ export class Shop {
     this.items = items;
   }
 
-  equalsToItemName(itemName, name) {
-    return itemName === name;
+  equalsTo(a, b) {
+    return a === b;
+  }
+
+  isHigher(a, b) {
+    return a > b;
+  }
+
+  isLower(a, b) {
+    return a < b;
   }
 
   isAgedBrieItem(itemName) {
-    return this.equalsToItemName(itemName, AGED_BRIE_ITEM);
+    return this.equalsTo(itemName, AGED_BRIE_ITEM);
   }
 
   isBackstagePassesItem(itemName) {
-    return this.equalsToItemName(itemName, BACKSTAGE_PASSES_ITEM);
+    return this.equalsTo(itemName, BACKSTAGE_PASSES_ITEM);
   }
 
   isSulfurasItem(itemName) {
-    return this.equalsToItemName(itemName, SULFURAS_ITEM);
+    return this.equalsTo(itemName, SULFURAS_ITEM);
+  }
+
+  isHigherThanMinQuality(quality) {
+    return this.isHigher(quality, MIN_QUALITY);
+  }
+
+  isLowerThanMaxQuality(quality) {
+    return this.isLower(quality, MAX_QUALITY);
   }
 
   updateQuality() {
@@ -42,17 +58,17 @@ export class Shop {
         !this.isAgedBrieItem(this.items[i].name) &&
         !this.isBackstagePassesItem(this.items[i].name)
       ) {
-        if (this.items[i].quality > MIN_QUALITY) {
+        if (this.isHigherThanMinQuality(this.items[i].quality)) {
           if (!this.isSulfurasItem(this.items[i].name)) {
             this.items[i].quality = this.items[i].quality - 1;
           }
         }
       } else {
-        if (this.items[i].quality < MAX_QUALITY) {
+        if (this.isLowerThanMaxQuality(this.items[i].quality)) {
           this.items[i].quality = this.items[i].quality + 1;
           if (this.isBackstagePassesItem(this.items[i].name)) {
             if (this.items[i].sellIn < SELL_IN_11) {
-              if (this.items[i].quality < MAX_QUALITY) {
+              if (this.isLowerThanMaxQuality(this.items[i].quality)) {
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
