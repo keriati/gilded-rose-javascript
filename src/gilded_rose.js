@@ -96,6 +96,10 @@ export class Shop {
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
+      if (this.isSulfurasItem(this.items[i].name)) {
+        continue;
+      }
+
       if (
         this.isAgedBrieItem(this.items[i].name) ||
         this.isBackstagePassesItem(this.items[i].name)
@@ -105,20 +109,14 @@ export class Shop {
           this.increaseQualityByOneForBackstageItems(this.items[i]);
         }
       } else {
-        if (!this.isSulfurasItem(this.items[i].name)) {
-          this.decreaseQualityByOne(this.items[i]);
-        }
+        this.decreaseQualityByOne(this.items[i]);
       }
 
-      if (!this.isSulfurasItem(this.items[i].name)) {
-        this.decreaseSellInByOne(this.items[i]);
-      }
+      this.decreaseSellInByOne(this.items[i]);
       if (this.isLowerThanMinSellIn(this.items[i].sellIn)) {
         if (!this.isAgedBrieItem(this.items[i].name)) {
           if (!this.isBackstagePassesItem(this.items[i].name)) {
-            if (!this.isSulfurasItem(this.items[i].name)) {
-              this.decreaseQualityByOne(this.items[i]);
-            }
+            this.decreaseQualityByOne(this.items[i]);
           } else {
             this.setQualityToMin(this.items[i]);
           }
