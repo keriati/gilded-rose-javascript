@@ -14,6 +14,7 @@ const MAX_QUALITY = 50;
 const MIN_QUALITY = 0;
 const SELL_IN_11 = 11;
 const SELL_IN_6 = 6;
+const MIN_SELL_IN = 0;
 
 export class Shop {
   constructor(items = []) {
@@ -52,6 +53,14 @@ export class Shop {
     return this.isLower(quality, MAX_QUALITY);
   }
 
+  isLowerThan11SellIn(sellIn) {
+    return this.isLower(sellIn, SELL_IN_11);
+  }
+
+  isLowerThan6SellIn(sellIn) {
+    return this.isLower(sellIn, SELL_IN_6);
+  }
+
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (
@@ -67,12 +76,12 @@ export class Shop {
         if (this.isLowerThanMaxQuality(this.items[i].quality)) {
           this.items[i].quality = this.items[i].quality + 1;
           if (this.isBackstagePassesItem(this.items[i].name)) {
-            if (this.items[i].sellIn < SELL_IN_11) {
+            if (this.isLowerThan11SellIn(this.items[i].sellIn)) {
               if (this.isLowerThanMaxQuality(this.items[i].quality)) {
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
-            if (this.items[i].sellIn < SELL_IN_6) {
+            if (this.isLowerThan6SellIn(this.items[i].sellIn)) {
               if (this.isLowerThanMaxQuality(this.items[i].quality)) {
                 this.items[i].quality = this.items[i].quality + 1;
               }
@@ -83,7 +92,7 @@ export class Shop {
       if (!this.isSulfurasItem(this.items[i].name)) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
-      if (this.items[i].sellIn < MIN_QUALITY) {
+      if (this.items[i].sellIn < MIN_SELL_IN) {
         if (!this.isAgedBrieItem(this.items[i].name)) {
           if (!this.isBackstagePassesItem(this.items[i].name)) {
             if (this.isHigherThanMinQuality(this.items[i].quality)) {
