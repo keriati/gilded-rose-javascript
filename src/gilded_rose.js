@@ -66,7 +66,9 @@ export class Shop {
   }
 
   increaseQualityByOne(item) {
-    item.quality += 1;
+    if (this.isLowerThanMaxQuality(item.quality)) {
+      item.quality += 1;
+    }
   }
 
   decreaseQualityByOne(item) {
@@ -93,19 +95,13 @@ export class Shop {
           }
         }
       } else {
-        if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-          this.increaseQualityByOne(this.items[i]);
-          if (this.isBackstagePassesItem(this.items[i].name)) {
-            if (this.isLowerThan11SellIn(this.items[i].sellIn)) {
-              if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-                this.increaseQualityByOne(this.items[i]);
-              }
-            }
-            if (this.isLowerThan6SellIn(this.items[i].sellIn)) {
-              if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-                this.increaseQualityByOne(this.items[i]);
-              }
-            }
+        this.increaseQualityByOne(this.items[i]);
+        if (this.isBackstagePassesItem(this.items[i].name)) {
+          if (this.isLowerThan11SellIn(this.items[i].sellIn)) {
+            this.increaseQualityByOne(this.items[i]);
+          }
+          if (this.isLowerThan6SellIn(this.items[i].sellIn)) {
+            this.increaseQualityByOne(this.items[i]);
           }
         }
       }
@@ -124,9 +120,7 @@ export class Shop {
             this.setQualityToMin(this.items[i]);
           }
         } else {
-          if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-            this.increaseQualityByOne(this.items[i]);
-          }
+          this.increaseQualityByOne(this.items[i]);
         }
       }
     }
