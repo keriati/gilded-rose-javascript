@@ -72,7 +72,9 @@ export class Shop {
   }
 
   decreaseQualityByOne(item) {
-    item.quality -= 1;
+    if (this.isHigherThanMinQuality(item.quality)) {
+      item.quality -= 1;
+    }
   }
 
   decreaseSellInByOne(item) {
@@ -83,38 +85,39 @@ export class Shop {
     item.quality = MIN_QUALITY;
   }
 
+  increaseQualityByOneForBackstageItems(item) {
+    if (this.isLowerThan11SellIn(item.sellIn)) {
+      this.increaseQualityByOne(item);
+    }
+    if (this.isLowerThan6SellIn(item.sellIn)) {
+      this.increaseQualityByOne(item);
+    }
+  }
+
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       if (
-        !this.isAgedBrieItem(this.items[i].name) &&
-        !this.isBackstagePassesItem(this.items[i].name)
+        this.isAgedBrieItem(this.items[i].name) ||
+        this.isBackstagePassesItem(this.items[i].name)
       ) {
-        if (this.isHigherThanMinQuality(this.items[i].quality)) {
-          if (!this.isSulfurasItem(this.items[i].name)) {
-            this.decreaseQualityByOne(this.items[i]);
-          }
-        }
-      } else {
         this.increaseQualityByOne(this.items[i]);
         if (this.isBackstagePassesItem(this.items[i].name)) {
-          if (this.isLowerThan11SellIn(this.items[i].sellIn)) {
-            this.increaseQualityByOne(this.items[i]);
-          }
-          if (this.isLowerThan6SellIn(this.items[i].sellIn)) {
-            this.increaseQualityByOne(this.items[i]);
-          }
+          this.increaseQualityByOneForBackstageItems(this.items[i]);
+        }
+      } else {
+        if (!this.isSulfurasItem(this.items[i].name)) {
+          this.decreaseQualityByOne(this.items[i]);
         }
       }
+
       if (!this.isSulfurasItem(this.items[i].name)) {
         this.decreaseSellInByOne(this.items[i]);
       }
       if (this.isLowerThanMinSellIn(this.items[i].sellIn)) {
         if (!this.isAgedBrieItem(this.items[i].name)) {
           if (!this.isBackstagePassesItem(this.items[i].name)) {
-            if (this.isHigherThanMinQuality(this.items[i].quality)) {
-              if (!this.isSulfurasItem(this.items[i].name)) {
-                this.decreaseQualityByOne(this.items[i]);
-              }
+            if (!this.isSulfurasItem(this.items[i].name)) {
+              this.decreaseQualityByOne(this.items[i]);
             }
           } else {
             this.setQualityToMin(this.items[i]);
