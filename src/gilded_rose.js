@@ -73,7 +73,7 @@ export class Shop {
               }
             }
             if (this.items[i].sellIn < SELL_IN_6) {
-              if (this.items[i].quality < MAX_QUALITY) {
+              if (this.isLowerThanMaxQuality(this.items[i].quality)) {
                 this.items[i].quality = this.items[i].quality + 1;
               }
             }
@@ -86,7 +86,7 @@ export class Shop {
       if (this.items[i].sellIn < MIN_QUALITY) {
         if (!this.isAgedBrieItem(this.items[i].name)) {
           if (!this.isBackstagePassesItem(this.items[i].name)) {
-            if (this.items[i].quality > MIN_QUALITY) {
+            if (this.isHigherThanMinQuality(this.items[i].quality)) {
               if (!this.isSulfurasItem(this.items[i].name)) {
                 this.items[i].quality = this.items[i].quality - 1;
               }
@@ -96,7 +96,7 @@ export class Shop {
               this.items[i].quality - this.items[i].quality;
           }
         } else {
-          if (this.items[i].quality < MAX_QUALITY) {
+          if (this.isLowerThanMaxQuality(this.items[i].quality)) {
             this.items[i].quality = this.items[i].quality + 1;
           }
         }
