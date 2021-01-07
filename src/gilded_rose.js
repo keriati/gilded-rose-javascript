@@ -53,12 +53,32 @@ export class Shop {
     return this.isLower(quality, MAX_QUALITY);
   }
 
-  isLowerThan11SellIn(sellIn) {
-    return this.isLower(sellIn, SELL_IN_11);
+  isLowerThanMinSellIn(sellIn) {
+    return this.isLower(sellIn, MIN_SELL_IN);
   }
 
   isLowerThan6SellIn(sellIn) {
     return this.isLower(sellIn, SELL_IN_6);
+  }
+
+  isLowerThan11SellIn(sellIn) {
+    return this.isLower(sellIn, SELL_IN_11);
+  }
+
+  increaseQualityByOne(item) {
+    item.quality += 1;
+  }
+
+  decreaseQualityByOne(item) {
+    item.quality -= 1;
+  }
+
+  decreaseSellInByOne(item) {
+    item.sellIn -= 1;
+  }
+
+  setQualityToMin(item) {
+    item.quality = MIN_QUALITY;
   }
 
   updateQuality() {
@@ -69,44 +89,43 @@ export class Shop {
       ) {
         if (this.isHigherThanMinQuality(this.items[i].quality)) {
           if (!this.isSulfurasItem(this.items[i].name)) {
-            this.items[i].quality = this.items[i].quality - 1;
+            this.decreaseQualityByOne(this.items[i]);
           }
         }
       } else {
         if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-          this.items[i].quality = this.items[i].quality + 1;
+          this.increaseQualityByOne(this.items[i]);
           if (this.isBackstagePassesItem(this.items[i].name)) {
             if (this.isLowerThan11SellIn(this.items[i].sellIn)) {
               if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-                this.items[i].quality = this.items[i].quality + 1;
+                this.increaseQualityByOne(this.items[i]);
               }
             }
             if (this.isLowerThan6SellIn(this.items[i].sellIn)) {
               if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-                this.items[i].quality = this.items[i].quality + 1;
+                this.increaseQualityByOne(this.items[i]);
               }
             }
           }
         }
       }
       if (!this.isSulfurasItem(this.items[i].name)) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+        this.decreaseSellInByOne(this.items[i]);
       }
-      if (this.items[i].sellIn < MIN_SELL_IN) {
+      if (this.isLowerThanMinSellIn(this.items[i].sellIn)) {
         if (!this.isAgedBrieItem(this.items[i].name)) {
           if (!this.isBackstagePassesItem(this.items[i].name)) {
             if (this.isHigherThanMinQuality(this.items[i].quality)) {
               if (!this.isSulfurasItem(this.items[i].name)) {
-                this.items[i].quality = this.items[i].quality - 1;
+                this.decreaseQualityByOne(this.items[i]);
               }
             }
           } else {
-            this.items[i].quality =
-              this.items[i].quality - this.items[i].quality;
+            this.setQualityToMin(this.items[i]);
           }
         } else {
           if (this.isLowerThanMaxQuality(this.items[i].quality)) {
-            this.items[i].quality = this.items[i].quality + 1;
+            this.increaseQualityByOne(this.items[i]);
           }
         }
       }
