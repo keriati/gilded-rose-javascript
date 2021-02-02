@@ -81,7 +81,7 @@ describe("Gilded Rose Shop", function () {
         });
 
         it("Quality shouldn't be more than 50", function () {
-            const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 0, 49)]);
+            const gildedRose = new Shop([new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49)]);
             const items = gildedRose.updateQuality();
             expect(items[0].quality).toBeLessThanOrEqual(50);
         });
