@@ -17,13 +17,10 @@ const DAILY_SELLIN_DECREASE = 1;
 const BACKSTAGE_PASS_SELL_IN_FIRST_THRESHOLD = 10;
 const BACKSTAGE_PASS_SELL_IN_SECOND_THRESHOLD = 5;
 
-const isLessThanMaxQuality = (item) => {
-  return item.quality < MAX_QUALITY;
-}
 
-const increaseQuality = (item) => {
-  if (isLessThanMaxQuality(item)) {
-    item.quality += 1;
+const increaseQuality = (item, amount = 1) => {
+  if (item.quality + amount < MAX_QUALITY) {
+    item.quality += amount;
   }
 }
 const decreaseQuality = (item) => {
@@ -64,14 +61,15 @@ const updateExpiredItem = item => {
   }
 };
 
-const updateBackstagePass = item => {
-  increaseQuality(item);
-  if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_FIRST_THRESHOLD) {
-    increaseQuality(item);
+const updateBackstagePass = (item) => {
+  let addedQualityAmount = 1;
+  if (item.sellIn < BACKSTAGE_PASS_SELL_IN_FIRST_THRESHOLD) {
+    addedQualityAmount++;
   }
-  if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_SECOND_THRESHOLD) {
-    increaseQuality(item);
+  if (item.sellIn < BACKSTAGE_PASS_SELL_IN_SECOND_THRESHOLD) {
+    addedQualityAmount++;
   }
+  increaseQuality(item, addedQualityAmount);
 };
 
 export class Shop {
@@ -87,6 +85,8 @@ export class Shop {
         continue;
       }
 
+      item.sellIn -= DAILY_SELLIN_DECREASE;
+
       if (isAgedBrie(item)) {
         increaseQuality(item);
       } else if (isBackstagePass(item)) {
@@ -94,8 +94,6 @@ export class Shop {
       } else {
         decreaseQuality(item);
       }
-
-      item.sellIn -= DAILY_SELLIN_DECREASE;
 
       if (hasItemExpired(item)) {
         updateExpiredItem(item);
