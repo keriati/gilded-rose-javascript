@@ -22,7 +22,9 @@ const isLessThanMaxQuality = (item) => {
 }
 
 const increaseQuality = (item) => {
-  item.quality += 1;
+  if (isLessThanMaxQuality(item)) {
+    item.quality += 1;
+  }
 }
 const decreaseQuality = (item) => {
   if (isMoreThanMinQuality(item)) {
@@ -50,6 +52,28 @@ const hasItemExpired = item => {
   return item.sellIn < 0;
 };
 
+const updateExpiredItem = item => {
+  if (!isBackstagePass(item)) {
+    decreaseQuality(item);
+  }
+  if (isBackstagePass(item)) {
+    item.quality = MIN_QUALITY;
+  }
+  if (isAgedBrie(item)) {
+    increaseQuality(item);
+  }
+};
+
+const updateBackstagePass = item => {
+  increaseQuality(item);
+  if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_FIRST_THRESHOLD) {
+    increaseQuality(item);
+  }
+  if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_SECOND_THRESHOLD) {
+    increaseQuality(item);
+  }
+};
+
 export class Shop {
   constructor(items = []) {
     this.items = items;
@@ -63,16 +87,10 @@ export class Shop {
         continue;
       }
 
-      if ((isAgedBrie(item) || isBackstagePass(item)) && isLessThanMaxQuality(item)) {
+      if (isAgedBrie(item)) {
         increaseQuality(item);
-        if (isBackstagePass(item) && isLessThanMaxQuality(item)) {
-          if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_FIRST_THRESHOLD) {
-            increaseQuality(item);
-          }
-          if (item.sellIn <= BACKSTAGE_PASS_SELL_IN_SECOND_THRESHOLD) {
-            increaseQuality(item);
-          }
-        }
+      } else if (isBackstagePass(item)) {
+        updateBackstagePass(item);
       } else {
         decreaseQuality(item);
       }
@@ -80,15 +98,7 @@ export class Shop {
       item.sellIn -= DAILY_SELLIN_DECREASE;
 
       if (hasItemExpired(item)) {
-        if (!isBackstagePass(item) && isMoreThanMinQuality(item)) {
-          decreaseQuality(item);
-        }
-        if (isBackstagePass(item)) {
-          item.quality = MIN_QUALITY;
-        }
-        if (isAgedBrie(item) && isLessThanMaxQuality(item)) {
-          increaseQuality(item);
-        }
+        updateExpiredItem(item);
       }
     }
 
