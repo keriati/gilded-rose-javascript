@@ -32,6 +32,10 @@ const decreaseItemQuality = (item) => {
   }
 }
 
+const decreaseSellInValue = (item) => {
+  item.sellIn = item.sellIn - 1;
+}
+
 const updateItem = (item) => {
 
   if(isSulfuras(item)) {
@@ -51,7 +55,7 @@ const updateItem = (item) => {
       }
     }
   }
-  item.sellIn = item.sellIn - 1;
+  decreaseSellInValue(item);
   if (item.sellIn < 0) {
     if (!isAgedBrie(item)) {
       if (!isBackStagePasses(item)) {
