@@ -15,16 +15,20 @@ const isBackStagePasses = ({name}) => name === 'Backstage passes to a TAFKAL80ET
 
 const isSulfuras = ({name}) => name === 'Sulfuras, Hand of Ragnaros';
 
+const isConjured = ({name}) => name ==='Conjured Mana Cake';
+
 const increaseItemQuality = (item) => {
   if (item.quality < MAX_QUALITY) {
     item.quality = item.quality + 1;
   }
 }
 
-const decreaseItemQuality = (item) => {
-  if (item.quality > MIN_QUALITY) {
-    item.quality = item.quality - 1;
-  }
+const decreaseItemQuality = (item, numberOfDecreases = 1) => {
+    if((item.quality - numberOfDecreases) > MIN_QUALITY) {
+      item.quality = item.quality - numberOfDecreases;
+    } else {
+      item.quality = 0;
+    }
 }
 
 const decreaseSellInValue = (item) => {
@@ -56,11 +60,19 @@ const updateBackStageItem = (item) => {
   }
 }
 
-function updateDefaultItem(item) {
+const updateDefaultItem = (item) => {
   decreaseSellInValue(item);
   decreaseItemQuality(item);
   if (isExpired(item)) {
     decreaseItemQuality(item);
+  }
+}
+
+const updateConjuredItem = (item) => {
+  decreaseSellInValue(item);
+  decreaseItemQuality(item, 2);
+  if (isExpired(item)) {
+    decreaseItemQuality(item, 2);
   }
 }
 
@@ -77,6 +89,11 @@ const updateItem = (item) => {
 
   if (isBackStagePasses(item)) {
     updateBackStageItem(item);
+    return;
+  }
+
+  if(isConjured(item)) {
+    updateConjuredItem(item);
     return;
   }
 
