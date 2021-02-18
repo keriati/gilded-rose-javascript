@@ -76,28 +76,27 @@ const updateConjuredItem = (item) => {
   }
 }
 
-const updateItem = (item) => {
+const getUpdateStrategy = (item) => {
 
   if(isSulfuras(item)) {
-    return;
+    return () => {}
+
   }
 
   if(isAgedBrie(item)) {
-    updateAgedBrieItem(item);
-    return;
+    return updateAgedBrieItem;
   }
 
   if (isBackStagePasses(item)) {
-    updateBackStageItem(item);
-    return;
+    return updateBackStageItem;
+
   }
 
   if(isConjured(item)) {
-    updateConjuredItem(item);
-    return;
+    return updateConjuredItem;
   }
 
-  updateDefaultItem(item);
+  return updateDefaultItem;
 }
 
 export class Shop {
@@ -105,6 +104,9 @@ export class Shop {
     this.items = items;
   }
   updateQuality() {
-    this.items.forEach(updateItem);
+    this.items.forEach(item => {
+      const updateStrategy = getUpdateStrategy(item);
+      updateStrategy(item);
+    });
   }
 }

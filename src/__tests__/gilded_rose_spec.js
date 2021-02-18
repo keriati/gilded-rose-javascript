@@ -38,7 +38,7 @@ describe("Shop.updateQuality()",  () => {
             expect(updatedItem.quality).toEqual(3);
         });
 
-        it("does not decrease quality value below 0", () => {
+        it("Does not decrease quality value below 0", () => {
             const gildedRose = new Shop([new Item("Default item", 0, 0)]);
 
             gildedRose.updateQuality();
@@ -48,7 +48,7 @@ describe("Shop.updateQuality()",  () => {
         });
     });
 
-    describe("Aged Brie Item", () => {
+    describe("Aged Brie item", () => {
         it("Decreases sellIn value by 1 at the end of the day", () => {
             const gildedRose = new Shop([new Item("Aged Brie", 5, 5)]);
 
@@ -76,7 +76,7 @@ describe("Shop.updateQuality()",  () => {
             expect(updatedItem.quality).toEqual(7);
         });
 
-        it("does never increase quality over 50", () => {
+        it("Does never increase quality over 50", () => {
             const gildedRose = new Shop([new Item("Aged Brie", 0, 50)]);
 
             gildedRose.updateQuality();
@@ -160,7 +160,44 @@ describe("Shop.updateQuality()",  () => {
 
             expect(updatedItem.quality).toEqual(80);
         });
+    });
 
+    describe("Conjured item", () => {
+        it("Decreases sellIn value by 1 at the end of the day", () => {
+            const gildedRose = new Shop([new Item("Conjured Mana Cake", 5, 5)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.sellIn).toEqual(4);
+        });
+
+        it("Decreases Quality value by 2 at the end of the day if item is not expired", () => {
+            const gildedRose = new Shop([new Item("Conjured Mana Cake", 5, 5)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.quality).toEqual(3);
+        });
+
+        it("Decreases Quality value by 4 at the end of the day if item is expired", () => {
+            const gildedRose = new Shop([new Item("Conjured Mana Cake", 0, 5)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.quality).toEqual(1);
+        });
+
+        it("Does not decrease quality value below 0", () => {
+            const gildedRose = new Shop([new Item("Conjured Mana Cake", 5, 0)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.quality).toEqual(0);
+        });
     });
 
 });
