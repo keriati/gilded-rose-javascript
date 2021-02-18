@@ -143,6 +143,23 @@ describe("Shop.updateQuality()",  () => {
     });
 
     describe("Sulfuras item", () => {
+        it("Never changes sellIn value of item", () => {
+            const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 5, 80)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.sellIn).toEqual(5);
+        });
+
+        it("Never changes Quality value of item", () => {
+            const gildedRose = new Shop([new Item("Sulfuras, Hand of Ragnaros", 5, 80)]);
+
+            gildedRose.updateQuality();
+            const updatedItem = gildedRose.items[0];
+
+            expect(updatedItem.quality).toEqual(80);
+        });
 
     });
 
