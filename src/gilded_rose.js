@@ -10,11 +10,8 @@ const MAX_QUALITY = 50;
 const MIN_QUALITY = 0;
 
 const isAgedBrie = ({name}) => name === 'Aged Brie';
-
 const isBackStagePasses = ({name}) => name === 'Backstage passes to a TAFKAL80ETC concert';
-
 const isSulfuras = ({name}) => name === 'Sulfuras, Hand of Ragnaros';
-
 const isConjured = ({name}) => name ==='Conjured Mana Cake';
 
 const increaseItemQuality = (item) => {
@@ -36,7 +33,6 @@ const decreaseSellInValue = (item) => {
 }
 
 const isExpired = ({sellIn}) => sellIn < 0;
-
 
 const updateAgedBrieItem = (item) => {
   decreaseSellInValue(item);
@@ -80,7 +76,6 @@ const getUpdateStrategy = (item) => {
 
   if(isSulfuras(item)) {
     return () => {}
-
   }
 
   if(isAgedBrie(item)) {
