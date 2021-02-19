@@ -56,14 +56,15 @@ const handleNormalItem = (item) => {
       decreaseQuality(item);
   }
 }
+
 const STRATEGIES = {
   [itemNames.SULFURAS]: handleSulfuras,
   [itemNames.BACKSTAGE_PASS]: handleBackstage,
   [itemNames.AGED_BRIE]: handleAgedBrie,
 }
 
-const handleItem = (item) => {
-  const handle = STRATEGIES[item.name];
+const handleItem = (item, strategies) => {
+  const handle = strategies[item.name];
   if (handle) {
     handle(item);
     return
@@ -74,11 +75,12 @@ const handleItem = (item) => {
 
 
 export class Shop {
-  constructor(items=[]) {
+  constructor(items=[], strategies = STRATEGIES) {
     this.items = items;
+    this.strategies = strategies
   }
   updateQuality() {
-    this.items.forEach(handleItem);
+    this.items.forEach((item) => handleItem(item, this.strategies));
     return this.items;
   }
 }
