@@ -1,8 +1,9 @@
 import {
-  checkIfSpecialItem,
-  decreaseQualityIfPossible,
-  increaseQualityIfPossible,
   modifyConcert,
+  modifyNonSpecialItem,
+  modifyBrie,
+  decreaseSellinIfNeeded,
+  decreaseQualityIfPossible,
 } from "./shopUpdateUtils";
 
 export class Shop {
@@ -13,46 +14,25 @@ export class Shop {
   // we run this at the end of the day
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
-      //not special item
-      if (!checkIfSpecialItem(this.items[i].name)) {
-        decreaseQualityIfPossible(this.items[i]);
+      const item = this.items[i];
 
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      decreaseSellinIfNeeded(item);
 
-        if (this.items[i].sellIn < 0 && this.items[i].quality > 0) {
-          decreaseQualityIfPossible(this.items[i]);
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          increaseQualityIfPossible(this.items[i]);
+      modifyNonSpecialItem(item);
 
-          if (
-            this.items[i].name == "Backstage passes to a TAFKAL80ETC concert"
-          ) {
-            modifyConcert(this.items[i]);
-          }
-        }
+      if (item.name === "Conjured") {
+        decreaseQualityIfPossible(item);
+        decreaseQualityIfPossible(item);
       }
 
-      if (
-        checkIfSpecialItem(this.items[i]) &&
-        this.items[i].name != "Sulfuras, Hand of Ragnaros"
-      ) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
+        modifyConcert(item);
       }
 
-      if (this.items[i].sellIn < 0) {
-        if (
-          this.items[i].name === "Backstage passes to a TAFKAL80ETC concert"
-        ) {
-          modifyConcert(this.items[i]);
-        }
-        if (this.items[i].name === "Aged Brie") {
-          increaseQualityIfPossible(this.items[i]);
-        }
+      if (item.name === "Aged Brie") {
+        modifyBrie(item);
       }
     }
-
     return this.items;
   }
 }

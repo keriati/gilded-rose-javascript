@@ -55,6 +55,18 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(day2DecreasedQuality);
   });
 
+  it("Conjured items degrade in Quality twice as fast as normal items", function () {
+    const items = [];
+    items.push(new Item("Conjured", 1, 2));
+
+    const gildedRose = new Shop(items);
+
+    //day 1
+    gildedRose.updateQuality();
+    const day1DecreasedQuality = 0; //decreased by 2
+    expect(items[0].quality).toEqual(day1DecreasedQuality);
+  });
+
   it("should increase quality of Aged Brie over time", function () {
     const items = [];
     items.push(new Item("Aged Brie", 2, 0));
