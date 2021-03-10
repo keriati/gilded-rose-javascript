@@ -1,20 +1,18 @@
-export class Item {
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
+import { AgedBrieItem } from "./AgedBrieItem";
+import { BackstagePassesItem } from "./BackstagePassesItem";
+import { SulfurasItem } from "./SulfurasItem";
 
 export class Shop {
   static updateQuality(items = []) {
     for (var i = 0; i < items.length; i++) {
+      const item = items[i];
+
       if (
-        items[i].name != "Aged Brie" &&
-        items[i].name != "Backstage passes to a TAFKAL80ETC concert"
+        !(item instanceof AgedBrieItem) &&
+        !(item instanceof BackstagePassesItem)
       ) {
         if (items[i].quality > 0) {
-          if (items[i].name != "Sulfuras, Hand of Ragnaros") {
+          if (!(item instanceof SulfurasItem)) {
             items[i].quality = items[i].quality - 1;
           }
         }
@@ -35,14 +33,14 @@ export class Shop {
           }
         }
       }
-      if (items[i].name != "Sulfuras, Hand of Ragnaros") {
+      if (!(item instanceof SulfurasItem)) {
         items[i].sellIn = items[i].sellIn - 1;
       }
       if (items[i].sellIn < 0) {
-        if (items[i].name != "Aged Brie") {
-          if (items[i].name != "Backstage passes to a TAFKAL80ETC concert") {
+        if (!(item instanceof AgedBrieItem)) {
+          if (!(item instanceof BackstagePassesItem)) {
             if (items[i].quality > 0) {
-              if (items[i].name != "Sulfuras, Hand of Ragnaros") {
+              if (!(item instanceof SulfurasItem)) {
                 items[i].quality = items[i].quality - 1;
               }
             }
