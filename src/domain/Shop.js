@@ -4,22 +4,40 @@ import { SulfurasItem } from "./SulfurasItem";
 
 export class Shop {
   static updateQuality(items = []) {
+    // return items.forEach((item) => {
+    //   item.onEndTheOfDay();
+    // });
+
     for (var i = 0; i < items.length; i++) {
       const item = items[i];
+
+      // quality
+      if (item instanceof SulfurasItem) {
+        item.onEndOfTheDay();
+        continue;
+      }
+
+      // quality
+      if (item instanceof AgedBrieItem) {
+        item.onEndOfTheDay();
+        continue;
+      }
 
       if (
         !(item instanceof AgedBrieItem) &&
         !(item instanceof BackstagePassesItem)
       ) {
+        // decrease quality
+
         if (items[i].quality > 0) {
-          if (!(item instanceof SulfurasItem)) {
-            items[i].quality = items[i].quality - 1;
-          }
+          items[i].quality = items[i].quality - 1;
         }
       } else {
+        // increasing of quality
+
         if (items[i].quality < 50) {
           items[i].quality = items[i].quality + 1;
-          if (items[i].name == "Backstage passes to a TAFKAL80ETC concert") {
+          if (item instanceof BackstagePassesItem) {
             if (items[i].sellIn < 11) {
               if (items[i].quality < 50) {
                 items[i].quality = items[i].quality + 1;
@@ -33,25 +51,30 @@ export class Shop {
           }
         }
       }
-      if (!(item instanceof SulfurasItem)) {
-        items[i].sellIn = items[i].sellIn - 1;
-      }
+
+      // sellIn
+
+      items[i].sellIn = items[i].sellIn - 1;
+
       if (items[i].sellIn < 0) {
         if (!(item instanceof AgedBrieItem)) {
           if (!(item instanceof BackstagePassesItem)) {
             if (items[i].quality > 0) {
-              if (!(item instanceof SulfurasItem)) {
-                items[i].quality = items[i].quality - 1;
-              }
+              items[i].quality = items[i].quality - 1;
             }
           } else {
+            // zeros out quality
             items[i].quality = items[i].quality - items[i].quality;
           }
-        } else {
-          if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
-          }
         }
+
+        // handled in AgedBrie
+        // else {
+        //   if (items[i].quality < 50) {
+        //     // increases quality for aged brie
+        //     items[i].quality = items[i].quality + 1;
+        //   }
+        // }
       }
     }
   }

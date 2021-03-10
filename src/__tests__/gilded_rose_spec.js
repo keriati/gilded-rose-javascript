@@ -1,25 +1,18 @@
 import { Shop } from "../domain/Shop";
-import { Item } from "../domain/Item";
-import { NormalItem } from "../domain/NormalItem";
+import { NORMAL_ITEM_NAME, NormalItem } from "../domain/NormalItem";
 import { AgedBrieItem } from "../domain/AgedBrieItem";
-import { SulfurasItem } from "../domain/SulfurasItem";
+import { SULFURAS_QUALITY, SulfurasItem } from "../domain/SulfurasItem";
 import { BackstagePassesItem } from "../domain/BackstagePassesItem";
-
-// const types = [
-//   "Aged Brie",
-//   "Sulfuras, Hand of Ragnaros",w
-//   "Backstage passes to a TAFKAL80ETC concert",
-// ];
 
 describe("Gilded Rose", () => {
   describe("Normal Item", () => {
     test("Does not change name of the item", function () {
-      const regularItem = new NormalItem("regular", 0, 0);
-      expect(regularItem.name).toEqual("regular");
+      const regularItem = new NormalItem(0, 0);
+      expect(regularItem.name).toEqual(NORMAL_ITEM_NAME);
     });
 
     test("Decrements quality and sellIn at the end of the day", () => {
-      const regularItem = new NormalItem("regular", 1, 1);
+      const regularItem = new NormalItem(1, 1);
 
       Shop.updateQuality([regularItem]);
 
@@ -28,7 +21,7 @@ describe("Gilded Rose", () => {
     });
 
     test("Decrements by two once the sell by date has passed", () => {
-      const regularItem = new NormalItem("regular", 0, 2);
+      const regularItem = new NormalItem(0, 2);
 
       Shop.updateQuality([regularItem]);
 
@@ -37,7 +30,7 @@ describe("Gilded Rose", () => {
     });
 
     test("Has no negative quality", () => {
-      const regularItem = new NormalItem("regular", 0, 0);
+      const regularItem = new NormalItem(0, 0);
       Shop.updateQuality([regularItem]);
 
       expect(regularItem.quality).not.toBeLessThan(0);
@@ -46,20 +39,20 @@ describe("Gilded Rose", () => {
 
   describe("Aged Brie", () => {
     test("Increases in Quality the older it gets", () => {
-      const agedBrie = new AgedBrieItem("Aged Brie", 1, 1);
+      const agedBrie = new AgedBrieItem(1, 1);
       Shop.updateQuality([agedBrie]);
 
       expect(agedBrie.quality).toBe(2);
     });
 
     test("The Quality of an item is never more than 50", () => {
-      const agedBrie = new AgedBrieItem("Aged Brie", 1, 50);
+      const agedBrie = new AgedBrieItem(1, 50);
       Shop.updateQuality([agedBrie]);
       expect(agedBrie.quality).not.toBeGreaterThan(50);
     });
 
     test("Decrements sellIn at the end of the day and does not increase quality above 50", () => {
-      const agedBrie = new AgedBrieItem("Aged Brie", 0, 30);
+      const agedBrie = new AgedBrieItem(0, 30);
 
       Shop.updateQuality([agedBrie]);
 
@@ -69,32 +62,24 @@ describe("Gilded Rose", () => {
 
   describe("Sulfuras, Hand of Ragnaros", () => {
     test("Sellin never goes below 1 and quality does not decrease/increase at all", () => {
-      const sulfurasItem = new SulfurasItem("Sulfuras, Hand of Ragnaros", 1, 1);
+      const sulfurasItem = new SulfurasItem(1);
 
       Shop.updateQuality([sulfurasItem]);
 
-      expect(sulfurasItem.quality).toBe(1);
+      expect(sulfurasItem.quality).toBe(SULFURAS_QUALITY);
       expect(sulfurasItem.sellIn).toBe(1);
     });
   });
 
   describe("Backstage passes to a TAFKAL80ETC concert", () => {
     test("The Quality of an item is never more than 50", () => {
-      const backstageItem = new BackstagePassesItem(
-        "Backstage passes to a TAFKAL80ETC concert",
-        1,
-        50
-      );
+      const backstageItem = new BackstagePassesItem(1, 50);
       Shop.updateQuality([backstageItem]);
       expect(backstageItem.quality).not.toBeGreaterThan(50);
     });
 
     test("Quality increases by 2 when days are between 5 and 10", () => {
-      const backstagesItem = new BackstagePassesItem(
-        "Backstage passes to a TAFKAL80ETC concert",
-        10,
-        2
-      );
+      const backstagesItem = new BackstagePassesItem(10, 2);
 
       Shop.updateQuality([backstagesItem]);
 
@@ -102,11 +87,7 @@ describe("Gilded Rose", () => {
     });
 
     test("Quality increases by 1 when there are more than 10 days", () => {
-      const backstagesItem = new BackstagePassesItem(
-        "Backstage passes to a TAFKAL80ETC concert",
-        11,
-        2
-      );
+      const backstagesItem = new BackstagePassesItem(11, 2);
 
       Shop.updateQuality([backstagesItem]);
 
@@ -114,22 +95,14 @@ describe("Gilded Rose", () => {
     });
 
     test("Quality increases by 3 when there are 5 days or less", () => {
-      const backstagesItem = new BackstagePassesItem(
-        "Backstage passes to a TAFKAL80ETC concert",
-        5,
-        10
-      );
+      const backstagesItem = new BackstagePassesItem(5, 10);
 
       Shop.updateQuality([backstagesItem]);
       expect(backstagesItem.quality).toBe(13);
     });
 
     test("Quality drops to 0 after the concert", () => {
-      const backstagesItem = new BackstagePassesItem(
-        "Backstage passes to a TAFKAL80ETC concert",
-        0,
-        10
-      );
+      const backstagesItem = new BackstagePassesItem(0, 10);
 
       Shop.updateQuality([backstagesItem]);
       expect(backstagesItem.quality).toBe(0);
