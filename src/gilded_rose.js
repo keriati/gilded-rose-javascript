@@ -6,6 +6,18 @@ export class Item {
     }
 }
 
+/*
+"Sulfuras, Hand of Ragnaros
+Backstage passes to a TAFKAL80ETC concert
+Aged Brie
+*/
+
+const ITEM_TYPES = {
+    SULFURAS: "Sulfuras, Hand of Ragnaros",
+    BACKSTAGE: "Backstage passes to a TAFKAL80ETC concert",
+    AGED_BRIE: "Aged Brie",
+};
+
 export class Shop {
     constructor(items = []) {
         this.items = items;
@@ -36,49 +48,57 @@ export class Shop {
         }
     }
 
-    handleNegativeSellIn(item) {
-        if (item.name === "Aged Brie") {
+    updateBackStageItem(item) {
+        this.increaseQualityForBackstage(item);
+
+        this.increaseQuality(item);
+
+        this.decreaseSellIn(item);
+
+        if (item.sellIn < 0) {
+            item.quality = 0;
+        }
+    }
+
+    updateAgedBrie(item) {
+        this.increaseQuality(item);
+
+        this.decreaseSellIn(item);
+
+        if (item.sellIn < 0) {
             this.increaseQuality(item);
-        } else if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-            item.quality = item.quality - item.quality;
-        } else {
+        }
+    }
+
+    updateGeneralItem(item) {
+        this.decreaseQuality(item);
+
+        this.decreaseSellIn(item);
+
+        if (item.sellIn < 0) {
             this.decreaseQuality(item);
         }
     }
 
-    updateQuality() {
-        for (var i = 0; i < this.items.length; i++) {
-            const item = this.items[i];
+    updateShopItems() {
+        this.items.forEach((item) => {
             const name = item.name;
-
-            if (name === "Sulfuras, Hand of Ragnaros") {
-                break;
+            if (name === ITEM_TYPES.SULFURAS) {
+                return;
             }
 
-            if (item.name === "Backstage passes to a TAFKAL80ETC concert") {
-                this.increaseQualityForBackstage(item);
-                if (item.sellIn < 0) {
-                    item.quality = item.quality - item.quality;
-                }
+            if (name === ITEM_TYPES.BACKSTAGE) {
+                this.updateBackStageItem(item);
+                return;
             }
 
-            if (
-                name === "Aged Brie" ||
-                name === "Backstage passes to a TAFKAL80ETC concert"
-            ) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-            } else {
-                this.decreaseQuality(item);
+            if (name === ITEM_TYPES.AGED_BRIE) {
+                this.updateAgedBrie(item);
+                return;
             }
 
-            this.decreaseSellIn(item);
-
-            if (item.sellIn < 0) {
-                this.handleNegativeSellIn(item);
-            }
-        }
+            this.updateGeneralItem(item);
+        });
 
         return this.items;
     }

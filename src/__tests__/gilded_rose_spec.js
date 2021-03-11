@@ -5,7 +5,7 @@ describe("Gilded Rose", function () {
         //At the end of each day our system lowers both values for every item
         it("should lower sellIn and quality", function () {
             const gildedRose = new Shop([new Item("customItem", 5, 8)]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].sellIn).toEqual(4);
             expect(items[0].quality).toEqual(7);
         });
@@ -14,7 +14,7 @@ describe("Gilded Rose", function () {
             // Once the sell by date has passed, Quality degrades twice as fast
             it("should dergrade quality twice", function () {
                 const gildedRose = new Shop([new Item("customItem", 0, 8)]);
-                const items = gildedRose.updateQuality();
+                const items = gildedRose.updateShopItems();
                 expect(items[0].quality).toEqual(6);
             });
         });
@@ -22,7 +22,7 @@ describe("Gilded Rose", function () {
         //  The Quality of an item is never negative
         it("should never have a negative quality", function () {
             const gildedRose = new Shop([new Item("customItem", 5, 0)]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(0);
         });
     });
@@ -31,28 +31,28 @@ describe("Gilded Rose", function () {
         //At the end of each day our system lowers both values for every item
         it("should lower sellIn", function () {
             const gildedRose = new Shop([new Item("Aged Brie", 5, 8)]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].sellIn).toEqual(4);
         });
 
         //"Aged Brie" actually increases in Quality the older it gets
         it("should increase the quality", function () {
             const gildedRose = new Shop([new Item("Aged Brie", 5, 0)]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(1);
         });
 
         //The Quality of an item is never more than 50
         it("should never have quality more than 50", function () {
             const gildedRose = new Shop([new Item("Aged Brie", 5, 50)]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(50);
         });
 
         describe("when sell in is negative nad quality lower than 50", function () {
             it("should increase quality by 2", function () {
                 const gildedRose = new Shop([new Item("Aged Brie", -5, 45)]);
-                const items = gildedRose.updateQuality();
+                const items = gildedRose.updateShopItems();
                 expect(items[0].quality).toEqual(47);
             });
         });
@@ -64,7 +64,7 @@ describe("Gilded Rose", function () {
             const gildedRose = new Shop([
                 new Item("Sulfuras, Hand of Ragnaros", 5, 8),
             ]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(8);
             expect(items[0].sellIn).toEqual(5);
         });
@@ -76,7 +76,7 @@ describe("Gilded Rose", function () {
             const gildedRose = new Shop([
                 new Item("Backstage passes to a TAFKAL80ETC concert", 11, 0),
             ]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(1);
         });
 
@@ -85,7 +85,7 @@ describe("Gilded Rose", function () {
             const gildedRose = new Shop([
                 new Item("Backstage passes to a TAFKAL80ETC concert", 6, 0),
             ]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(2);
         });
 
@@ -94,7 +94,7 @@ describe("Gilded Rose", function () {
             const gildedRose = new Shop([
                 new Item("Backstage passes to a TAFKAL80ETC concert", 3, 0),
             ]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(3);
         });
 
@@ -103,7 +103,7 @@ describe("Gilded Rose", function () {
             const gildedRose = new Shop([
                 new Item("Backstage passes to a TAFKAL80ETC concert", 0, 5),
             ]);
-            const items = gildedRose.updateQuality();
+            const items = gildedRose.updateShopItems();
             expect(items[0].quality).toEqual(0);
         });
     });
