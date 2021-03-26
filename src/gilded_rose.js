@@ -27,44 +27,47 @@ export class Shop {
     for (var i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      if (!isAgedBrie(item.name) && !isBackstagePass(item.name)) {
-        
-        if (isQualityAboveMin(item.quality)) { 
-          if (!isSulfuras(item.name)) {
-            item.quality = decreaseQuality(item.quality);
+      if (isSulfuras(item.name)) {
+        continue;
+      }
+
+      if(isBackstagePass(item.name)){
+        //Do Backstage
+
+        if (isQualityBelowMax(item.quality)) {
+          item.quality = increaseQuality(item.quality);
+          
+          if (item.sellIn < 11) {
+            increaseItemQuality(item);
+          }
+          if (item.sellIn < 6) {
+            increaseItemQuality(item);
           }
         }
+
+        item.sellIn = item.sellIn - 1;
+   
+        if (item.sellIn < 0) {
+          item.quality = floorQuality();
+        }
+        
+        continue;
+      }
+
+      if (!isAgedBrie(item.name)) {
+        decreaseItemQuality(item);
 
       } else {
         if (isQualityBelowMax(item.quality)) {
           item.quality = increaseQuality(item.quality);
-          if (isBackstagePass(item.name)) {
-            if (item.sellIn < 11) {
-              increaseItemQuality(item);
-            }
-            if (item.sellIn < 6) {
-              increaseItemQuality(item);
-            }
-          }
         }
       }
 
-
-      if (!isSulfuras(item.name)) {
-        item.sellIn = item.sellIn - 1;
-      }
+      item.sellIn = item.sellIn - 1;
 
       if (item.sellIn < 0) {
         if (!isAgedBrie(item.name)) {
-          if (!isBackstagePass(item.name)) {
-            if (isQualityAboveMin(item.quality)) {
-              if (!isSulfuras(item.name)) {
-                item.quality = decreaseQuality(item.quality);
-              }
-            }
-          } else {
-            item.quality = floorQuality();
-          }
+            decreaseItemQuality(item);
         } else {
           increaseItemQuality(item);
         }
@@ -75,3 +78,4 @@ export class Shop {
     return this.items;
   }
 }
+
