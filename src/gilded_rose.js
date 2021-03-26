@@ -32,8 +32,6 @@ export class Shop {
       }
 
       if(isBackstagePass(item.name)){
-        //Do Backstage
-
         if (isQualityBelowMax(item.quality)) {
           item.quality = increaseQuality(item.quality);
           
@@ -54,25 +52,40 @@ export class Shop {
         continue;
       }
 
-      if (!isAgedBrie(item.name)) {
-        decreaseItemQuality(item);
-
-      } else {
+      if(isAgedBrie(item.name)){
         if (isQualityBelowMax(item.quality)) {
           item.quality = increaseQuality(item.quality);
         }
+
+        item.sellIn = item.sellIn - 1;
+
+        if (item.sellIn < 0) {
+          increaseItemQuality(item);
+        }
+        
+        continue;
       }
 
+      if(isConjured(item.name)){
+
+        decreaseItemQuality(item);
+        decreaseItemQuality(item);
+
+        item.sellIn = item.sellIn - 1;
+
+        if (item.sellIn < 0) {
+          decreaseItemQuality(item);
+        }
+
+        continue;
+      }
+
+      decreaseItemQuality(item);
       item.sellIn = item.sellIn - 1;
 
       if (item.sellIn < 0) {
-        if (!isAgedBrie(item.name)) {
-            decreaseItemQuality(item);
-        } else {
-          increaseItemQuality(item);
-        }
+        decreaseItemQuality(item);
       }
-
     }
 
     return this.items;

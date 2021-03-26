@@ -93,4 +93,14 @@ describe("Gilded Rose", function () {
         });
     })
 
+    describe("Conjured", () => {
+        it("degrades in quality twice as fast", () => {
+            const gildedRose = new Shop([new Item("Conjured", 4, 22)]);
+            const items = gildedRose.updateQuality();
+
+            expect(items[0].quality).toEqual(20);
+
+        });
+    });
+
 });
