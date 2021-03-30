@@ -1,4 +1,10 @@
-import { Shop, Item } from '../gilded_rose';
+import { Shop} from '../gilded_rose';
+import {Item} from "../item";
+import {create} from "../ItemProducer";
+import {Sulfura} from "../Sulfuras";
+import {BackstagePass} from "../BackstagePass";
+import {AgedBrie} from "../AgedBrie";
+import {Default} from "../Default";
 
 const SELLIN_ZERO = 0;
 const SELLIN_ONE = 1;
@@ -19,9 +25,10 @@ const SULFURAS = "Sulfuras, Hand of Ragnaros";
 const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
 
 
-function getShopWithItem(name, sellin, quality) {
-    const gildedRose = new Shop([new Item(name, sellin, quality)]);
-    return gildedRose;
+function getShopWithItem(name, sellIn, quality) {
+    const item = create({name, sellIn, quality}, [Sulfura, BackstagePass, AgedBrie], Default);
+    const shop = new Shop([item]);
+    return shop;
 }
 
 describe("Gilded Rose #updateQuality()", function () {
