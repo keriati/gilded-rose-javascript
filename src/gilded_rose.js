@@ -12,18 +12,31 @@ const ItemNames = {
   sulfuras: "Sulfuras, Hand of Ragnaros",
   cake: "Conjured Mana Cake",
 };
-
 const increasingItemNames = [ItemNames.agedBrie, ItemNames.ticket];
+
 export const minMax = (value, option = { min: -Infinity, max: Infinity }) =>
   Math.max(option.min, Math.min(value, option.max));
 
 export class Shop {
-  constructor(items = []) {
+  constructor(
+    items = [],
+    minQuality = 0,
+    maxQuality = 50,
+    ticketConfig = {
+      qualityAfterExpiration: 0,
+      increaseQualityTrashHolds: [10, 5],
+    }
+  ) {
     this.items = items;
+    this.minQuality = minQuality;
+    this.maxQuality = maxQuality;
+    this.ticketConfig = ticketConfig;
   }
   updateQuality() {
     const ensureQualityMaxMin = (quality) =>
-      minMax(quality, { min: 0, max: 50 });
+      minMax(quality, { min: this.minQuality, max: this.maxQuality });
+
+    const expirationSellIn = 0;
 
     return this.items.map(({ name, sellIn: prevSellIn, quality }) => {
       if (name === ItemNames.sulfuras) {
@@ -32,41 +45,47 @@ export class Shop {
 
       const sellIn = prevSellIn - 1;
 
-      // Increasing part
-      if (increasingItemNames.includes(name)) {
+      const isIncreasingQuality = increasingItemNames.includes(name);
+      if (isIncreasingQuality) {
         quality++;
 
         if (name === ItemNames.agedBrie) {
-          if (sellIn < 0) {
+          quality++;
+          if (sellIn < expirationSellIn) {
             quality++;
           }
         }
 
         if (name === ItemNames.ticket) {
-          if (sellIn < 10) {
+          quality++;
+          const isTicketQualityIncreaseByTwo = sellIn < 10;
+          const isTicketQualityIncreaseByTree = sellIn < 5;
+          const isTicketExpired = sellIn < expirationSellIn;
+
+          if (isTicketQualityIncreaseByTwo) {
             quality++;
           }
-          if (sellIn < 5) {
+          if (isTicketQualityIncreaseByTree) {
             quality++;
           }
-          if (sellIn < 0) {
-            quality = 0;
+          if (isTicketExpired) {
+            quality = this.ticketConfig.qualityAfterExpiration;
           }
         }
 
         return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
 
-      // Decreasing part
       quality--;
-      if (sellIn < 0) {
+      const isDecreasingQualityDouble = sellIn < expirationSellIn;
+      if (isDecreasingQualityDouble) {
         quality--;
       }
 
       if (name === ItemNames.cake) {
         quality--;
 
-        if (sellIn < 0) {
+        if (sellIn < expirationSellIn) {
           quality--;
         }
       }
