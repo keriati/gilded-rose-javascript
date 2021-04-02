@@ -26,43 +26,64 @@ describe("Gilded Rose", function () {
   });
 
   describe("'Aged Brie' actually increases in Quality the older it gets", () => {
+    const name = "Aged Brie";
     it("far from expired", function () {
-      const gildedRose = new Shop([new Item("Aged Brie", 10, 10)]);
+      const gildedRose = new Shop([new Item(name, 10, 10)]);
       const items = gildedRose.updateQuality();
       expect(items[0]).toMatchObject({
-        name: "Aged Brie",
+        name,
         sellIn: 9,
         quality: 11,
       });
     });
 
     it("the day it expires", function () {
-      const gildedRose = new Shop([new Item("Aged Brie", 1, 1)]);
+      const gildedRose = new Shop([new Item(name, 1, 1)]);
       const items = gildedRose.updateQuality();
       expect(items[0]).toMatchObject({
-        name: "Aged Brie",
+        name,
         sellIn: 0,
         quality: 2,
       });
     });
 
     it("expired", function () {
-      const gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
+      const gildedRose = new Shop([new Item(name, 0, 0)]);
       const items = gildedRose.updateQuality();
       expect(items[0]).toMatchObject({
-        name: "Aged Brie",
+        name,
         sellIn: -1,
         quality: 2,
       });
     });
 
     it("The Quality of an item is never more than 50", function () {
-      const gildedRose = new Shop([new Item("Aged Brie", 50, 50)]);
+      const gildedRose = new Shop([new Item(name, 50, 50)]);
       const items = gildedRose.updateQuality();
       expect(items[0]).toMatchObject({
-        name: "Aged Brie",
+        name,
         sellIn: 49,
         quality: 50,
+      });
+    });
+
+    it("Quality increases by 2 when there are 10 days or less", function () {
+      const gildedRose = new Shop([new Item(name, 10, 10)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0]).toMatchObject({
+        name,
+        sellIn: 9,
+        quality: 11,
+      });
+    });
+
+    it("Quality increases by 3 when there are 5 days or less", function () {
+      const gildedRose = new Shop([new Item(name, 5, 10)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0]).toMatchObject({
+        name,
+        sellIn: 4,
+        quality: 11,
       });
     });
   });

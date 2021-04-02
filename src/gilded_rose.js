@@ -1,62 +1,65 @@
 export class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
   }
 }
 
+const ItemNames = {
+  agedBrie: "Aged Brie",
+  ticket: "Backstage passes to a TAFKAL80ETC concert",
+  sulfuras: "Sulfuras, Hand of Ragnaros",
+  cake: "Conjured Mana Cake",
+};
+
+const increasingItemNames = [ItemNames.agedBrie, ItemNames.ticket];
+
 export class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
+    return this.items.map(({ name, sellIn: prevSellIn, quality }) => {
+      if (name === ItemNames.sulfuras) {
+        return { name, sellIn: prevSellIn, quality };
+      }
+
+      const sellIn = prevSellIn - 1;
+
+      if (increasingItemNames.includes(name)) {
+        quality++;
+
+        if (name === ItemNames.agedBrie) {
+          if (sellIn < 0) {
+            quality++;
+          }
+        }
+
+        if (name === ItemNames.ticket) {
+          if (sellIn < 10) {
+            quality++;
+          }
+          if (sellIn < 5) {
+            quality++;
+          }
+          if (sellIn < 0) {
+            quality = 0;
           }
         }
       } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-          }
-        }
-      }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
-      }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
-          } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
-          }
-        } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
-        }
-      }
-    }
+        quality--;
 
-    return this.items;
+        if (sellIn < 0) {
+          quality--;
+        }
+
+        if (name === ItemNames.cake) {
+          quality--;
+        }
+      }
+
+      return { name, sellIn, quality: Math.max(0, Math.min(quality, 50)) };
+    });
   }
 }
