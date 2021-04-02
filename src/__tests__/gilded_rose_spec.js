@@ -153,14 +153,28 @@ describe("Gilded Rose", function () {
     });
   });
 
-  it("'Conjured' items degrade in Quality twice as fast as normal items", function () {
+  describe("Conjured", () => {
     const name = "Conjured Mana Cake";
-    const gildedRose = new Shop([new Item(name, 10, 10)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0]).toMatchObject({
-      name,
-      sellIn: 9,
-      quality: 8,
+    describe("items degrade in Quality twice as fast as normal items", () => {
+      it("before expiration", function () {
+        const gildedRose = new Shop([new Item(name, 10, 10)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0]).toMatchObject({
+          name,
+          sellIn: 9,
+          quality: 8,
+        });
+      });
+
+      it("after expiration", function () {
+        const gildedRose = new Shop([new Item(name, 0, 10)]);
+        const items = gildedRose.updateQuality();
+        expect(items[0]).toMatchObject({
+          name,
+          sellIn: -1,
+          quality: 6,
+        });
+      });
     });
   });
 });

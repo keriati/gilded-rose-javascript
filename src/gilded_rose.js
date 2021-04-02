@@ -14,12 +14,17 @@ const ItemNames = {
 };
 
 const increasingItemNames = [ItemNames.agedBrie, ItemNames.ticket];
+export const minMax = (value, option = { min: -Infinity, max: Infinity }) =>
+  Math.max(option.min, Math.min(value, option.max));
 
 export class Shop {
   constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
+    const ensureQualityMaxMin = (quality) =>
+      minMax(quality, { min: 0, max: 50 });
+
     return this.items.map(({ name, sellIn: prevSellIn, quality }) => {
       if (name === ItemNames.sulfuras) {
         return { name, sellIn: prevSellIn, quality };
@@ -27,6 +32,7 @@ export class Shop {
 
       const sellIn = prevSellIn - 1;
 
+      // Increasing part
       if (increasingItemNames.includes(name)) {
         quality++;
 
@@ -47,19 +53,25 @@ export class Shop {
             quality = 0;
           }
         }
-      } else {
+
+        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
+      }
+
+      // Decreasing part
+      quality--;
+      if (sellIn < 0) {
+        quality--;
+      }
+
+      if (name === ItemNames.cake) {
         quality--;
 
         if (sellIn < 0) {
           quality--;
         }
-
-        if (name === ItemNames.cake) {
-          quality--;
-        }
       }
 
-      return { name, sellIn, quality: Math.max(0, Math.min(quality, 50)) };
+      return { name, sellIn, quality: ensureQualityMaxMin(quality) };
     });
   }
 }
