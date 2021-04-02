@@ -43,34 +43,33 @@ export class Shop {
         return { name, sellIn: prevSellIn, quality };
       }
 
-      const sellIn = prevSellIn - 1;
+      if (name === ItemNames.agedBrie) {
+        const sellIn = prevSellIn - 1;
 
-      const isIncreasingQuality = increasingItemNames.includes(name);
-      if (isIncreasingQuality) {
         quality++;
-
-        if (name === ItemNames.agedBrie) {
+        if (sellIn < expirationSellIn) {
           quality++;
-          if (sellIn < expirationSellIn) {
-            quality++;
-          }
         }
 
-        if (name === ItemNames.ticket) {
-          quality++;
-          const isTicketQualityIncreaseByTwo = sellIn < 10;
-          const isTicketQualityIncreaseByTree = sellIn < 5;
-          const isTicketExpired = sellIn < expirationSellIn;
+        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
+      }
 
-          if (isTicketQualityIncreaseByTwo) {
-            quality++;
-          }
-          if (isTicketQualityIncreaseByTree) {
-            quality++;
-          }
-          if (isTicketExpired) {
-            quality = this.ticketConfig.qualityAfterExpiration;
-          }
+      const sellIn = prevSellIn - 1;
+
+      if (name === ItemNames.ticket) {
+        quality++;
+        const isTicketQualityIncreaseByTwo = sellIn < 10;
+        const isTicketQualityIncreaseByTree = sellIn < 5;
+        const isTicketExpired = sellIn < expirationSellIn;
+
+        if (isTicketQualityIncreaseByTwo) {
+          quality++;
+        }
+        if (isTicketQualityIncreaseByTree) {
+          quality++;
+        }
+        if (isTicketExpired) {
+          quality = this.ticketConfig.qualityAfterExpiration;
         }
 
         return { name, sellIn, quality: ensureQualityMaxMin(quality) };
