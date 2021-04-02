@@ -38,59 +38,65 @@ export class Shop {
 
     const expirationSellIn = 0;
 
-    return this.items.map(({ name, sellIn: prevSellIn, quality }) => {
-      if (name === ItemNames.sulfuras) {
-        return { name, sellIn: prevSellIn, quality };
-      }
+    const processAgedBrie = ({ prevSellIn, quality }) => {
+      const sellIn = prevSellIn - 1;
 
-      if (name === ItemNames.agedBrie) {
-        const sellIn = prevSellIn - 1;
-
+      quality++;
+      if (sellIn < expirationSellIn) {
         quality++;
-        if (sellIn < expirationSellIn) {
-          quality++;
-        }
-
-        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
 
-      if (name === ItemNames.ticket) {
-        const sellIn = prevSellIn - 1;
+      return {
+        name: ItemNames.agedBrie,
+        sellIn,
+        quality: ensureQualityMaxMin(quality),
+      };
+    };
+
+    const processTicket = ({ prevSellIn, quality }) => {
+      const sellIn = prevSellIn - 1;
+      quality++;
+      const isTicketQualityIncreaseByTwo = sellIn < 10;
+      const isTicketQualityIncreaseByTree = sellIn < 5;
+      const isTicketExpired = sellIn < expirationSellIn;
+
+      if (isTicketQualityIncreaseByTwo) {
         quality++;
-        const isTicketQualityIncreaseByTwo = sellIn < 10;
-        const isTicketQualityIncreaseByTree = sellIn < 5;
-        const isTicketExpired = sellIn < expirationSellIn;
-
-        if (isTicketQualityIncreaseByTwo) {
-          quality++;
-        }
-        if (isTicketQualityIncreaseByTree) {
-          quality++;
-        }
-        if (isTicketExpired) {
-          quality = this.ticketConfig.qualityAfterExpiration;
-        }
-
-        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
+      }
+      if (isTicketQualityIncreaseByTree) {
+        quality++;
+      }
+      if (isTicketExpired) {
+        quality = this.ticketConfig.qualityAfterExpiration;
       }
 
-      if (name === ItemNames.cake) {
-        const sellIn = prevSellIn - 1;
+      return {
+        name: ItemNames.ticket,
+        sellIn,
+        quality: ensureQualityMaxMin(quality),
+      };
+    };
+    const processCake = ({ prevSellIn, quality }) => {
+      const sellIn = prevSellIn - 1;
+      quality--;
+
+      if (sellIn < expirationSellIn) {
         quality--;
-
-        if (sellIn < expirationSellIn) {
-          quality--;
-        }
-
-        quality--;
-        const isDecreasingQualityDouble = sellIn < expirationSellIn;
-        if (isDecreasingQualityDouble) {
-          quality--;
-        }
-
-        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
 
+      quality--;
+      const isDecreasingQualityDouble = sellIn < expirationSellIn;
+      if (isDecreasingQualityDouble) {
+        quality--;
+      }
+
+      return {
+        name: ItemNames.cake,
+        sellIn,
+        quality: ensureQualityMaxMin(quality),
+      };
+    };
+    const processDefault = ({ name, prevSellIn, quality }) => {
       const sellIn = prevSellIn - 1;
       quality--;
       const isDecreasingQualityDouble = sellIn < expirationSellIn;
@@ -99,6 +105,26 @@ export class Shop {
       }
 
       return { name, sellIn, quality: ensureQualityMaxMin(quality) };
+    };
+
+    return this.items.map(({ name, sellIn: prevSellIn, quality }) => {
+      if (name === ItemNames.sulfuras) {
+        return { name, sellIn: prevSellIn, quality };
+      }
+
+      if (name === ItemNames.agedBrie) {
+        return processAgedBrie({ prevSellIn, quality });
+      }
+
+      if (name === ItemNames.ticket) {
+        return processTicket({ prevSellIn, quality });
+      }
+
+      if (name === ItemNames.cake) {
+        return processCake({ prevSellIn, quality });
+      }
+
+      return processDefault({ name, prevSellIn, quality });
     });
   }
 }
