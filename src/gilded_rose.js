@@ -74,20 +74,28 @@ export class Shop {
         return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
 
-      const sellIn = prevSellIn - 1;
-
-      quality--;
-      const isDecreasingQualityDouble = sellIn < expirationSellIn;
-      if (isDecreasingQualityDouble) {
-        quality--;
-      }
-
       if (name === ItemNames.cake) {
+        const sellIn = prevSellIn - 1;
         quality--;
 
         if (sellIn < expirationSellIn) {
           quality--;
         }
+
+        quality--;
+        const isDecreasingQualityDouble = sellIn < expirationSellIn;
+        if (isDecreasingQualityDouble) {
+          quality--;
+        }
+
+        return { name, sellIn, quality: ensureQualityMaxMin(quality) };
+      }
+
+      const sellIn = prevSellIn - 1;
+      quality--;
+      const isDecreasingQualityDouble = sellIn < expirationSellIn;
+      if (isDecreasingQualityDouble) {
+        quality--;
       }
 
       return { name, sellIn, quality: ensureQualityMaxMin(quality) };
