@@ -54,9 +54,8 @@ export class Shop {
         return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
 
-      const sellIn = prevSellIn - 1;
-
       if (name === ItemNames.ticket) {
+        const sellIn = prevSellIn - 1;
         quality++;
         const isTicketQualityIncreaseByTwo = sellIn < 10;
         const isTicketQualityIncreaseByTree = sellIn < 5;
@@ -74,6 +73,8 @@ export class Shop {
 
         return { name, sellIn, quality: ensureQualityMaxMin(quality) };
       }
+
+      const sellIn = prevSellIn - 1;
 
       quality--;
       const isDecreasingQualityDouble = sellIn < expirationSellIn;
