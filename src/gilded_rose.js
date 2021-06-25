@@ -29,6 +29,10 @@ const isSulfuras = (item) => item.name === SULFURAS;
 const isAgedBrie = (item) => item.name === AGED_BRIE;
 const isBackstage = (item) => item.name === BACKSTAGE;
 
+const MAXIMUM_QUALITY = 50;
+
+const isNotDegraded = (item) => item.quality < MAXIMUM_QUALITY;
+
 export class Shop {
   constructor(items = []) {
     this.items = items;
@@ -43,16 +47,16 @@ export class Shop {
           }
         }
       } else {
-        if (item.quality < 50) {
+        if (isNotDegraded(item)) {
           item = increaseQuality(item);
           if (isBackstage(item)) {
             if (item.sellIn < 11) {
-              if (item.quality < 50) {
+              if (isNotDegraded(item)) {
                 item = increaseQuality(item);
               }
             }
             if (item.sellIn < 6) {
-              if (item.quality < 50) {
+              if (isNotDegraded(item)) {
                 item = increaseQuality(item);
               }
             }
@@ -74,7 +78,7 @@ export class Shop {
             item.quality = item.quality - item.quality;
           }
         } else {
-          if (item.quality < 50) {
+          if (isNotDegraded(item)) {
             item = increaseQuality(item);
           }
         }
