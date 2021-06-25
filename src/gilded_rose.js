@@ -11,12 +11,12 @@ export class Item {
 }
 
 const increaseQuality = (item, value = 1) => {
-  item.quality += value;
+  item.quality = Math.min(item.quality + value, MAXIMUM_QUALITY);
   return item;
 };
 
 const decreaseQuality = (item, value = 1) => {
-  item.quality -= value;
+  item.quality = Math.max(item.quality - value, MINIMUM_QUALITY);
   return item;
 };
 
@@ -30,8 +30,12 @@ const isAgedBrie = (item) => item.name === AGED_BRIE;
 const isBackstage = (item) => item.name === BACKSTAGE;
 
 const MAXIMUM_QUALITY = 50;
+const MINIMUM_QUALITY = 0;
 
-const isNotDegraded = (item) => item.quality < MAXIMUM_QUALITY;
+const BACKSTAGE_THRESHOLD_1 = 11;
+const BACKSTAGE_THRESHOLD_2 = 6;
+
+const isExpired = (item) => item.sellIn < 0;
 
 export class Shop {
   constructor(items = []) {
@@ -40,47 +44,36 @@ export class Shop {
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       let item = this.items[i];
+
+      if (isSulfuras(item)) {
+        continue;
+      }
+
       if (!isAgedBrie(item) && !isBackstage(item)) {
-        if (item.quality > 0) {
-          if (!isSulfuras(item)) {
-            item = decreaseQuality(item);
-          }
-        }
+        item = decreaseQuality(item);
       } else {
-        if (isNotDegraded(item)) {
-          item = increaseQuality(item);
-          if (isBackstage(item)) {
-            if (item.sellIn < 11) {
-              if (isNotDegraded(item)) {
-                item = increaseQuality(item);
-              }
-            }
-            if (item.sellIn < 6) {
-              if (isNotDegraded(item)) {
-                item = increaseQuality(item);
-              }
-            }
+        item = increaseQuality(item);
+        if (isBackstage(item)) {
+          if (item.sellIn < BACKSTAGE_THRESHOLD_1) {
+            item = increaseQuality(item);
+          }
+          if (item.sellIn < BACKSTAGE_THRESHOLD_2) {
+            item = increaseQuality(item);
           }
         }
       }
-      if (!isSulfuras(item)) {
-        item = decreaseSellIn(item, 1);
-      }
-      if (item.sellIn < 0) {
+
+      item = decreaseSellIn(item, 1);
+
+      if (isExpired(item)) {
         if (!isAgedBrie(item)) {
           if (!isBackstage(item)) {
-            if (item.quality > 0) {
-              if (!isSulfuras(item)) {
-                item = decreaseQuality(item);
-              }
-            }
+            item = decreaseQuality(item);
           } else {
             item.quality = item.quality - item.quality;
           }
         } else {
-          if (isNotDegraded(item)) {
-            item = increaseQuality(item);
-          }
+          item = increaseQuality(item);
         }
       }
     }
