@@ -28,6 +28,12 @@ const decreaseSellIn = (item, value = 1) => {
 const isSulfuras = (item) => item.name === SULFURAS;
 const isAgedBrie = (item) => item.name === AGED_BRIE;
 const isBackstage = (item) => item.name === BACKSTAGE;
+const isConjured = (item) => item.name.startsWith('Conjured');
+const isNormal = (item) =>
+  !isSulfuras(item) &&
+  !isAgedBrie(item) &&
+  !isBackstage(item) &&
+  !isConjured(item);
 
 const MAXIMUM_QUALITY = 50;
 const MINIMUM_QUALITY = 0;
@@ -49,17 +55,21 @@ export class Shop {
         continue;
       }
 
-      if (!isAgedBrie(item) && !isBackstage(item)) {
+      if (isNormal(item)) {
         item = decreaseQuality(item);
-      } else {
+      }
+
+      if (isAgedBrie(item)) {
         item = increaseQuality(item);
-        if (isBackstage(item)) {
-          if (item.sellIn < BACKSTAGE_THRESHOLD_1) {
-            item = increaseQuality(item);
-          }
-          if (item.sellIn < BACKSTAGE_THRESHOLD_2) {
-            item = increaseQuality(item);
-          }
+      }
+
+      if (isBackstage(item)) {
+        item = increaseQuality(item);
+        if (item.sellIn < BACKSTAGE_THRESHOLD_1) {
+          item = increaseQuality(item);
+        }
+        if (item.sellIn < BACKSTAGE_THRESHOLD_2) {
+          item = increaseQuality(item);
         }
       }
 
