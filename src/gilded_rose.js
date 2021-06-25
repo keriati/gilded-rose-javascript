@@ -3,7 +3,7 @@ export const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
 export const AGED_BRIE = 'Aged Brie';
 
 export class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
@@ -21,7 +21,7 @@ const decreaseQuality = (item, value = 1) => {
 };
 
 export class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
