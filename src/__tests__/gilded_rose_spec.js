@@ -1,8 +1,4 @@
-import { Shop, Item } from '../gilded_rose';
-
-const SULFURAS = 'Sulfuras, Hand of Ragnaros';
-const BACKSTAGE = 'Backstage passes to a TAFKAL80ETC concert';
-const AGED_BRIE = 'Aged Brie';
+import { Shop, Item, AGED_BRIE, SULFURAS, BACKSTAGE } from '../gilded_rose';
 
 const SingleItemShopFactory = (name, sellIn, quality) => {
   return new Shop([new Item(name, sellIn, quality)]);
