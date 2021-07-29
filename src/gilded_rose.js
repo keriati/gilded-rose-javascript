@@ -3,14 +3,6 @@ export const AGED_BRIE = "Aged Brie";
 export const BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
 export const CONJURED = "Conjured";
 
-export class Item {
-  constructor(name, sellIn, quality) {
-    this.name = name;
-    this.sellIn = sellIn;
-    this.quality = quality;
-  }
-}
-
 function updateItemQuality(item) {
   // if item is SULFURAS, don't degrade the quality and sellIn value
   if (item.name === SULFURAS) {

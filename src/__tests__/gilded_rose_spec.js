@@ -1,4 +1,5 @@
-import {Shop, Item, CONJURED} from '../gilded_rose';
+import {Shop, CONJURED} from '../gilded_rose';
+import {Item} from "../item";
 
 describe("Gilded Rose", function () {
 
