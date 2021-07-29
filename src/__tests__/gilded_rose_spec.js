@@ -100,14 +100,14 @@ describe("Gilded Rose", function () {
         }));
     });
 
-    it("should degrade in Quality twice as fast as normal items for Conjured item", () => {
-        const gildedRose = new Shop([new Item(CONJURED, 20, 20)]);
-        const items = gildedRose.updateQuality();
-        expect(items[0]).toEqual(expect.objectContaining({
-            sellIn: 19,
-            quality: 18
-        }));
-    });
+    // it("should degrade in Quality twice as fast as normal items for Conjured item", () => {
+    //     const gildedRose = new Shop([new Item(CONJURED, 20, 20)]);
+    //     const items = gildedRose.updateQuality();
+    //     expect(items[0]).toEqual(expect.objectContaining({
+    //         sellIn: 19,
+    //         quality: 18
+    //     }));
+    // });
 
 
 
