@@ -1,4 +1,4 @@
-import {CONJURED, Shop} from '../gilded_rose';
+import {CONJURED, Shop, updateBackstagePassesQuality} from '../gilded_rose';
 import {Item} from "../item";
 
 describe("Gilded Rose", function () {
@@ -114,3 +114,12 @@ describe("Gilded Rose", function () {
 
 
 });
+
+describe("updateBackstagePassesQuality", () => {
+    it('should increase the quality twice',  () =>  {
+        expect(updateBackstagePassesQuality({quality: 48, sellIn: 2})).toEqual(expect.objectContaining({
+            quality: 50,
+            sellIn: 1
+        }));
+    });
+})
