@@ -11,11 +11,8 @@ function updateItemQuality(item) {
 
   // if item is CONJURED, degrade the quality twice as compare to normal items
   if (item.name === CONJURED) {
-    item = {
-      ...item,
-      quality: item.quality - 2,
-      sellIn: item.sellIn - 1,
-    };
+    item.quality = item.quality - 2;
+    item.sellIn = item.sellIn - 1;
     return item;
   }
 
@@ -62,7 +59,6 @@ function updateItemQuality(item) {
       }
     }
   }
-
 }
 
 export class Shop {
