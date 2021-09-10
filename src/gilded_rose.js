@@ -15,54 +15,75 @@ export class Item {
 }
 
 export class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
+  }
+
+  decreaseQuality(item) {
+    --item.quality;
+  }
+
+  decreaseSellIn(item) {
+    --item.sellIn;
+  }
+
+  increaseQuality(item) {
+    ++item.quality;
+  }
+
+  shouldQualityIncrease(item) {
+    return item.quality < HIGHEST_QUALITY;
+  }
+
+  increaseQualityIfPossible(item) {
+    if (this.shouldQualityIncrease(item)) {
+      this.increaseQuality(item);
+    }
+  }
+
+  shouldDecreaseQuality(item) {
+    return item.name != SULFURAS && item.quality > 0;
+  }
+
+  decreaseQualityIfPossible(item) {
+    if (this.shouldDecreaseQuality(item)) {
+      if (this.shouldDecreaseQuality(item)) {
+        this.decreaseQuality(item);
+      }
+    }
   }
 
   updateQuality() {
     //
     for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != AGED_BRIE && this.items[i].name != BACKSTAGE_PASSES_TAFKAL80ETC) {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != SULFURAS) {
-            this.items[i].quality = this.items[i].quality - 1;
-          }
-        }
+      const item = this.items[i];
+      if (item.name != AGED_BRIE && item.name != BACKSTAGE_PASSES_TAFKAL80ETC) {
+        this.decreaseQualityIfPossible(item);
       } else {
-        if (this.items[i].quality < HIGHEST_QUALITY) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == BACKSTAGE_PASSES_TAFKAL80ETC) {
-            if (this.items[i].sellIn < BACKSTAGE_PASSES_SELL_IN_QUALITY_TWO) {
-              if (this.items[i].quality < HIGHEST_QUALITY) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
+        if (this.shouldQualityIncrease(item)) {
+            this.increaseQuality(item);
+          if (item.name == BACKSTAGE_PASSES_TAFKAL80ETC) {
+            if (item.sellIn < BACKSTAGE_PASSES_SELL_IN_QUALITY_TWO) {
+              this.increaseQualityIfPossible(item);
             }
-            if (this.items[i].sellIn < BACKSTAGE_PASSES_SELL_IN_QUALITY_THREE) {
-              if (this.items[i].quality < HIGHEST_QUALITY) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
+            if (item.sellIn < BACKSTAGE_PASSES_SELL_IN_QUALITY_THREE) {
+              this.increaseQualityIfPossible(item);
             }
           }
         }
       }
-      if (this.items[i].name != SULFURAS) {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+      if (item.name != SULFURAS) {
+        this.decreaseSellIn(item);
       }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != AGED_BRIE) {
-          if (this.items[i].name != BACKSTAGE_PASSES_TAFKAL80ETC) {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != SULFURAS) {
-                this.items[i].quality = this.items[i].quality - 1;
-              }
-            }
+      if (item.sellIn < 0) {
+        if (item.name != AGED_BRIE) {
+          if (item.name != BACKSTAGE_PASSES_TAFKAL80ETC) {
+            this.decreaseQualityIfPossible(item);
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            item.quality = 0;
           }
         } else {
-          if (this.items[i].quality < HIGHEST_QUALITY) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
+          this.increaseQualityIfPossible(item);
         }
       }
     }
