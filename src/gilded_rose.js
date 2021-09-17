@@ -38,6 +38,15 @@ function handleBackStagePassQualityIncrease(item) {
     }
 }
 
+function updateAgedBrie(item) {
+    increaceQuality(item);
+    item.sellIn = item.sellIn - 1;
+    if (item.sellIn >= MIN_SELLIN) {
+        return;
+    }
+    increaceQuality(item);
+}
+
 export class Shop {
     constructor(items = []) {
         this.items = items;
@@ -48,7 +57,11 @@ export class Shop {
             if (item.name === SULFURAS) {
                 return;
             }
-            if (item.name === AGED_BRIE || item.name === BACKSTAGE_PASS) {
+            if (item.name === AGED_BRIE) {
+                updateAgedBrie(item);
+                return;
+            }
+            if (item.name === BACKSTAGE_PASS) {
                 increaceQuality(item)
                 if (item.name === BACKSTAGE_PASS) {
                     handleBackStagePassQualityIncrease(item)
@@ -63,15 +76,13 @@ export class Shop {
             if (item.sellIn >= MIN_SELLIN) {
                 return;
             }
-            if (item.name === AGED_BRIE) {
-                increaceQuality(item);
+
+            if (item.name === BACKSTAGE_PASS) {
+                item.quality = 0;
             } else {
-                if (item.name === BACKSTAGE_PASS) {
-                    item.quality = 0;
-                } else {
-                    decreaseQuality(item)
-                }
+                decreaseQuality(item)
             }
+
 
         })
 
