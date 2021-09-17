@@ -28,6 +28,16 @@ function decreaseQuality(item) {
     }
 }
 
+
+function handleBackStagePassQualityIncrease(item) {
+    if (item.sellIn < BACKSTAGE_PASS_QUALITY_2) {
+        increaceQuality(item);
+    }
+    if (item.sellIn < BACKSTAGE_PASS_QUALITY_3) {
+        increaceQuality(item);
+    }
+}
+
 export class Shop {
     constructor(items = []) {
         this.items = items;
@@ -39,17 +49,11 @@ export class Shop {
                 return;
             }
             if (item.name === AGED_BRIE || item.name === BACKSTAGE_PASS) {
-                if (item.quality < MAX_QUALITY) {
-                    item.quality = item.quality + 1;
-                    if (item.name === BACKSTAGE_PASS) {
-                        if (item.sellIn < BACKSTAGE_PASS_QUALITY_2) {
-                            increaceQuality(item);
-                        }
-                        if (item.sellIn < BACKSTAGE_PASS_QUALITY_3) {
-                            increaceQuality(item);
-                        }
-                    }
+                increaceQuality(item)
+                if (item.name === BACKSTAGE_PASS) {
+                    handleBackStagePassQualityIncrease(item)
                 }
+
             } else {
                 decreaseQuality(item);
             }
