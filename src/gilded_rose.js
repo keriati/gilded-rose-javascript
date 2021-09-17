@@ -47,6 +47,18 @@ function updateAgedBrie(item) {
     increaceQuality(item);
 }
 
+function updateBackstagePass(item) {
+    increaceQuality(item);
+    handleBackStagePassQualityIncrease(item)
+    item.sellIn = item.sellIn - 1;
+
+    if (item.sellIn >= MIN_SELLIN) {
+        return;
+    }
+    item.quality = 0;
+}
+
+
 export class Shop {
     constructor(items = []) {
         this.items = items;
@@ -62,28 +74,16 @@ export class Shop {
                 return;
             }
             if (item.name === BACKSTAGE_PASS) {
-                increaceQuality(item)
-                if (item.name === BACKSTAGE_PASS) {
-                    handleBackStagePassQualityIncrease(item)
-                }
-
-            } else {
-                decreaseQuality(item);
+                updateBackstagePass(item);
+                return;
             }
-
+            decreaseQuality(item);
             item.sellIn = item.sellIn - 1;
 
             if (item.sellIn >= MIN_SELLIN) {
                 return;
             }
-
-            if (item.name === BACKSTAGE_PASS) {
-                item.quality = 0;
-            } else {
-                decreaseQuality(item)
-            }
-
-
+            decreaseQuality(item)
         })
 
         return this.items;
