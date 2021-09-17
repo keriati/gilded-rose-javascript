@@ -58,6 +58,15 @@ function updateBackstagePass(item) {
     item.quality = 0;
 }
 
+function updateRegularItem(item){
+    decreaseQuality(item);
+    item.sellIn = item.sellIn - 1;
+    if (item.sellIn >= MIN_SELLIN) {
+        return;
+    }
+    decreaseQuality(item)
+}
+
 
 export class Shop {
     constructor(items = []) {
@@ -77,13 +86,7 @@ export class Shop {
                 updateBackstagePass(item);
                 return;
             }
-            decreaseQuality(item);
-            item.sellIn = item.sellIn - 1;
-
-            if (item.sellIn >= MIN_SELLIN) {
-                return;
-            }
-            decreaseQuality(item)
+            updateRegularItem(item);
         })
 
         return this.items;
