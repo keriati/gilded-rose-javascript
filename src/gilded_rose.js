@@ -16,6 +16,18 @@ const BACKSTAGE_PASS_QUALITY_2 = 11;
 const BACKSTAGE_PASS_QUALITY_3 = 6;
 
 
+function increaceQuality(item) {
+    if (item.quality < MAX_QUALITY) {
+        item.quality = item.quality + 1;
+    }
+}
+
+function decreaseQuality(item) {
+    if (item.quality > MIN_QUALITY) {
+        item.quality = item.quality - 1;
+    }
+}
+
 export class Shop {
     constructor(items = []) {
         this.items = items;
@@ -23,49 +35,39 @@ export class Shop {
 
     updateQuality() {
         this.items.forEach((item) => {
+            if (item.name === SULFURAS) {
+                return;
+            }
             if (item.name !== AGED_BRIE && item.name !== BACKSTAGE_PASS) {
-                if (item.quality > MIN_QUALITY) {
-                    if (item.name !== SULFURAS) {
-                        item.quality = item.quality - 1;
-                    }
-                }
+                decreaseQuality(item);
             } else {
                 if (item.quality < MAX_QUALITY) {
                     item.quality = item.quality + 1;
                     if (item.name === BACKSTAGE_PASS) {
                         if (item.sellIn < BACKSTAGE_PASS_QUALITY_2) {
-                            if (item.quality < MAX_QUALITY) {
-                                item.quality = item.quality + 1;
-                            }
+                            increaceQuality(item);
                         }
                         if (item.sellIn < BACKSTAGE_PASS_QUALITY_3) {
-                            if (item.quality < MAX_QUALITY) {
-                                item.quality = item.quality + 1;
-                            }
+                            increaceQuality(item);
                         }
                     }
                 }
             }
-            if (item.name !== SULFURAS) {
-                item.sellIn = item.sellIn - 1;
-            }
+
+            item.sellIn = item.sellIn - 1;
+
             if (item.sellIn < MIN_SELLIN) {
                 if (item.name !== AGED_BRIE) {
                     if (item.name !== BACKSTAGE_PASS) {
-                        if (item.quality > MIN_QUALITY) {
-                            if (item.name !== SULFURAS) {
-                                item.quality = item.quality - 1;
-                            }
-                        }
+                        decreaseQuality(item)
                     } else {
-                        item.quality = item.quality - item.quality;
+                        item.quality = 0;
                     }
                 } else {
-                    if (item.quality < MAX_QUALITY) {
-                        item.quality = item.quality + 1;
-                    }
+                    increaceQuality(item);
                 }
             }
+
         })
 
         return this.items;
