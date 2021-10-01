@@ -102,6 +102,13 @@ describe("Gilded Rose", function () {
       gildedRose.updateQuality();
       expect(items[0].sellIn).toEqual(9);
     });
+
+    it("should not increase the quality of aged brie above 50", function () {
+      const gildedRose = new Shop([new Item("Aged Brie", 10, 50)]);
+      const items = gildedRose.items;
+      gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(50);
+    });
   });
 
   describe("Sulfuras", function () {

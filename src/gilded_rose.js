@@ -5,6 +5,7 @@ const ITEM_CONJURED = "Conjured Mana Cake";
 
 const QUALITY_TRESHOLD = 50;
 const STANDARD_RATE_OF_QUALITY_DECREASE = 1;
+const STANDARD_RATE_OF_QUALITY_INCREASE = 1;
 export class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
@@ -28,34 +29,49 @@ export class Shop {
     item.quality -= decreaseBy;
   }
 
-  handleConjuredItem(item) {
-    this.decreaseQuality(item, STANDARD_RATE_OF_QUALITY_DECREASE * 2);
+  decreaseSellIn(item, decreaseBy = 1) {
+    item.sellIn -= decreaseBy;
+  }
 
-    if(item.sellIn <= 0) {
-      this.decreaseQuality(item, STANDARD_RATE_OF_QUALITY_DECREASE * 2);
+  handleConjuredItem(item) {
+    this.decreaseQuality(item, STANDARD_RATE_OF_QUALITY_DECREASE * 2);
+    item.sellIn = item.sellIn - 1;
+
+    if (item.sellIn <= 0) {
+      this.decreaseQuality(item, STANDARD_RATE_OF_QUALITY_DECREASE * 2);
     }
   }
 
+  handleAgedBrie(item) {
+    this.increaseQuality(item);
+    this.decreaseSellIn(item);
 
+    if(item.sellIn <= 0) {
+      this.increaseQuality(item);
+    }
+  } 
 
   updateQuality() {
     for (var i = 0; i < this.items.length; i++) {
       const item = this.items[i];
 
-      if (item.name != ITEM_SULFURAS) {
-        item.sellIn = item.sellIn - 1;
+      if (item.name === ITEM_SULFURAS) {
+        continue;
       }
-      
-      if(item.name === ITEM_CONJURED) {
+
+      if (item.name === ITEM_CONJURED) {
         this.handleConjuredItem(item);
         continue;
       }
 
-      if (item.name != ITEM_AGED_BRIE && item.name != ITEM_BACKSTAGE_PASS) {
+      if (item.name === ITEM_AGED_BRIE) {
+        this.handleAgedBrie(item);
+        continue;
+      }  
+
+      if (item.name != ITEM_BACKSTAGE_PASS) {
         if (item.quality > 0) {
-          if (item.name != ITEM_SULFURAS) {
-            this.decreaseQuality(item);
-          }
+          this.decreaseQuality(item);
         }
       } else {
         this.increaseQuality(item);
@@ -70,6 +86,8 @@ export class Shop {
         }
       }
 
+      item.sellIn = item.sellIn - 1;
+      
       if (item.sellIn < 0) {
         if (item.name === ITEM_AGED_BRIE) {
           this.increaseQuality(item);
@@ -78,9 +96,7 @@ export class Shop {
             item.quality = 0;
           } else {
             if (item.quality > 0) {
-              if (item.name != ITEM_SULFURAS) {
-                this.decreaseQuality(item); 
-              }
+              this.decreaseQuality(item);
             }
           }
         }
