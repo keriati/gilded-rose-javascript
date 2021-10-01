@@ -177,4 +177,20 @@ describe("Gilded Rose", function () {
       expect(items[0].quality).toEqual(0);
     });
   });
+
+  describe("Conjured", function() {
+    it("should degrade the quality of conjured items twice as fast", function () {
+      const gildedRose = new Shop([new Item("Conjured Mana Cake", 20, 30)]);
+      const items = gildedRose.items;
+      gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(28);
+    });
+
+    it("should degrade the quality of conjured items four times as fast when expired", function () {
+      const gildedRose = new Shop([new Item("Conjured Mana Cake", 0, 30)]);
+      const items = gildedRose.items;
+      gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(26);
+    }); 
+  });
 });
