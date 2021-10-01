@@ -48,7 +48,9 @@ export class Shop {
         item.sellIn = item.sellIn - 1;
       }
       if (item.sellIn < 0) {
-        if (item.name != ITEM_AGED_BRIE) {
+        if (item.name === ITEM_AGED_BRIE) {
+          this.updateQualityIfBelowTreshold(item);
+        } else {
           if (item.name === ITEM_BACKSTAGE_PASS) {
             item.quality = 0;
           } else {
@@ -58,8 +60,6 @@ export class Shop {
               }
             }
           }
-        } else {
-          this.updateQualityIfBelowTreshold(item);
         }
       }
     }
