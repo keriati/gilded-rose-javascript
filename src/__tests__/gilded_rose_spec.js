@@ -117,15 +117,10 @@ describe("Shop", function () {
       expect(item.quality).toEqual(0);
     });
     it("quality should not be negative", function () {
-        const gildedRose = new Shop([new Item("Conjured", 0, 3)]);
-        const item = gildedRose.updateQuality()[0];
-        expect(item.quality).toEqual(0);
-      });
-    // it("should not decrease quality when it reach 0", function () {
-    //   const gildedRose = new Shop([new Item("Conjured", 0, 0)]);
-    //   const item = gildedRose.updateQuality()[0];
-    //   expect(item.quality).toEqual(0);
-    // });
+      const gildedRose = new Shop([new Item("Conjured", 0, 3)]);
+      const item = gildedRose.updateQuality()[0];
+      expect(item.quality).toEqual(0);
+    });
     it("should decrease sell in by 1", function () {
       const gildedRose = new Shop([new Item("Conjured", 2, 3)]);
       const item = gildedRose.updateQuality()[0];
