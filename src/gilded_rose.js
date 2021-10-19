@@ -1,61 +1,104 @@
+const AGED_BRIE = "Aged Brie";
+const BACKSTAGE = "Backstage passes to a TAFKAL80ETC concert";
+const SULFURAS = "Sulfuras, Hand of Ragnaros";
+
+const MAX_QUALITY = 50;
+const MIN_QUALITY = 0;
+const DOUBLE_DECREMENT_LIMIT = 0;
+const BACKSTAGE_DOUBLE_INCREMENT_LIMIT = 11;
+const BACKSTAGE_TRIPLE_INCREMENT_LIMIT = 6;
+
 export class Item {
-  constructor(name, sellIn, quality){
+  constructor(name, sellIn, quality) {
     this.name = name;
     this.sellIn = sellIn;
     this.quality = quality;
   }
+
+  isAgedBrie() {
+    return this.name === AGED_BRIE;
+  }
+
+  isBackstagePass() {
+    return this.name === BACKSTAGE;
+  }
+
+  isSulfuras() {
+    return this.name === SULFURAS;
+  }
+
+  incrementQuality() {
+    if (this.quality < MAX_QUALITY) {
+      this.quality++;
+    }
+  }
+
+  decrementQuality() {
+    if (this.quality > MIN_QUALITY) {
+      this.quality--;
+    }
+  }
+
+  progressSellin() {
+    this.sellIn--;
+  }
+
+  zeroQuality() {
+    this.quality = 0;
+  }
 }
 
 export class Shop {
-  constructor(items=[]){
+  constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
-    for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i].name != 'Aged Brie' && this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-        if (this.items[i].quality > 0) {
-          if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-            this.items[i].quality = this.items[i].quality - 1;
+    this.items.forEach((item) => {
+      const notBrieOrBackstage = !item.isAgedBrie() && !item.isBackstagePass();
+
+      if (notBrieOrBackstage && !item.isSulfuras()) {
+        //default decrement
+        item.decrementQuality();
+      }
+      if (!notBrieOrBackstage) {
+        // backstage + agedbrie increment
+        item.incrementQuality();
+
+        // backstage day specific increment
+        if (item.isBackstagePass()) {
+          if (item.sellIn < BACKSTAGE_DOUBLE_INCREMENT_LIMIT) {
+            item.incrementQuality();
           }
-        }
-      } else {
-        if (this.items[i].quality < 50) {
-          this.items[i].quality = this.items[i].quality + 1;
-          if (this.items[i].name == 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].sellIn < 11) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
-            if (this.items[i].sellIn < 6) {
-              if (this.items[i].quality < 50) {
-                this.items[i].quality = this.items[i].quality + 1;
-              }
-            }
+          if (item.sellIn < BACKSTAGE_TRIPLE_INCREMENT_LIMIT) {
+            item.incrementQuality();
           }
         }
       }
-      if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-        this.items[i].sellIn = this.items[i].sellIn - 1;
+
+      // sellin progress
+      if (!item.isSulfuras()) {
+        item.progressSellin();
       }
-      if (this.items[i].sellIn < 0) {
-        if (this.items[i].name != 'Aged Brie') {
-          if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-            if (this.items[i].quality > 0) {
-              if (this.items[i].name != 'Sulfuras, Hand of Ragnaros') {
-                this.items[i].quality = this.items[i].quality - 1;
+
+      if (item.sellIn < DOUBLE_DECREMENT_LIMIT) {
+        if (!item.isAgedBrie()) {
+          if (!item.isBackstagePass()) {
+            if (item.quality > MIN_QUALITY) {
+              if (!item.isSulfuras()) {
+                // default item, double decrement.
+                item.decrementQuality();
               }
             }
           } else {
-            this.items[i].quality = this.items[i].quality - this.items[i].quality;
+            // backstage zero out
+            item.zeroQuality();
           }
         } else {
-          if (this.items[i].quality < 50) {
-            this.items[i].quality = this.items[i].quality + 1;
-          }
+          // brie double increment
+          item.incrementQuality();
         }
       }
-    }
+    });
 
     return this.items;
   }
