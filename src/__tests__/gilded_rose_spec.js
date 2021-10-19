@@ -49,7 +49,7 @@ describe("Gilded Rose", () => {
           expect(updatedItem.quality).toEqual(8);
         });
 
-        it("decrements the Quality by two once intial Sellin < 0", function () {
+        it("decrements the Quality by two once initial Sellin < 0", function () {
           const shop = createShop("foo", -1, 10);
 
           const [updatedItem] = shop.updateQuality();
@@ -195,6 +195,32 @@ describe("Gilded Rose", () => {
           expect(updatedItem.quality).toEqual(50);
         });
       });
+
+      describe("behavior specific for Items named 'Conjured Mana Cake'", () => {
+        it("decrements the Quality by two when updated Sellin reaches 0", function () {
+          const shop = createShop("Conjured Mana Cake", 1, 10);
+
+          const [updatedItem] = shop.updateQuality();
+
+          expect(updatedItem.quality).toEqual(8);
+        });
+
+        it("decrements the Quality by four when initial Sellin 0", function () {
+          const shop = createShop("Conjured Mana Cake", 0, 10);
+
+          const [updatedItem] = shop.updateQuality();
+
+          expect(updatedItem.quality).toEqual(6);
+        });
+
+        it("decrements the Quality by four once initial Sellin < 0", function () {
+          const shop = createShop("Conjured Mana Cake", -1, 10);
+
+          const [updatedItem] = shop.updateQuality();
+
+          expect(updatedItem.quality).toEqual(6);
+        });
+      })
     });
   });
 });
