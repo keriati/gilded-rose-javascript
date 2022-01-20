@@ -2,6 +2,9 @@ export const BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
 export const AgedBrie = "Aged Brie";
 export const Sulfuras = "Sulfuras, Hand of Ragnaros";
 
+const MAX_ITEM_QUALITY = 50;
+const MIN_ITEM_QUALITY = 0;
+
 export class Item {
   constructor(name, sellIn, quality) {
     this.name = name;
@@ -9,6 +12,22 @@ export class Item {
     this.quality = quality;
   }
 }
+
+function decreaseItemQualityByOne(item) {
+  if (item.quality > MIN_ITEM_QUALITY) {
+    return (item.quality = item.quality - 1);
+  }
+  return item.quality;
+}
+
+function increaseIteemQualityByOne(item) {
+  if (item.quality < MAX_ITEM_QUALITY) {
+    return (item.quality = item.quality + 1);
+  }
+
+  return item.quality;
+}
+
 export class Shop {
   constructor(items = []) {
     this.items = items;
@@ -20,42 +39,28 @@ export class Shop {
       }
 
       if (item.name != AgedBrie && item.name != BackstagePasses) {
-        if (item.quality > 0) {
-          item.quality = item.quality - 1;
-        }
+        decreaseItemQualityByOne(item);
       } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1;
-          if (item.name == BackstagePasses) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1;
-              }
-            }
+        increaseIteemQualityByOne(item);
+        if (item.name == BackstagePasses) {
+          if (item.sellIn < 11) {
+            increaseIteemQualityByOne(item);
+          }
+          if (item.sellIn < 6) {
+            increaseIteemQualityByOne(item);
           }
         }
       }
 
       item.sellIn = item.sellIn - 1;
 
-      if (item.sellIn < 0) {
+      if (item.sellIn < MIN_ITEM_QUALITY) {
         if (item.name != AgedBrie) {
-          if (item.name != BackstagePasses) {
-            if (item.quality > 0) {
-              item.quality = item.quality - 1;
-            }
-          } else {
-            item.quality = item.quality - item.quality;
-          }
+          item.name != BackstagePasses
+            ? decreaseItemQualityByOne(item)
+            : (item.quality = MIN_ITEM_QUALITY);
         } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
+          increaseIteemQualityByOne(item);
         }
       }
     });
