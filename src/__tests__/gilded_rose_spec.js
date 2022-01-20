@@ -1,5 +1,5 @@
 import { Shop, Item } from "../gilded_rose";
-import { BackstagePasses, AgedBrie, Sulfuras } from "../gilded_rose";
+import { BackstagePasses, AgedBrie, Sulfuras, Conjured } from "../gilded_rose";
 
 describe("Gilded Rose", function () {
   it("Once the sell by date has passed, Quality degrades twice as fast", () => {
@@ -71,5 +71,17 @@ describe("Gilded Rose", function () {
     const gildedRose = new Shop([new Item(BackstagePasses, 0, 50)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(0);
+  });
+
+  it("'Conjured' items degrade in Quality twice as fast as normal items", () => {
+    const gildedRose = new Shop([new Item(Conjured, 0, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(46);
+  });
+
+  it("'Conjured' items degrade in Quality twice as fast as normal items _2", () => {
+    const gildedRose = new Shop([new Item(Conjured, 1, 50)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(48);
   });
 });
