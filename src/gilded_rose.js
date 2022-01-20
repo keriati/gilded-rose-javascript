@@ -1,5 +1,6 @@
 export const BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
 export const AgedBrie = "Aged Brie";
+export const Sulfuras = "Sulfuras, Hand of Ragnaros";
 
 export class Item {
   constructor(name, sellIn, quality) {
@@ -19,7 +20,7 @@ export class Shop {
         this.items[i].name != BackstagePasses
       ) {
         if (this.items[i].quality > 0) {
-          if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+          if (this.items[i].name != Sulfuras) {
             this.items[i].quality = this.items[i].quality - 1;
           }
         }
@@ -40,14 +41,14 @@ export class Shop {
           }
         }
       }
-      if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+      if (this.items[i].name != Sulfuras) {
         this.items[i].sellIn = this.items[i].sellIn - 1;
       }
       if (this.items[i].sellIn < 0) {
         if (this.items[i].name != AgedBrie) {
           if (this.items[i].name != BackstagePasses) {
             if (this.items[i].quality > 0) {
-              if (this.items[i].name != "Sulfuras, Hand of Ragnaros") {
+              if (this.items[i].name != Sulfuras) {
                 this.items[i].quality = this.items[i].quality - 1;
               }
             }

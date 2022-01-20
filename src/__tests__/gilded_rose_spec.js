@@ -1,5 +1,5 @@
 import { Shop, Item } from "../gilded_rose";
-import { BackstagePasses, AgedBrie } from "../gilded_rose";
+import { BackstagePasses, AgedBrie, Sulfuras } from "../gilded_rose";
 
 describe("Gilded Rose", function () {
   it("Once the sell by date has passed, Quality degrades twice as fast", () => {
@@ -38,17 +38,13 @@ describe("Gilded Rose", function () {
   });
 
   it("'Sulfuras, Hand of Ragnaros', being a legendary item, never has to be decreases in Quality", () => {
-    const gildedRose = new Shop([
-      new Item("Sulfuras, Hand of Ragnaros", 1, 50),
-    ]);
+    const gildedRose = new Shop([new Item(Sulfuras, 1, 50)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(50);
   });
 
   it("'Sulfuras, Hand of Ragnaros', being a legendary item, never ever has to be sold", () => {
-    const gildedRose = new Shop([
-      new Item("Sulfuras, Hand of Ragnaros", 10, 50),
-    ]);
+    const gildedRose = new Shop([new Item(Sulfuras, 10, 50)]);
     const items = gildedRose.updateQuality();
     expect(items[0].sellIn).toEqual(10);
   });
