@@ -85,29 +85,21 @@ function updateStandartItem(item) {
   return;
 }
 
+const itemsOptions = [
+  { name: Sulfuras, action: updateSulfurasItem },
+  { name: AgedBrie, action: updateAgedBrieItem },
+  { name: BackstagePasses, action: updateupdateBackstagePassesItem },
+  { name: Conjured, action: updateConjuredItem },
+];
+
 export class Shop {
   constructor(items = []) {
     this.items = items;
   }
   updateQuality() {
     this.items.forEach((item) => {
-      if (item.name === Sulfuras) {
-        return updateSulfurasItem(item);
-      }
-
-      if (item.name === AgedBrie) {
-        return updateAgedBrieItem(item);
-      }
-
-      if (item.name === BackstagePasses) {
-        return updateupdateBackstagePassesItem(item);
-      }
-
-      if (item.name === Conjured) {
-        return updateConjuredItem(item);
-      }
-
-      updateStandartItem(item);
+      const option = itemsOptions.find((option) => option.name === item.name);
+      return Boolean(option) ? option.action(item) : updateStandartItem(item);
     });
 
     return this.items;
