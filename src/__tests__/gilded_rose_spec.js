@@ -1,5 +1,5 @@
 import { Shop, Item } from "../gilded_rose";
-import { BackstagePasses } from "../gilded_rose";
+import { BackstagePasses, AgedBrie } from "../gilded_rose";
 
 describe("Gilded Rose", function () {
   it("Once the sell by date has passed, Quality degrades twice as fast", () => {
@@ -21,18 +21,18 @@ describe("Gilded Rose", function () {
   });
 
   it("Aged Brie' actually increases in Quality the older it gets", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", 1, 0)]);
+    const gildedRose = new Shop([new Item(AgedBrie, 1, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(1);
   });
   it("Once the sell by date has passed, Quality of the Aged Brie sould increse twice as fast", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", 0, 1)]);
+    const gildedRose = new Shop([new Item(AgedBrie, 0, 1)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(3);
   });
 
   it("The Quality of an item is never more than 50", () => {
-    const gildedRose = new Shop([new Item("Aged Brie", 0, 50)]);
+    const gildedRose = new Shop([new Item(AgedBrie, 0, 50)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(50);
   });
