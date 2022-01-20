@@ -20,13 +20,22 @@ function decreaseItemQualityByOne(item) {
   return item.quality;
 }
 
-function increaseIteemQualityByOne(item) {
+function increaseItemQualityByOne(item) {
   if (item.quality < MAX_ITEM_QUALITY) {
     return (item.quality = item.quality + 1);
   }
 
   return item.quality;
 }
+
+function decreaseItemSellInByOne(item) {
+  return item.sellIn--;
+}
+
+const itemOption = {
+  name: "Whatever",
+  rules: [],
+};
 
 export class Shop {
   constructor(items = []) {
@@ -35,33 +44,50 @@ export class Shop {
   updateQuality() {
     this.items.forEach((item) => {
       if (item.name === Sulfuras) {
-        return this.items;
+        return;
       }
 
-      if (item.name != AgedBrie && item.name != BackstagePasses) {
+      if (item.name === AgedBrie) {
+        increaseItemQualityByOne(item);
+        decreaseItemSellInByOne(item);
+        if (item.sellIn < MIN_ITEM_QUALITY) {
+          increaseItemQualityByOne(item);
+        }
+        return;
+      }
+
+      // if(item.name === BackstagePasses) {
+      //   increaseItemQualityByOne(item);
+      //   if (item.name == BackstagePasses) {
+      //     if (item.sellIn < 11) {
+      //       increaseItemQualityByOne(item);
+      //     }
+      //     if (item.sellIn < 6) {
+      //       increaseItemQualityByOne(item);
+      //     }
+      //   }
+      // }
+
+      if (item.name != BackstagePasses) {
         decreaseItemQualityByOne(item);
       } else {
-        increaseIteemQualityByOne(item);
+        increaseItemQualityByOne(item);
         if (item.name == BackstagePasses) {
           if (item.sellIn < 11) {
-            increaseIteemQualityByOne(item);
+            increaseItemQualityByOne(item);
           }
           if (item.sellIn < 6) {
-            increaseIteemQualityByOne(item);
+            increaseItemQualityByOne(item);
           }
         }
       }
 
-      item.sellIn = item.sellIn - 1;
+      decreaseItemSellInByOne(item);
 
       if (item.sellIn < MIN_ITEM_QUALITY) {
-        if (item.name != AgedBrie) {
-          item.name != BackstagePasses
-            ? decreaseItemQualityByOne(item)
-            : (item.quality = MIN_ITEM_QUALITY);
-        } else {
-          increaseIteemQualityByOne(item);
-        }
+        item.name != BackstagePasses
+          ? decreaseItemQualityByOne(item)
+          : (item.quality = MIN_ITEM_QUALITY);
       }
     });
 
